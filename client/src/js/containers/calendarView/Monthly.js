@@ -15,7 +15,6 @@ const Monthly = () => {
 	const [ userData ] = useUserData();
 	const { schedule } = userData; // 유저의 스케쥴
 	const [ curSchedule, setCurSchedule ] = useState([]); // 현재 달력 날짜 안에 포함된 스케쥴
-
 	useEffect(
 		() => {
 			const { firstDate, lastDate } = getFirstAndLastDate();
