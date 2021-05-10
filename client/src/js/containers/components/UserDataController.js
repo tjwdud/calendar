@@ -19,29 +19,27 @@ export const getSchedule = (startDate, endDate, schedule) => {
 	return newSchedule;
 };
 
-export const isConflict = (curDate, startHour, endHour, schedule) => {//날짜를 수정하거나 스케줄을 추가할때 호출되는 함수
+export const isConflict = (curDate, startHour, startMinute, schedule) => {//날짜를 수정하거나 스케줄을 추가할때 호출되는 함수
 	let i = 0;
 	for (i = 0; i < schedule.length; i++) {//만약 스케줄에 3개 넣었으면 3번
 		const diff = curDate.getTime() - schedule[i].curDate.getTime();//날짜 비교
-		console.log(curDate.getTime())
-		console.log(schedule[i].curDate.getTime())
+		const startH = schedule[i].startHour;
+		const startM = schedule[i].startMinute;
 		if (diff === 0) {//날짜가 같다면 시간을 비교해야겠지...
-			const start = schedule[i].startHour;
-			const end = schedule[i].endHour;
-
-			if (startHour < start) {//현재 함수의 시작시간이 이미 배열에 존재하는 시작 시간들보다 빠르면
-				if (endHour <= start) {//그리고 현재 함수의 종료시간이 이미 배열에 존재하는 시작 시간들보다 작거나 같은경우
-					break;//그만한다
-				} else {//현재 함수의 종료시간이 배열에 존재하는 시작 시간들보다 큰경우 -1 왜냐? 스케줄 겹치니까...
-					return -1;
-				}
-			} else if (startHour === start || (startHour > start && startHour < end)) {//시작시간이 같거나 넣으려는 스케줄의 시작시간이 이미 존재하는 스케줄(start~end)사이에 끼어 있으면 
-				return -1;
-			} else if (startHour >= end) {//
-				i++;
+			if(startHour < startH){
 				break;
+			} else if (startHour === startH) {
+				if(startMinute < startM){
+					break;
+				} else if(startMinute === startM){//다음 요소도 확인을 해봐야함
+					if(	schedule[i+1] == null || startMinute !== schedule[i+1].startMinute ){//다음요소랑 분이 같지 않으면 지금요소 뒤에 삽입 or 지금요소가 마지막 요소라면
+						i ++;
+						break;	
+					} 
+				
+				}
 			}
-		} else if (diff < 0) {//지금 실행되는 함수에 입력된 날짜가 가장 빠르다면 배열 0에 들어가기 때문에 i는 0 반환하고 멈춤 
+		} else if (diff < 0) {//지금 실행되는 함수에 입력된 날짜가 가장 빠르다면 배열 0에 들어가기 때문에 i는 
 			break;
 		}
 	}
@@ -51,10 +49,11 @@ export const isConflict = (curDate, startHour, endHour, schedule) => {//날짜�
 
 export const insertDate = (addFormState, schedule) => {
 	const { title, curDate, startHour, startMinute, endHour, endMinute } = addFormState;
-	const index = isConflict(curDate, startHour, endHour, schedule);
+	const index = isConflict(curDate, startHour, startMinute, schedule);
 
 	if (index !== -1) {
 		const newItem = { title, curDate, startHour, startMinute, endHour, endMinute };
+		console.log(newItem)
 		return [ ...schedule.slice(0, index), newItem, ...schedule.slice(index) ];
 	} else {
 		return false;
@@ -64,13 +63,17 @@ export const insertDate = (addFormState, schedule) => {
 export const editDate = (addFormState, beforeEdit, schedule) => {
 	const { title, curDate, startHour, startMinute, endHour, endMinute} = addFormState;
 
-	// 이전 할일을 지우고
-	const newSchedule = deleteDate(beforeEdit.curDate, beforeEdit.startHour, beforeEdit.startMinute, beforeEdit.endHour, beforeEdit.endMinute, schedule);
+	// 이전 할일을 지우고	
+
+	const newSchedule = deleteDate(beforeEdit.title, beforeEdit.curDate, beforeEdit.startHour, beforeEdit.startMinute, beforeEdit.endHour, beforeEdit.endMinute, schedule);
+
 	// 새 할일을 추가하는데
-	const index = isConflict(curDate, startHour, endHour, newSchedule);
+
+	const index = isConflict(curDate, startHour, startMinute, newSchedule);
 	if (index !== -1) {
 		// 추가에 성공
 		const newItem = { title, curDate, startHour, startMinute, endHour, endMinute };
+		console.log(index)
 		return [ ...newSchedule.slice(0, index), newItem, ...newSchedule.slice(index) ];
 	} else {
 		// 추가하려는 곳이 중복이면 작업 취소
@@ -78,10 +81,10 @@ export const editDate = (addFormState, beforeEdit, schedule) => {
 	}
 };
 
-export const deleteDate = (curDate, startHour, startMinute, endHour, endMinute, schedule) => {
+export const deleteDate = ( title ,curDate, startHour, startMinute, endHour, endMinute, schedule) => {
 	let index = schedule.findIndex(
 		(el) =>
-			el.curDate.getTime() === curDate.getTime() && el.startHour === startHour && el.startMinute === startMinute && el.endHour === endHour && el.endMinute === endMinute
+		 	el.title === title && el.curDate.getTime() === curDate.getTime() && el.startHour === startHour && el.startMinute === startMinute && el.endHour === endHour && el.endMinute === endMinute 
 				? true
 				: false
 	);

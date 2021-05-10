@@ -45,9 +45,9 @@ const AddForm = () => {
 	const [ newAddFormState, setNewAddFormState ] = useState({
 		title: '',
 		curDate: new Date(),
-		startHour: 0,
+		startHour: 10,
 		startMinute: 0,
-		endHour: 1,
+		endHour: 11,
 		endminute: 0
 	});
 	const { title, curDate, startHour, startMinute, endHour, endMinute } = newAddFormState;
@@ -150,7 +150,7 @@ const AddForm = () => {
 	};
 
 	const onClickDelete = () => {
-		const newSchedule = deleteDate(curDate, startHour, startMinute, endHour, endMinute, schedule);
+		const newSchedule = deleteDate(title, curDate, startHour, startMinute, endHour, endMinute, schedule);
 		setUserData({ ...userData, schedule: newSchedule });
 		setAddFormState({ ...addFormState, active: false });
 		setErrorState({
@@ -184,7 +184,6 @@ const AddForm = () => {
 									i < 12 ? (
 										<option key={i} value={a}>
 											{a}
-
 										</option>
 									) : null
 							)}
@@ -218,8 +217,6 @@ const AddForm = () => {
 									(
 										<option key={i} value={a}>
 											{a}
-											{/*{console.log(i,a)}*/}
-
 										</option>
 									)
 							)}
