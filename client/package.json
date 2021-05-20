@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/lab": "^4.0.0-alpha.58",
     "react": "^16.8.4",
     "react-datepicker": "^2.2.0",
     "react-dom": "^16.8.4",

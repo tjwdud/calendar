@@ -26,9 +26,13 @@ const MonthlyCell = (props) => {
 		[ schedule ]
 	);
 
-	const onClickDate = () => {
+	const onClickDate = () => {//스케줄 추가할때 
 		if (!active) {
-			const startHour = new Date().getHours();
+			let startHour = 10
+			const nowHour = new Date().getHours();
+			if(nowHour >= 10 && nowHour <= 21 ){
+				startHour = nowHour
+			}
 			const startMinute = 0;
 			const endMinute = 0;          
 
@@ -41,16 +45,19 @@ const MonthlyCell = (props) => {
 				startHour: startHour,
 				startMinute: startMinute,
 				endHour: startHour + 1,
-				endMinute: endMinute
+				endMinute: endMinute,
+				students: []
+
 			});
 		}
 	};
 
-	const onClickSchedule = (e, schedule) => {
+	const onClickSchedule = (e, schedule) => {//수정하려고 스케줄 눌렀을때
 		e.stopPropagation();
-		const { title, curDate, startHour, startMinute, endHour,endMinute } = schedule;
+		const { title, curDate, startHour, startMinute, endHour, endMinute, students } = schedule;
 
 		if (!active) {
+
 			setAddFormState({
 				...addFormState,
 				active: true,
@@ -60,7 +67,9 @@ const MonthlyCell = (props) => {
 				startHour: startHour,
 				startMinute: startMinute,
 				endHour: endHour,
-				endMinute: endMinute
+				endMinute: endMinute,
+				students: students
+
 			});
 		}
 	};
@@ -92,8 +101,15 @@ const MonthlyCell = (props) => {
 	};
 
 	const onDragEnterCell = (e) => {
-		const { title, startHour, startMinute, endHour, endMinute } = dragAndDrop.from;
-		const newScheduleForm = { title: title, curDate: date, startHour: startHour, startMinute: startMinute, endHour: endHour, endMinute:endMinute };
+		const { title, startHour, startMinute, endHour, endMinute, students } = dragAndDrop.from;
+		const newScheduleForm = { 
+			title: title, 
+			curDate: date, 
+			startHour: startHour, 
+			startMinute: startMinute, 
+			endHour: endHour, 
+			endMinute:endMinute, 
+			students: students};
 		setDragAndDrop({ ...dragAndDrop, to: newScheduleForm });
 	};
 
@@ -108,9 +124,16 @@ const MonthlyCell = (props) => {
 					onClick={(e) => onClickSchedule(e, a)}
 					draggable
 					onDragStart={(e) => onDragCell(e, a)}
-				>
-					<p>{a.startHour + '시' + a.startMinute + '분 ~' + a.endHour + '시' + a.endMinute + '분'}</p>
+				>					
 					<p>{a.title}</p>
+					<p>{a.startHour + '시' + a.startMinute + '분 ~' + a.endHour + '시' + a.endMinute + '분'}</p>
+					{a.students.map((b, j) => (
+						<p
+							key={j}
+						>
+							{b.name}
+						</p>
+					))}
 				</div>
 			))}
 		</div>

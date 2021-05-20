@@ -9,22 +9,18 @@ import { useDragAndDrop } from 'js/stores/dragAndDrop';
 
 const WeeklyCell = (props) => {
 	const { index, day, date, startHour, schedule } = props;
-	const [ addFormState, setAddFormState ] = useAddFormState();
+	const [addFormState, setAddFormState] = useAddFormState();
 	const { active } = addFormState;
-	const [ errorState, setErrorState ] = useErrorState();
-	const [ userData, setUserData ] = useUserData();
-	const [ dragAndDrop, setDragAndDrop ] = useDragAndDrop();
+	const [errorState, setErrorState] = useErrorState();
+	const [userData, setUserData] = useUserData();
+	const [dragAndDrop, setDragAndDrop] = useDragAndDrop();
+	const [curDateStr, setCurDateStr] = useState('');
 
-	const height = schedule
-		? {
-				height: (schedule.endHour - schedule.startHour) * 50 - 22 + 'px'
-			}
-		: null;
 
 	const onClickDate = () => {
 		if (!active) {
 			const startMinute = 0;
-			const endMinute = 0;  
+			const endMinute = 0;
 			setAddFormState({
 				...addFormState,
 				active: true,
@@ -34,16 +30,19 @@ const WeeklyCell = (props) => {
 				startHour: startHour,
 				startMinute: startMinute,
 				endHour: startHour + 1,
-				endMinute: endMinute
+				endMinute: endMinute,
+				students: []
 			});
 		}
 	};
 
 	const onClickSchedule = (e, schedule) => {
 		e.stopPropagation();
-		const { title, curDate, startHour, startMinute, endHour, endMinute } = schedule;
+		const { title, curDate, startHour, startMinute, endHour, endMinute, students } = schedule;
 		if (!active) {
+
 			setAddFormState({
+
 				...addFormState,
 				active: true,
 				mode: 'edit',
@@ -52,13 +51,15 @@ const WeeklyCell = (props) => {
 				startHour: startHour,
 				startMinute: startMinute,
 				endHour: endHour,
-				endMinute: endMinute
+				endMinute: endMinute,
+				students: students,
+
 			});
 		}
 	};
 
 	const onDropSchedule = (e) => {
-		if (dragAndDrop.to.endHour > 24) return;
+		if (dragAndDrop.to.endHour > 20) return;
 		const newSchedule = editDate(dragAndDrop.to, dragAndDrop.from, userData.schedule);
 
 		if (newSchedule !== false) {
@@ -68,26 +69,34 @@ const WeeklyCell = (props) => {
 				...errorState,
 				active: true,
 				mode: 'edit',
-				message: [ [ '일정이 수정 되었습니다.' ] ]
+				message: [['일정이 수정 되었습니다.']]
 			});
 		} else {//editDate가 false를 return 하면
 			setErrorState({
 				...errorState,
 				active: true,
 				mode: 'fail',
-				message: [ [ '일정을 수정할 수 없습니다.' ], [ '해당 시간에 이미 다른 일정이 존재합니다.' ] ]
+				message: [['일정을 수정할 수 없습니다.'], ['해당 시간에 이미 다른 일정이 존재합니다.']]
 			});
 		}
 	};
 
-	const onDragCell = (e) => {
+	const onDragCell = (e, schedule) => {
 		setDragAndDrop({ ...dragAndDrop, from: schedule });
 	};
 
 	const onDragEnterCell = (e) => {
 		const { from } = dragAndDrop;
 		const diff = from.endHour - from.startHour;
-		const newScheduleForm = { title: from.title, curDate: date, startHour, startMinute: from.startMinute, endHour: startHour + diff, endMinute: from.endMinute };
+		const newScheduleForm = {
+			title: from.title,
+			curDate: date,
+			startHour,
+			startMinute: from.startMinute,
+			endHour: startHour + diff,
+			endMinute: from.endMinute,
+			students: from.students
+		};
 		setDragAndDrop({ ...dragAndDrop, to: newScheduleForm });
 	};
 
@@ -108,18 +117,25 @@ const WeeklyCell = (props) => {
 
 	return (
 		<div className="weekly-cell" onClick={onClickDate} onDragEnter={onDragEnterCell} onDragEnd={onDropSchedule}>
-			{schedule ? (
+			{schedule && schedule.map((a, i) => (
 				<div
+					key={i}
 					className="weekly-schedule"
-					style={height}
-					onClick={(e) => onClickSchedule(e, schedule)}
+					onClick={(e) => onClickSchedule(e, a)}
 					draggable
-					onDragStart={(e) => onDragCell(e)}
+					onDragStart={(e) => onDragCell(e, a)}
 				>
-					<p>{schedule.startHour + '시' +schedule.startMinute + '분~' + schedule.endHour + '시' + schedule.endMinute + '분'}</p>
-					<p>{schedule.title}</p>
+					<p>{a.title}</p>
+					<p>{a.startHour + '시' + a.startMinute + '분~' + a.endHour + '시' + a.endMinute + '분'}</p>
+					{a.students.map((b, j) => (
+						<p
+							key={j}
+						>
+							{b.name}
+						</p>
+					))}
 				</div>
-			) : null}
+			))}
 		</div>
 	);
 };

@@ -75,14 +75,14 @@ const Weekly = () => {
 	};
 
 	const getCurDateSchedule = (curDate, startHour) => {
-		let curDateSchedule = null;
+		let curDateSchedule = [];
 
-		for (let i = 0; i < curSchedule.length; i++) {
-			if (curDate.getTime() === curSchedule[i].curDate.getTime() && curSchedule[i].startHour === startHour) {
-				curDateSchedule = curSchedule[i];
-				break;
+		curSchedule.forEach((date) => {
+			if (date.curDate.getTime() === curDate.getTime() && date.startHour === startHour) {
+				curDateSchedule.push(date);
 			}
-		}
+		});
+		
 
 		return curDateSchedule;
 	};
@@ -97,18 +97,25 @@ const Weekly = () => {
 				))}
 			</div>
 			{dates.map((a, i) => (
+				i % 7 != 0 ?//일요일이 아니면 출력
 				<div key={i} className="weekly-col">
-					{a.map((b, j) => (
+					
+					{a.map((b, j) => (//j0123456
+			
 						<WeeklyCell
 							key={j}
 							index={j}
-							day={a[0]}
-							date={a[1]}
+							day={a[0]}//요일
+							date={a[1]}//날짜
 							startHour={b}
 							schedule={getCurDateSchedule(a[1], b)}
+			
 						/>
+	
+						
 					))}
 				</div>
+				: null
 			))}
 		</div>
 	);

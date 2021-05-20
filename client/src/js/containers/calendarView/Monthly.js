@@ -58,7 +58,7 @@ const Monthly = () => {
 
 	const getCurDateSchedule = (curDate) => {
 		const curDateSchedule = [];
-		curSchedule.forEach((date) => {
+		curSchedule.forEach((date) => {//curSchedule 배열에 들어있는 모든 요소를 돌면서 날짜가 같으면 빈 curDateSchedule애 추가한다.
 			if (date.curDate.getTime() - curDate.getTime() === 0) {
 				curDateSchedule.push(date);
 			}
@@ -79,7 +79,13 @@ const Monthly = () => {
 
 			{dates.map((a, i) => (
 				<div key={i} className="monthly-row">
-					{a.map((b, j) => <MonthlyCell key={j} date={b} schedule={getCurDateSchedule(b)} />)}
+					{a.map((b, j) => 
+						<MonthlyCell 
+							key={j} 
+							date={b} 
+							schedule={getCurDateSchedule(b)} 
+						/>
+					)}
 				</div>
 			))}
 		</div>

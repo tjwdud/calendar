@@ -48,20 +48,19 @@ export const isConflict = (curDate, startHour, startMinute, schedule) => {//날�
 };
 
 export const insertDate = (addFormState, schedule) => {
-	const { title, curDate, startHour, startMinute, endHour, endMinute } = addFormState;
+	const { title, curDate, startHour, startMinute, endHour, endMinute, students } = addFormState;
 	const index = isConflict(curDate, startHour, startMinute, schedule);
 
 	if (index !== -1) {
-		const newItem = { title, curDate, startHour, startMinute, endHour, endMinute };
-		console.log(newItem)
+		const newItem = { title, curDate, startHour, startMinute, endHour, endMinute, students };
 		return [ ...schedule.slice(0, index), newItem, ...schedule.slice(index) ];
 	} else {
 		return false;
 	}
 };
 
-export const editDate = (addFormState, beforeEdit, schedule) => {
-	const { title, curDate, startHour, startMinute, endHour, endMinute} = addFormState;
+export const editDate = (addFormState, beforeEdit, schedule) => {//수정후, 수정전, 전체 스케줄
+	const { title, curDate, startHour, startMinute, endHour, endMinute, students} = addFormState;
 
 	// 이전 할일을 지우고	
 
@@ -69,11 +68,11 @@ export const editDate = (addFormState, beforeEdit, schedule) => {
 
 	// 새 할일을 추가하는데
 
+	console.log(newSchedule);//이게 이상해 
 	const index = isConflict(curDate, startHour, startMinute, newSchedule);
 	if (index !== -1) {
 		// 추가에 성공
-		const newItem = { title, curDate, startHour, startMinute, endHour, endMinute };
-		console.log(index)
+		const newItem = { title, curDate, startHour, startMinute, endHour, endMinute, students };
 		return [ ...newSchedule.slice(0, index), newItem, ...newSchedule.slice(index) ];
 	} else {
 		// 추가하려는 곳이 중복이면 작업 취소
