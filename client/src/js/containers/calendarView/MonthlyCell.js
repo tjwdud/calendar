@@ -17,6 +17,7 @@ const MonthlyCell = (props) => {
 
 	useEffect(
 		() => {
+
 			let newCurDateStr = date.getDate();
 			if (schedule.length !== 0) {
 				newCurDateStr += ' (' + schedule.length + ')';

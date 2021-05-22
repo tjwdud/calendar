@@ -69,7 +69,7 @@ const Monthly = () => {
 
 		return curDateSchedule;
 	};
-
+	
 	return (
 		<div id="monthly-view">
 			<div className="day-row">
