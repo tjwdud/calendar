@@ -31,13 +31,16 @@ const Monthly = () => {
 		[ userData ]
 	);
 
+
+	
 	const getFirstAndLastDate = () => {
 		const year = date.getFullYear();
 		const month = date.getMonth();
+	
 		let firstDate = new Date(year, month, 1);
-		firstDate = new Date(year, month, -firstDate.getDay() + 1);
+		firstDate = new Date(year, month, -firstDate.getDay() + 1);//0
 		let lastDate = new Date(year, month + 1, 0);
-		lastDate = new Date(year, month + 1, 6 - lastDate.getDay());
+		lastDate = new Date(year, month + 1, 6 - lastDate.getDay());//6
 		return { firstDate: firstDate, lastDate: lastDate };
 	};
 

@@ -3,13 +3,13 @@ export const getSchedule = (startDate, endDate, schedule) => {
 
 	const start = schedule[0].curDate.getTime();
 	const end = schedule[schedule.length - 1].curDate.getTime();
-	if (endDate.getTime() < start) return [];
-	else if (startDate.getTime() > end) return [];
-
+	if (endDate.getTime() < start) return [];//인자 마지막날짜가 스케줄의 시작시간보다 작으면 []
+	else if (startDate.getTime() > end) return [];//인자 시작날짜가 스케줄의 끝시간보다 크면 [] 
+    //이 달력에 해당하는 스케줄이 없으면 빈 배열을 리턴하는 것이다 
 	const newSchedule = [];
 	for (let i = 0; i < schedule.length; i++) {
 		const curDate = schedule[i].curDate.getTime();
-		if (startDate.getTime() <= curDate && endDate.getTime() >= curDate) {
+		if (startDate.getTime() <= curDate && endDate.getTime() >= curDate) {//지금 비교하는 스케줄의 날짜가 달력안에 있다면
 			newSchedule.push(schedule[i]);
 		} else if (newSchedule.length !== 0) {
 			break;
@@ -17,6 +17,32 @@ export const getSchedule = (startDate, endDate, schedule) => {
 	}
 
 	return newSchedule;
+};
+
+export const getScheduleDaily = (curDailyDate, schedule) => {
+	if (schedule.length === 0) return []; //스케줄 배열의 길이가 0이면 빈 배열 
+	 
+	const start = schedule[0].curDate.getTime();//첫번째 스케줄의 날짜 
+	const end = schedule[schedule.length -1].curDate.getTime();//마지막 스케줄의 날짜
+
+	const newSchedule = [];
+
+	if(curDailyDate.getTime() < start || curDailyDate.getTime() > end){
+		return [];
+	} 
+	for (let i =0; i <schedule.length;i++) {
+
+		const scheduleCurDate = schedule[i].curDate.getTime();
+		if(scheduleCurDate === curDailyDate.getTime()){
+			newSchedule.push(schedule[i]);
+		} else if (newSchedule.length !== 0) {
+			break;
+		}
+
+	}
+
+	return newSchedule;
+
 };
 
 export const isConflict = (curDate, startHour, startMinute, schedule) => {//날짜를 수정하거나 스케줄을 추가할때 호출되는 함수

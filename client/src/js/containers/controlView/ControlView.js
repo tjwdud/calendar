@@ -14,7 +14,10 @@ const ControlView = () => {
 			} else if (mode === 'weekly') {
 				let lastDate = parseInt((date.getDate() + (6 - date.getDay())) / 7) + 1;
 				newCurDate = date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월 ' + lastDate + '주';
-			}
+			} else if (mode === 'daily'){
+				let week = ['일','월','화','수','목','금','토',]
+				newCurDate = date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월 ' +  (date.getDate()) + '일' +  (week[date.getDay()]) + '요일';
+			} 
 			setCurDateStr(newCurDate);
 		},
 		[ date, mode ]
@@ -28,7 +31,7 @@ const ControlView = () => {
 		changeDate(1);
 	};
 
-	const onClickDateView = () => {
+	const onClickDateView = () => {//날짜 누르면 
 		setCalendarState({ ...calendarState, date: new Date() });
 	};
 
@@ -38,12 +41,27 @@ const ControlView = () => {
 			newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + value * 7);
 		} else if (mode === 'monthly') {
 			newDate = new Date(date.getFullYear(), date.getMonth() + value, date.getDate());
+		} else if (mode === 'daily') {
+			newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()+ value );
 		}
 		setCalendarState({ ...calendarState, date: newDate });
 	};
 
-	const onClickModeController = () => {
-		const nextMode = mode === 'monthly' ? 'weekly' : 'monthly';
+	/*const onClickModeController = () => {
+	
+		const nextMode = mode === 'monthly' ? 'weekly' : 'monthly';//몬슬리이면 위클리가 넥스트모드 위클리면 몬슬리가 넥스트 모드 
+		setCalendarState({ ...calendarState, mode: nextMode });
+	};*/
+	const onClickMonthly = () => {
+		const mode = 'monthly'
+		setCalendarState({ ...calendarState, mode: mode });
+	}
+	const onClickWeekly = () => {
+		const mode = 'weekly'
+		setCalendarState({ ...calendarState, mode: mode });
+	}
+	const onClickDaily = () => {
+		const nextMode = 'daily';
 		setCalendarState({ ...calendarState, mode: nextMode });
 	};
 
@@ -61,11 +79,14 @@ const ControlView = () => {
 				</div>
 			</div>
 			<div id="mode-controller">
-				<div id="mode-btn" className={mode === 'monthly' ? 'active' : null} onClick={onClickModeController}>
+				<div id="mode-btn" className={mode === 'monthly' ? 'active' : null} onClick={onClickMonthly}>
 					월
 				</div>
-				<div id="mode-btn" className={mode === 'weekly' ? 'active' : null} onClick={onClickModeController}>
+				<div id="mode-btn" className={mode === 'weekly' ? 'active' : null} onClick={onClickWeekly}>
 					주
+				</div>
+				<div id="mode-btn" className={mode === 'daily' ? 'active' : null} onClick={onClickDaily}>
+					일
 				</div>
 			</div>
 		</div>

@@ -211,6 +211,23 @@ body {
         color: #ef7a8b; }
       #calendar-view #weekly-view .weekly-col .saturday {
         color: #769bff; }
+  #calendar-view #daily-view {
+    width: 1300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: 50px; }
+    #calendar-view #daily-view #main-class{
+      height: 800px;
+      width:100%;
+      border: solid 0.5px #111;
+    }
+    #calendar-view #daily-view #free-class{
+      height: 800px;
+      width:100%;
+      border: solid 0.5px #111;
+    }
 
 #panel {
   display: flex;

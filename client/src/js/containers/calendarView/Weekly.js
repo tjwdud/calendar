@@ -52,6 +52,7 @@ const Weekly = () => {
 		const year = date.getFullYear();
 		const month = date.getMonth();
 		const day = date.getDay();
+	
 		const firstDate = new Date(year, month, date.getDate() - day);
 		const lastDate = new Date(year, month, date.getDate() + (6 - day));
 		return { firstDate: firstDate, lastDate: lastDate };
@@ -86,7 +87,6 @@ const Weekly = () => {
 
 		return curDateSchedule;
 	};
-
 	return (
 		<div id="weekly-view">
 			<div className="hour-col">
