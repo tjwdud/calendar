@@ -38,9 +38,11 @@ const DailyMainCell = (props) => {
             }
             const startMinute = 0;
             const endMinute = 0;
+            const class_type = 'main_class';
 
             setAddFormState({
                 ...addFormState,
+                class_type: class_type,
                 active: true,
                 mode: 'add',
                 title: '',
@@ -76,58 +78,18 @@ const DailyMainCell = (props) => {
             });
         }
     };
-    const onDropSchedule = (e) => {
-        const newSchedule = editDate(dragAndDrop.to, dragAndDrop.from, userData.schedule);
-
-        if (newSchedule !== false) {
-            setUserData({ ...userData, schedule: newSchedule });
-            setAddFormState({ ...addFormState, active: false });
-            setErrorState({
-                ...errorState,
-                active: true,
-                mode: 'edit',
-                message: [['일정이 수정 되었습니다.']]
-            });
-        } else {
-            setErrorState({
-                ...errorState,
-                active: true,
-                mode: 'fail',
-                message: [['일정을 수정할 수 없습니다.'], ['해당 시간에 이미 다른 일정이 존재합니다.']]
-            });
-        }
-    };
-
-    const onDragCell = (e, schedule) => {
-        setDragAndDrop({ ...dragAndDrop, from: schedule });
-    };
-
-    const onDragEnterCell = (e) => {
-        const { title, startHour, startMinute, endHour, endMinute, students } = dragAndDrop.from;
-        const newScheduleForm = {
-            title: title,
-            curDate: date,
-            startHour: startHour,
-            startMinute: startMinute,
-            endHour: endHour,
-            endMinute: endMinute,
-            students: students
-        };
-        setDragAndDrop({ ...dragAndDrop, to: newScheduleForm });
-    };
+    
 
     return (
-        <div className='daily-main-cell' onClick={onClickDate} onDragEnter={onDragEnterCell} onDragEnd={onDropSchedule}>
+        <div className='daily-main-cell' onClick={onClickDate}>
             <p>{curDateStr}</p>
 
 
             {schedule.map((a, i) => (
-                <div
+                <div style={{ backgroundColor: 'lightgrey'}}
                     key={i}
                     className="daily-schedule"
                     onClick={(e) => onClickSchedule(e, a)}
-                    draggable
-                    onDragStart={(e) => onDragCell(e, a)}
                 >
                     <p>{a.title}</p>
                     <p>{a.startHour + '시' + a.startMinute + '분 ~' + a.endHour + '시' + a.endMinute + '분'}</p>

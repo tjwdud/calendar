@@ -6,6 +6,8 @@ import { insertDate, deleteDate, editDate } from 'js/containers/components/UserD
 // store
 import { useAddFormState } from 'js/stores/addFormState';
 import { useUserData } from 'js/stores/userData';
+import { useFreeUserData } from 'js/stores/freeUserData';
+
 import { useErrorState } from 'js/stores/errorState';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
@@ -38,8 +40,8 @@ const AddForm = () => {
 	const classes = useStyles();
 
 	const [addFormState, setAddFormState] = useAddFormState();
-	const { active, mode } = addFormState;
-
+	const { active, mode, class_type } = addFormState;
+	
 	const [hourOptions] = useState([
 		10,//0
 		11,//1
@@ -90,12 +92,18 @@ const AddForm = () => {
 	});
 	const { title, curDate, startHour, startMinute, endHour, endMinute, students } = newAddFormState;
 	const [userData, setUserData] = useUserData();
-	const { schedule } = userData;
+	const [freeUserData, setFreeUserData] = useFreeUserData();
+
+	let  { schedule } = [];
+	if (class_type === 'free_class'){ schedule = freeUserData; }
+	else { schedule = userData; }
 	const [beforeEdit, setBeforeEdit] = useState();
 	const [errorState, setErrorState] = useErrorState();
 
 	useEffect(
 		() => {
+
+		
 			if (active) {
 				const { title, curDate, startHour, startMinute, endHour, endMinute, students } = addFormState;
 				setNewAddFormState({ title, curDate, startHour, startMinute, endHour, endMinute, students });
@@ -106,7 +114,6 @@ const AddForm = () => {
 		},
 		[active]
 	);
-
 	const onChangeCurDate = (value) => {
 		setNewAddFormState({ ...newAddFormState, curDate: value });
 	};
@@ -147,10 +154,18 @@ const AddForm = () => {
 
 	const onClickAdd = () => {
 		if (title === '') return;
-
-		const newSchedule = insertDate(newAddFormState, schedule);
+		let newSchedule = [];
+		if(class_type === 'free_class'){
+			newSchedule = insertDate(newAddFormState, schedule.freeSchedule);
+		} else {
+			newSchedule = insertDate(newAddFormState, schedule.schedule);
+		}
 		if (newSchedule !== false) {
-			setUserData({ ...userData, schedule: newSchedule });
+			if(class_type === 'free_class'){
+				setFreeUserData({ ...freeUserData, freeSchedule: newSchedule})
+			} else {
+				setUserData({ ...userData, schedule: newSchedule });
+			}
 			setAddFormState({ ...addFormState, active: false });
 			setErrorState({
 				...errorState,
@@ -170,13 +185,23 @@ const AddForm = () => {
 
 	const onClickEdit = () => {
 		if (title === '') return;
-		console.log(newAddFormState)
-		console.log(beforeEdit)
-		console.log(schedule)
-		const newSchedule = editDate(newAddFormState, beforeEdit, schedule);
+		let newSchedule = [];
+		if(class_type === 'free_class'){
+			console.log(newAddFormState)
+			console.log(beforeEdit)
+			newSchedule = editDate(newAddFormState, beforeEdit, schedule.freeSchedule)
+		} else {
+			console.log(newAddFormState)
+			console.log(beforeEdit)
+			newSchedule = editDate(newAddFormState, beforeEdit, schedule.schedule);
+		}
 
 		if (newSchedule !== false) {
-			setUserData({ ...userData, schedule: newSchedule });
+			if(class_type ==='free_class'){
+				setFreeUserData({ ...freeUserData, freeSchedule: newSchedule})
+			} else {
+				setUserData({ ...userData, schedule: newSchedule })
+			}
 			setAddFormState({ ...addFormState, active: false });
 			setErrorState({
 				...errorState,
@@ -195,8 +220,17 @@ const AddForm = () => {
 	};
 
 	const onClickDelete = () => {
-		const newSchedule = deleteDate(title, curDate, startHour, startMinute, endHour, endMinute, schedule);
-		setUserData({ ...userData, schedule: newSchedule });
+		let newSchedule = [];
+		if(class_type === 'free_class'){
+			newSchedule = deleteDate(title, curDate, startHour, startMinute, endHour, endMinute, schedule.freeSchedule);
+		} else {
+			newSchedule = deleteDate(title, curDate, startHour, startMinute, endHour, endMinute, schedule.schedule);
+		}
+		if(class_type ==='free_class'){
+			setFreeUserData({ ...freeUserData, freeSchedule: newSchedule})
+		} else {
+			setUserData({ ...userData, schedule: newSchedule })
+		}
 		setAddFormState({ ...addFormState, active: false });
 		setErrorState({
 			...errorState,
@@ -318,6 +352,6 @@ const AddForm = () => {
 				</div>
 			</div>
 		);
-};
+	};
 
 export default AddForm;

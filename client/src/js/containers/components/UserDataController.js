@@ -79,7 +79,7 @@ export const insertDate = (addFormState, schedule) => {
 
 	if (index !== -1) {
 		const newItem = { title, curDate, startHour, startMinute, endHour, endMinute, students };
-		return [ ...schedule.slice(0, index), newItem, ...schedule.slice(index) ];
+		return [ ...schedule.slice(0, index), newItem, ...schedule.slice(index) ];//0부터 index-1까지 
 	} else {
 		return false;
 	}
@@ -94,7 +94,6 @@ export const editDate = (addFormState, beforeEdit, schedule) => {//수정후, �
 
 	// 새 할일을 추가하는데
 
-	console.log(newSchedule);//이게 이상해 
 	const index = isConflict(curDate, startHour, startMinute, newSchedule);
 	if (index !== -1) {
 		// 추가에 성공

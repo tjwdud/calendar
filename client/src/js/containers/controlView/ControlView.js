@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Router } from 'react';
 import 'sass/app.css';
 import { useCalendarState } from 'js/stores/calendarState';
 const ControlView = () => {
@@ -43,6 +43,7 @@ const ControlView = () => {
 			newDate = new Date(date.getFullYear(), date.getMonth() + value, date.getDate());
 		} else if (mode === 'daily') {
 			newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()+ value );
+			console.log(newDate);
 		}
 		setCalendarState({ ...calendarState, date: newDate });
 	};
@@ -61,8 +62,8 @@ const ControlView = () => {
 		setCalendarState({ ...calendarState, mode: mode });
 	}
 	const onClickDaily = () => {
-		const nextMode = 'daily';
-		setCalendarState({ ...calendarState, mode: nextMode });
+		const mode = 'daily';
+		setCalendarState({ ...calendarState, mode: mode });
 	};
 
 	return (
@@ -72,6 +73,7 @@ const ControlView = () => {
 					<img src={require('img/arrow-left.png')} />
 				</div>
 				<div id="date-view" onClick={onClickDateView}>
+				
 					{curDateStr}
 				</div>
 				<div className="arrow-btn" onClick={onClickRight}>
@@ -88,6 +90,8 @@ const ControlView = () => {
 				<div id="mode-btn" className={mode === 'daily' ? 'active' : null} onClick={onClickDaily}>
 					일
 				</div>
+
+				<div> 학생추가 페이지 </div>
 			</div>
 		</div>
 	);

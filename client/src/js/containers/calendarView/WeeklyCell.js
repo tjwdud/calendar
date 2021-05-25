@@ -15,7 +15,7 @@ const WeeklyCell = (props) => {
 	const [userData, setUserData] = useUserData();
 	const [dragAndDrop, setDragAndDrop] = useDragAndDrop();
 	const [curDateStr, setCurDateStr] = useState('');
-
+	const class_type = 'main-class'
 
 	const onClickDate = () => {
 		if (!active) {
@@ -23,6 +23,7 @@ const WeeklyCell = (props) => {
 			const endMinute = 0;
 			setAddFormState({
 				...addFormState,
+				class_type: class_type,
 				active: true,
 				mode: 'add',
 				title: '',
@@ -42,8 +43,8 @@ const WeeklyCell = (props) => {
 		if (!active) {
 
 			setAddFormState({
-
 				...addFormState,
+				class_type: class_type,
 				active: true,
 				mode: 'edit',
 				title: title,

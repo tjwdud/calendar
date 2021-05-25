@@ -14,6 +14,7 @@ const MonthlyCell = (props) => {
 	const [ userData, setUserData ] = useUserData();
 	const [ dragAndDrop, setDragAndDrop ] = useDragAndDrop();
 	const [ curDateStr, setCurDateStr ] = useState('');
+	const class_type = 'main_class'
 
 	useEffect(
 		() => {
@@ -36,9 +37,9 @@ const MonthlyCell = (props) => {
 			}
 			const startMinute = 0;
 			const endMinute = 0;          
-
 			setAddFormState({
 				...addFormState,
+				class_type: class_type,
 				active: true,
 				mode: 'add',
 				title: '',
@@ -61,6 +62,7 @@ const MonthlyCell = (props) => {
 
 			setAddFormState({
 				...addFormState,
+				class_type: class_type,
 				active: true,
 				mode: 'edit',
 				title: title,
@@ -80,7 +82,7 @@ const MonthlyCell = (props) => {
 
 		if (newSchedule !== false) {
 			setUserData({ ...userData, schedule: newSchedule });
-			setAddFormState({ ...addFormState, active: false });
+			setAddFormState({ ...addFormState, active: false, class_type: class_type });
 			setErrorState({
 				...errorState,
 				active: true,
