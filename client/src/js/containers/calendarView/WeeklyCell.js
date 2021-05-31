@@ -14,7 +14,6 @@ const WeeklyCell = (props) => {
 	const [errorState, setErrorState] = useErrorState();
 	const [userData, setUserData] = useUserData();
 	const [dragAndDrop, setDragAndDrop] = useDragAndDrop();
-	const [curDateStr, setCurDateStr] = useState('');
 	const class_type = 'main-class'
 
 	const onClickDate = () => {

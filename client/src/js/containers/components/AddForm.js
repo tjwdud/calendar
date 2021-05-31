@@ -7,6 +7,7 @@ import { insertDate, deleteDate, editDate } from 'js/containers/components/UserD
 import { useAddFormState } from 'js/stores/addFormState';
 import { useUserData } from 'js/stores/userData';
 import { useFreeUserData } from 'js/stores/freeUserData';
+import { useStudentsData } from 'js/stores/studentsData';
 
 import { useErrorState } from 'js/stores/errorState';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -41,7 +42,10 @@ const AddForm = () => {
 
 	const [addFormState, setAddFormState] = useAddFormState();
 	const { active, mode, class_type } = addFormState;
-	
+	const [studentsData, setStudentsData] = useStudentsData();
+
+	const {studentsOp}= studentsData;
+
 	const [hourOptions] = useState([
 		10,//0
 		11,//1
@@ -79,7 +83,10 @@ const AddForm = () => {
 		{ name: '오진고', age: 5 },
 		{ name: '김진고', age: 7 },
 		{ name: '김호주', age: 8 },
-	]);
+	]);	
+	const [studentOptions2] = [studentsData.students];
+	console.log(studentOptions);
+	console.log(studentOptions2);
 
 	const [newAddFormState, setNewAddFormState] = useState({
 		title: '',
@@ -165,6 +172,7 @@ const AddForm = () => {
 				setFreeUserData({ ...freeUserData, freeSchedule: newSchedule})
 			} else {
 				setUserData({ ...userData, schedule: newSchedule });
+				console.log(userData);
 			}
 			setAddFormState({ ...addFormState, active: false });
 			setErrorState({
@@ -187,12 +195,10 @@ const AddForm = () => {
 		if (title === '') return;
 		let newSchedule = [];
 		if(class_type === 'free_class'){
-			console.log(newAddFormState)
-			console.log(beforeEdit)
-			newSchedule = editDate(newAddFormState, beforeEdit, schedule.freeSchedule)
+
+			newSchedule = editDate(newAddFormState, beforeEdit, schedule.freeSchedule);
 		} else {
-			console.log(newAddFormState)
-			console.log(beforeEdit)
+
 			newSchedule = editDate(newAddFormState, beforeEdit, schedule.schedule);
 		}
 
@@ -313,8 +319,8 @@ const AddForm = () => {
 							id="input-students"
 							filterSelectedOptions={true}
 							value={students}
-							options={studentOptions}
-							getOptionLabel={(option) => option.name}
+							options={studentOptions2}
+							getOptionLabel={(option) => option.studentName}
 							onChange={onChangeStudents}							
 							renderInput={(params) => (
 								<TextField

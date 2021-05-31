@@ -12,9 +12,9 @@ const Daily = () => {
     const { date } = calendarState;
 
     const [userData, setUserData] = useUserData();
-    const [userFreeData, setUserFreeData ] = useFreeUserData();
+    const [freeUserData, setFreeUserData ] = useFreeUserData();
     const { schedule } = userData;
-    const { freeSchedule } = userFreeData;
+    const { freeSchedule } = freeUserData;
     const [curSchedule, setCurSchedule] = useState([]);
     const [curFreeSchedule, setCurFreeSchedule] = useState([]);
     const [curDate, setCurDate] = useState('');
@@ -27,7 +27,7 @@ const Daily = () => {
             setCurFreeSchedule(getScheduleDaily(curDailyDate,freeSchedule));
           
         },
-        [ userData, date, userFreeData ]
+        [ userData, date, freeUserData ]
     )
     const getDailyDate = () => {
         const year = date.getFullYear();

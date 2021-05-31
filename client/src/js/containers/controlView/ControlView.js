@@ -1,26 +1,37 @@
-import React, { useState, useEffect, Router } from 'react';
+import React, { useState, useEffect, Router, Link } from 'react';
 import 'sass/app.css';
 import { useCalendarState } from 'js/stores/calendarState';
-const ControlView = () => {
-	const [ calendarState, setCalendarState ] = useCalendarState();
-	const { mode, date } = calendarState;
-	const [ curDateStr, setCurDateStr ] = useState('');
+import { withRouter } from 'react-router-dom';
 
+const ControlView = ( {history, location} ) => {
+	const [calendarState, setCalendarState] = useCalendarState();
+	const { mode, date } = calendarState;
+	const [curDateStr, setCurDateStr] = useState('');
+	
 	useEffect(
 		() => {
 			let newCurDate;
+			let x = location.pathname
+			let newDate;
+			 x = x.substring(1, x.length)
+
+			const mode= x;
+			setCalendarState({ ...calendarState, mode: mode });//새로고침 할 경우
+
 			if (mode === 'monthly') {
 				newCurDate = date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월';
 			} else if (mode === 'weekly') {
 				let lastDate = parseInt((date.getDate() + (6 - date.getDay())) / 7) + 1;
 				newCurDate = date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월 ' + lastDate + '주';
-			} else if (mode === 'daily'){
-				let week = ['일','월','화','수','목','금','토',]
-				newCurDate = date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월 ' +  (date.getDate()) + '일' +  (week[date.getDay()]) + '요일';
-			} 
+			} else if (mode === 'daily') {
+				let week = ['일', '월', '화', '수', '목', '금', '토',]
+				newCurDate = date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월 ' + (date.getDate()) + '일' + (week[date.getDay()]) + '요일';
+			} else if (mode === 'student') {
+				newCurDate = '학생추가 페이지'
+			}
 			setCurDateStr(newCurDate);
 		},
-		[ date, mode ]
+		[date, mode]
 	);
 
 	const onClickLeft = () => {
@@ -36,14 +47,13 @@ const ControlView = () => {
 	};
 
 	const changeDate = (value) => {
-		let newDate;
+		let newDate; 
 		if (mode === 'weekly') {
 			newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + value * 7);
 		} else if (mode === 'monthly') {
 			newDate = new Date(date.getFullYear(), date.getMonth() + value, date.getDate());
 		} else if (mode === 'daily') {
-			newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()+ value );
-			console.log(newDate);
+			newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + value);
 		}
 		setCalendarState({ ...calendarState, date: newDate });
 	};
@@ -56,33 +66,52 @@ const ControlView = () => {
 	const onClickMonthly = () => {
 		const mode = 'monthly'
 		setCalendarState({ ...calendarState, mode: mode });
+		history.push("/monthly")
+
 	}
 	const onClickWeekly = () => {
 		const mode = 'weekly'
 		setCalendarState({ ...calendarState, mode: mode });
+		history.push("/weekly")
+
 	}
 	const onClickDaily = () => {
 		const mode = 'daily';
 		setCalendarState({ ...calendarState, mode: mode });
+		history.push("/daily")
+
 	};
+	const onClickStudent = () => {
+		const mode = 'student';
+		setCalendarState({ ...calendarState, mode: mode });
+		history.push("/student")
+	}
 
 	return (
 		<div id="control-view">
 			<div id="week-controller">
+				{mode === 'student' ? 
+				<div className="arrow-btn">
+					<img src={require('img/arrow-left.png')} />
+				</div> : 
 				<div className="arrow-btn" onClick={onClickLeft}>
 					<img src={require('img/arrow-left.png')} />
-				</div>
+				</div>}
 				<div id="date-view" onClick={onClickDateView}>
-				
+
 					{curDateStr}
 				</div>
+				{mode === 'student' ? 
+				<div className="arrow-btn">
+					<img src={require('img/arrow-right.png')} />
+				</div> : 
 				<div className="arrow-btn" onClick={onClickRight}>
 					<img src={require('img/arrow-right.png')} />
-				</div>
+				</div>}
 			</div>
 			<div id="mode-controller">
 				<div id="mode-btn" className={mode === 'monthly' ? 'active' : null} onClick={onClickMonthly}>
-					월
+					월	
 				</div>
 				<div id="mode-btn" className={mode === 'weekly' ? 'active' : null} onClick={onClickWeekly}>
 					주
@@ -91,10 +120,10 @@ const ControlView = () => {
 					일
 				</div>
 
-				<div> 학생추가 페이지 </div>
+				<div id="student-add" className={mode === 'student' ? 'active' : null} onClick={onClickStudent}> 학생 </div>
 			</div>
 		</div>
 	);
 };
 
-export default ControlView;
+export default withRouter(ControlView);

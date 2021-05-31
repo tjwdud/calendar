@@ -10,7 +10,7 @@ body {
 #control-view {
   margin-top: 30px;
   margin-bottom: 30px;
-  width: 400px;
+  width: 500px;
   height: 50px;
   display: flex;
   flex-direction: row;
@@ -19,7 +19,7 @@ body {
   color: #111; }
   #control-view #week-controller {
     display: flex;
-    width: 250px;
+    width: 400px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between; }
@@ -45,13 +45,20 @@ body {
     width: 150px;
     flex-direction: row;
     align-items: center;
+    margin-left: 20px;
     justify-content: center;
     font-weight: bold; }
     #control-view #mode-controller #mode-btn {
       display: flex;
       justify-content: center;
-      width: 25px;
+      width: 30px;
       cursor: pointer; }
+    #control-view #mode-controller #student-add{
+      width: 60px;
+      justify-content: center;
+      margin: 5px;
+      cursor: pointer;
+    }
     #control-view #mode-controller:hover {
       opacity: 0.5; }
     #control-view #mode-controller .active {
@@ -228,6 +235,24 @@ body {
       width:100%;
       border: solid 0.5px #111;
     }
+    #calendar-view #student-view {
+      width: 1300px;
+      height: 800px;
+      overflow: auto;
+      justify-content: center;
+      box-sizing: border-box;
+      border: solid 0.5px #111;
+      margin-bottom: 50px; }
+      #calendar-view #student-view table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      #calendar-view #student-view td,th {
+        border: 1px solid #dddddd;
+        height:50px;
+        text-align: center;
+        padding:10px;
+      }
 
 #panel {
   display: flex;
