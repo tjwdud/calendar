@@ -1,4 +1,4 @@
-import React , { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'sass/app.css';
 import { editDate } from 'js/containers/components/UserDataController';
 import { useAddFormState } from 'js/stores/addFormState';
@@ -7,27 +7,28 @@ import { useFreeUserData } from 'js/stores/freeUserData';
 import { useDragAndDrop } from 'js/stores/dragAndDrop';
 
 const DailyFreeCell = (props) => {
-    const  { date, freeSchedule } = props;
+    const { date, freeSchedule } = props;
     const [addFormState, setAddFormState] = useAddFormState();
     const { active } = addFormState;
     const [errorState, setErrorState] = useErrorState('');
     const [freeUserData, setFreeUserData] = useFreeUserData();
     const [dragAndDrop, setDragAndDrop] = useDragAndDrop();
-    const [curDateStr, setCurDateStr] = useState('');
+    const [curClassNum, setCurClassNum] = useState('');
     const class_type = 'free_class';
 
     useEffect(
-		() => {
-            if( date !== '' ){
-                let newCurDateStr = date.getDate();
-			        if (freeSchedule.length !== 0) {
-				        newCurDateStr += ' (' + freeSchedule.length + ')';
-			            }
-			setCurDateStr(newCurDateStr);
+        () => {
+            if (date !== '') {
+                //let newCurDateStr = date.getDate();
+                let class_num = '자유수업';
+                if (freeSchedule.length !== 0) {
+                    class_num += ' (' + freeSchedule.length + ')';
+                }
+                setCurClassNum(class_num);
             }
-			
-		},
-		[ freeSchedule,date ]
+
+        },
+        [freeSchedule, date]
     );
 
     const onClickDate = () => {//스케줄 추가할때 
@@ -78,30 +79,37 @@ const DailyFreeCell = (props) => {
             });
         }
     };
-   
+
 
 
     return (
         <div className='daily-free-cell' onClick={onClickDate} >
-            <p>{curDateStr}</p>
+            <p id="daily-free-class">{curClassNum}</p>
 
             {freeSchedule.map((a, i) => (
-                <div style={{ backgroundColor: 'lightgrey'}}
+                <div 
                     key={i}
                     className="daily-schedule"
                     onClick={(e) => onClickSchedule(e, a)}>
-                    <p>{a.title}</p>
-                    <p>{a.startHour + '시' + a.startMinute + '분 ~' + a.endHour + '시' + a.endMinute + '분'}</p>
+                    <div className="daily-hour">
+                        {a.startMinute < 10 ? <p>{a.startHour + ':' + '0' + a.startMinute}</p> :
+                            <p>{a.startHour + ':' + a.startMinute}</p>}
+                        {/*{a.endMinute <10 ? <p>{a.endHour + ':' + '0'+a.endMinute}</p>:
+								<p>{a.endHour + ':' + a.endMinute}</p>}*/}
+                    </div>
+                    <p className="daily-title">{a.title}</p>
+                    <div className="daily-student">
                     {a.students.map((b, j) => (
-                        <p
+                        <p 
                             key={j}
                         >
-                            {b.name}
-						</p>
-					))}
-				</div>
-			))}
-        
+                            {b.studentName+'('+b.studentAge+')'}
+                        </p>
+                    ))}
+                    </div>
+                </div>
+            ))}
+
         </div>
     );
 

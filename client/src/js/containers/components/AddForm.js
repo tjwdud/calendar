@@ -44,8 +44,6 @@ const AddForm = () => {
 	const { active, mode, class_type } = addFormState;
 	const [studentsData, setStudentsData] = useStudentsData();
 
-	const {studentsOp}= studentsData;
-
 	const [hourOptions] = useState([
 		10,//0
 		11,//1
@@ -75,18 +73,8 @@ const AddForm = () => {
 		50,
 		55
 	]);
-	const [studentOptions] = useState([
-		{ name: '김민경', age: 15 },
-		{ name: '강민지', age: 16 },
-		{ name: '이주은', age: 13 },
-		{ name: '아현맨', age: 10 },
-		{ name: '오진고', age: 5 },
-		{ name: '김진고', age: 7 },
-		{ name: '김호주', age: 8 },
-	]);	
+
 	const [studentOptions2] = [studentsData.students];
-	console.log(studentOptions);
-	console.log(studentOptions2);
 
 	const [newAddFormState, setNewAddFormState] = useState({
 		title: '',
@@ -95,7 +83,8 @@ const AddForm = () => {
 		startMinute: 0,
 		endHour: 11,
 		endminute: 0,
-		students: []
+		students: [],
+		background_color: ''
 	});
 	const { title, curDate, startHour, startMinute, endHour, endMinute, students } = newAddFormState;
 	const [userData, setUserData] = useUserData();
@@ -149,7 +138,6 @@ const AddForm = () => {
 			case 'minute-end-select':
 				setNewAddFormState({ ...newAddFormState, endMinute: value * 1 });
 				break;
-		
 			default:
 				break;
 		}

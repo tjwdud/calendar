@@ -125,15 +125,29 @@ const WeeklyCell = (props) => {
 					draggable
 					onDragStart={(e) => onDragCell(e, a)}
 				>
-					<p>{a.title}</p>
-					<p>{a.startHour + '시' + a.startMinute + '분~' + a.endHour + '시' + a.endMinute + '분'}</p>
-					{a.students.map((b, j) => (
-						<p
-							key={j}
-						>
-							{b.name}
-						</p>
-					))}
+					<div className="week-title">
+						<p>{a.title}</p></div>
+
+					<div className="start-end-hour">
+						{a.startMinute < 10 ? <p>{a.startHour + ':' + '0' + a.startMinute}</p> :
+							<p>{a.startHour + ':' + a.startMinute}</p>}
+						{/*{a.endMinute <10 ? <p>{a.endHour + ':' + '0'+a.endMinute}</p>:
+								<p>{a.endHour + ':' + a.endMinute}</p>}*/}
+
+
+					</div>
+
+
+					<div className="student-name">
+						{a.students.map((b, j) => (
+							<p
+								key={j}
+							>
+								{b.studentName}
+							</p>
+
+						))}
+					</div>
 				</div>
 			))}
 		</div>

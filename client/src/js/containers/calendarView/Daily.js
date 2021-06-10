@@ -42,14 +42,12 @@ const Daily = () => {
     return (
         <div id="daily-view">
             <div id="main-class">
-                <p>본수업</p>
                 <DailyMainCell
                     date={curDate}
                     schedule={curSchedule}
                     />
             </div>
             <div id="free-class">
-                <p>자유수업</p>
                 <DailyFreeCell
                     date={curDate}
                     freeSchedule={curFreeSchedule}

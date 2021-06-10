@@ -15,8 +15,6 @@ const Weekly = () => {
 	const [ timeTable, setTimeTable ] = useState([
 		' ',
 		' ',
-		10,
-		11,
 		12,
 		13,
 		14,
@@ -24,9 +22,7 @@ const Weekly = () => {
 		16,
 		17,
 		18,
-		19,
-		20,
-		21
+		19
 	]);
 
 	const [ userData, setUserData ] = useUserData();
@@ -63,7 +59,7 @@ const Weekly = () => {
 	const makeCalendar = (firstDate, lastDate) => {
 		let tempDate = new Date(firstDate);
 		const newDates = [ [ '일' ], [ '월' ], [ '화' ], [ '수' ], [ '목' ], [ '금' ], [ '토' ] ];
-		const tempTime = [ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 ];
+		const tempTime = [ 12, 13, 14, 15, 16, 17, 18, 19 ];
 		let index = 0;
 		while (tempDate.getDate() !== lastDate.getDate()) {
 			newDates[index].push(tempDate);

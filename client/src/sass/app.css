@@ -1,381 +1,894 @@
 body {
   margin: 0;
-  background: #eee; }
-  body #root #app {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh; }
+  background: #FFFFFF;
+}
+
+body #root #app {
+  width: 2100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 100vh;
+}
 
 #control-view {
   margin-top: 30px;
   margin-bottom: 30px;
   width: 500px;
   height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  color: #111; }
-  #control-view #week-controller {
-    display: flex;
-    width: 400px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between; }
-    #control-view #week-controller #date-view {
-      cursor: pointer;
-      font-size: 20px;
-      font-weight: bold; }
-      #control-view #week-controller #date-view:hover {
-        opacity: 0.5; }
-    #control-view #week-controller .arrow-btn {
-      display: flex;
-      width: 25px;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer; }
-      #control-view #week-controller .arrow-btn img {
-        max-width: 100%;
-        color: #eee; }
-      #control-view #week-controller .arrow-btn:hover {
-        opacity: 0.5; }
-  #control-view #mode-controller {
-    display: flex;
-    width: 150px;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 20px;
-    justify-content: center;
-    font-weight: bold; }
-    #control-view #mode-controller #mode-btn {
-      display: flex;
-      justify-content: center;
-      width: 30px;
-      cursor: pointer; }
-    #control-view #mode-controller #student-add{
-      width: 60px;
-      justify-content: center;
-      margin: 5px;
-      cursor: pointer;
-    }
-    #control-view #mode-controller:hover {
-      opacity: 0.5; }
-    #control-view #mode-controller .active {
-      font-size: 20px; }
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #111;
+}
+
+#control-view #week-controller {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 2000px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#control-view #week-controller #date-view {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#control-view #week-controller #date-view:hover {
+  opacity: 0.5;
+}
+
+#control-view #week-controller .arrow-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 25px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+#control-view #week-controller .arrow-btn img {
+  max-width: 100%;
+  color: #FFFFFF;
+}
+
+#control-view #week-controller .arrow-btn:hover {
+  opacity: 0.5;
+}
+
+#control-view #mode-controller {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 150px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-weight: bold;
+}
+
+#control-view #mode-controller #mode-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 30px;
+  cursor: pointer;
+}
+
+#control-view #mode-controller #student-add {
+  width: 60px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 5px;
+  cursor: pointer;
+}
+
+#control-view #mode-controller:hover {
+  opacity: 0.5;
+}
+
+#control-view #mode-controller .active {
+  font-size: 20px;
+}
 
 #calendar-view {
-  width: 100%;
+  min-width: 2100px;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center; }
-  #calendar-view #monthly-view {
-    width: 840px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 50px; }
-    #calendar-view #monthly-view .day-row {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      border-bottom: solid 2px #111; }
-      #calendar-view #monthly-view .day-row .day-cell {
-        width: 120px;
-        height: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-sizing: border-box;
-        border-right: solid 1px #111;
-        border-top: solid 1px #111; }
-        #calendar-view #monthly-view .day-row .day-cell:nth-child(1) {
-          border-left: solid 1px #111;
-          color: #ef7a8b; }
-        #calendar-view #monthly-view .day-row .day-cell:nth-child(7) {
-          color: #769bff; }
-    #calendar-view #monthly-view .monthly-row {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      border-bottom: solid 1px #111; }
-      #calendar-view #monthly-view .monthly-row .monthly-cell {
-        width: 120px;
-        height: 120px;
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
-        border-right: solid 1px #111;
-        padding: 0px;
-        cursor: pointer;
-        overflow: auto;
-        padding: 5px; }
-        #calendar-view #monthly-view .monthly-row .monthly-cell p {
-          width: 100%;
-          background: #eee;
-          z-index: 3;
-          position: sticky;
-          top: 0;
-          margin: 0; }
-        #calendar-view #monthly-view .monthly-row .monthly-cell .monthly-schedule {
-          padding: 5px;
-          font-size: 12px;
-          background: #111;
-          color: #eee;
-          border-radius: 5px;
-          z-index: 2;
-          margin-bottom: 10px;
-          cursor: pointer; }
-          #calendar-view #monthly-view .monthly-row .monthly-cell .monthly-schedule:hover {
-            opacity: 0.5; }
-          #calendar-view #monthly-view .monthly-row .monthly-cell .monthly-schedule p {
-            background: #111;
-            margin: 0; }
-        #calendar-view #monthly-view .monthly-row .monthly-cell:nth-child(1) {
-          border-left: solid 1px #111; }
-  #calendar-view #weekly-view {
-    width: 1300px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    box-sizing: border-box;
-    margin-bottom: 50px; }
-    #calendar-view #weekly-view .hour-col {
-      width: 60px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      border-right: solid 0.5px #111;
-      border-top: solid 0.5px #111;
-      border-left: solid 0.5px #111;
-      border-bottom: solid 0.5px #111;
-      box-sizing: border-box; }
-      #calendar-view #weekly-view .hour-col .hour-cell {
-        width: 100%;
-        height: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-sizing: border-box; }
-        #calendar-view #weekly-view .hour-col .hour-cell:nth-child(1) {
-          height: 30px; }
-        #calendar-view #weekly-view .hour-col .hour-cell:nth-child(2) {
-          height: 30px;
-          border-bottom: solid 2px #111; }
-    #calendar-view #weekly-view .weekly-col {
-      width: 241px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      border-right: solid 0.5px #111;
-      border-top: solid 0.5px #111;
-      border-bottom: solid 0.5px #111;
-      box-sizing: border-box; }
-      #calendar-view #weekly-view .weekly-col .weekly-cell {
-        width: 100%;
-        height: 100px;
-        overflow: visible;
-        display: flex;
-        justify-content: center;
-        box-sizing: border-box;
-        cursor: pointer;
-       }
-        #calendar-view #weekly-view .weekly-col .weekly-cell .weekly-schedule {
-          display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#calendar-view #monthly-view {
+  width: 1400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
           flex-direction: column;
-          width: 120px;
-          background: #111;
-          color: #eee;
-          font-size: 12px;
-          padding: 5px;
-          border: solid 1px #111;
-          margin: 5px;
-          border-radius: 5px;
-          z-index: 3;
-          cursor: pointer; }
-          #calendar-view #weekly-view .weekly-col .weekly-cell .weekly-schedule:hover {
-            opacity: 0.5; }
-          #calendar-view #weekly-view .weekly-col .weekly-cell .weekly-schedule p {
-            width: 100px;
-            margin: 0;
-            }
-        #calendar-view #weekly-view .weekly-col .weekly-cell:nth-child(1) {
-          display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 50px;
+}
+
+#calendar-view #monthly-view .day-row {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-bottom: solid 2px #a6a6a6;
+}
+
+#calendar-view #monthly-view .day-row .day-cell {
+  width: 200px;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
           align-items: center;
-          height: 30px; }
-        #calendar-view #weekly-view .weekly-col .weekly-cell:nth-child(2) {
-          display: flex;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-right: solid 1px #a6a6a6;
+  border-top: solid 1px #a6a6a6;
+}
+
+#calendar-view #monthly-view .day-row .day-cell:nth-child(1) {
+  border-left: solid 1px #a6a6a6;
+  color: #ef7a8b;
+}
+
+#calendar-view #monthly-view .day-row .day-cell:nth-child(7) {
+  color: #769bff;
+}
+
+#calendar-view #monthly-view .monthly-row {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-bottom: solid 1px #a6a6a6;
+}
+
+#calendar-view #monthly-view .monthly-row .monthly-cell {
+  width: 200px;
+  height: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-right: solid 1px #a6a6a6;
+  padding: 0px;
+  cursor: pointer;
+  overflow: auto;
+  padding: 5px;
+}
+
+#calendar-view #monthly-view .monthly-row .monthly-cell p {
+  width: 100%;
+  background: #FFFFFF;
+  z-index: 3;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin: 0;
+}
+
+#calendar-view #monthly-view .monthly-row .monthly-cell .monthly-schedule {
+  padding: 5px;
+  font-size: 12px;
+  background: #D1DCF0;
+  color: #111;
+  border-radius: 5px;
+  z-index: 2;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+#calendar-view #monthly-view .monthly-row .monthly-cell .monthly-schedule .monthly-title-hour {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: bold;
+}
+
+#calendar-view #monthly-view .monthly-row .monthly-cell .monthly-schedule .monthly-title-hour .start-end-hour {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#calendar-view #monthly-view .monthly-row .monthly-cell .monthly-schedule .monthly-title-hour .start-end-hour .startHour {
+  width: 49px;
+}
+
+#calendar-view #monthly-view .monthly-row .monthly-cell .monthly-schedule .monthly-students p {
+  display: inline;
+  -ms-flex-line-pack: distribute;
+      align-content: space-around;
+  margin: 1.6px;
+}
+
+#calendar-view #monthly-view .monthly-row .monthly-cell .monthly-schedule:hover {
+  opacity: 0.5;
+}
+
+#calendar-view #monthly-view .monthly-row .monthly-cell .monthly-schedule p {
+  background: #D1DCF0;
+  margin: 0;
+}
+
+#calendar-view #monthly-view .monthly-row .monthly-cell:nth-child(1) {
+  border-left: solid 1px #a6a6a6;
+}
+
+#calendar-view #weekly-view {
+  max-width: 2100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-bottom: 50px;
+  background-color: #FFFFFF;
+}
+
+#calendar-view #weekly-view ::-webkit-scrollbar {
+  display: none;
+}
+
+#calendar-view #weekly-view .hour-col {
+  width: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
           align-items: center;
-          height: 30px;
-          border-bottom: solid 2px black; }
-        #calendar-view #weekly-view .weekly-col .weekly-cell:nth-child(n + 3) {
-          border-bottom: solid 1px #111; }
-      #calendar-view #weekly-view .weekly-col .sunday {
-        color: #ef7a8b; }
-      #calendar-view #weekly-view .weekly-col .saturday {
-        color: #769bff; }
-  #calendar-view #daily-view {
-    width: 1300px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    box-sizing: border-box;
-    margin-bottom: 50px; }
-    #calendar-view #daily-view #main-class{
-      height: 800px;
-      width:100%;
-      border: solid 0.5px #111;
-    }
-    #calendar-view #daily-view #free-class{
-      height: 800px;
-      width:100%;
-      border: solid 0.5px #111;
-    }
-    #calendar-view #student-view {
-      width: 1300px;
-      height: 800px;
-      overflow: auto;
-      justify-content: center;
-      box-sizing: border-box;
-      border: solid 0.5px #111;
-      margin-bottom: 50px; }
-      #calendar-view #student-view table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-      #calendar-view #student-view td,th {
-        border: 1px solid #dddddd;
-        height:50px;
-        text-align: center;
-        padding:10px;
-      }
+  border-right: solid 0.5px #a6a6a6;
+  border-top: solid 0.5px #a6a6a6;
+  border-left: solid 0.5px #a6a6a6;
+  border-bottom: solid 0.5px #a6a6a6;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#calendar-view #weekly-view .hour-col .hour-cell {
+  width: 100%;
+  height: 240px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#calendar-view #weekly-view .hour-col .hour-cell:nth-child(1) {
+  height: 30px;
+}
+
+#calendar-view #weekly-view .hour-col .hour-cell:nth-child(2) {
+  height: 30px;
+  border-bottom: solid 2px #a6a6a6;
+}
+
+#calendar-view #weekly-view .weekly-col {
+  width: 334px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-right: solid 0.5px #a6a6a6;
+  border-top: solid 0.5px #a6a6a6;
+  border-bottom: solid 0.5px #a6a6a6;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#calendar-view #weekly-view .weekly-col .weekly-cell {
+  width: 100%;
+  height: 240px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  cursor: pointer;
+  overflow-y: auto;
+}
+
+#calendar-view #weekly-view .weekly-col .weekly-cell .weekly-schedule {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 300px;
+  background-color: #D1DCF0;
+  border: solid 1px #D1DCF0;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  color: #120F2E;
+  font-size: 18px;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  z-index: 3;
+  cursor: pointer;
+}
+
+#calendar-view #weekly-view .weekly-col .weekly-cell .weekly-schedule:hover {
+  opacity: 0.5;
+}
+
+#calendar-view #weekly-view .weekly-col .weekly-cell .weekly-schedule p {
+  width: 85px;
+  margin: 0;
+}
+
+#calendar-view #weekly-view .weekly-col .weekly-cell .weekly-schedule .week-title {
+  font-weight: bold;
+  background-color: #D1DCF0;
+}
+
+#calendar-view #weekly-view .weekly-col .weekly-cell .weekly-schedule .start-end-hour {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+#calendar-view #weekly-view .weekly-col .weekly-cell .weekly-schedule .start-end-hour p {
+  display: inline;
+  font-size: 15px;
+}
+
+#calendar-view #weekly-view .weekly-col .weekly-cell .weekly-schedule .student-name p {
+  display: inline;
+  -ms-flex-line-pack: distribute;
+      align-content: space-around;
+  margin: 1.6px;
+}
+
+#calendar-view #weekly-view .weekly-col .weekly-cell:nth-child(1) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 30px;
+}
+
+#calendar-view #weekly-view .weekly-col .weekly-cell:nth-child(2) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 30px;
+  border-bottom: solid 2px gray;
+}
+
+#calendar-view #weekly-view .weekly-col .weekly-cell:nth-child(n + 3) {
+  border-bottom: solid 1px #a6a6a6;
+}
+
+#calendar-view #weekly-view .weekly-col .sunday {
+  color: #ef7a8b;
+}
+
+#calendar-view #weekly-view .weekly-col .saturday {
+  color: #769bff;
+}
+
+#calendar-view #daily-view {
+  width: 1400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-bottom: 50px;
+}
+
+#calendar-view #daily-view #main-class {
+  width: 100%;
+}
+
+#calendar-view #daily-view #main-class #daily-main-class {
+  font-size: 18px;
+}
+
+#calendar-view #daily-view #main-class .daily-schedule {
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 5px;
+  background-color: #D1DCF0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+#calendar-view #daily-view #main-class .daily-schedule .daily-hour {
+  width: 42px;
+  margin-left: 30px;
+  font-weight: bold;
+}
+
+#calendar-view #daily-view #main-class .daily-schedule .daily-title {
+  width: 180px;
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+#calendar-view #daily-view #main-class .daily-schedule .daily-student {
+  margin-left: 250px;
+  display: block;
+}
+
+#calendar-view #daily-view #main-class .daily-schedule:hover {
+  opacity: 0.5;
+}
+
+#calendar-view #daily-view #free-class {
+  width: 100%;
+}
+
+#calendar-view #daily-view #free-class #daily-free-class {
+  font-size: 18px;
+}
+
+#calendar-view #daily-view #free-class .daily-schedule {
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 5px;
+  background-color: #D1DCF0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+#calendar-view #daily-view #free-class .daily-schedule .daily-hour {
+  width: 42px;
+  margin-left: 30px;
+  font-weight: bold;
+}
+
+#calendar-view #daily-view #free-class .daily-schedule .daily-title {
+  width: 180px;
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+#calendar-view #daily-view #free-class .daily-schedule .daily-student {
+  margin-left: 250px;
+  display: block;
+}
+
+#calendar-view #daily-view #free-class .daily-schedule:hover {
+  opacity: 0.5;
+}
+
+#calendar-view #student-view {
+  width: 1400px;
+  overflow: auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-bottom: 50px;
+  font-size: 16px;
+}
+
+#calendar-view #student-view #student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#calendar-view #student-view #student-table td, #calendar-view #student-view #student-table th {
+  width: 180px;
+  border-bottom: 2px solid #182649;
+  height: 50px;
+  text-align: center;
+  padding: 10px;
+}
+
+#calendar-view #student-view #student-table td #input-insert-age, #calendar-view #student-view #student-table th #input-insert-age {
+  width: 70px;
+}
+
+#calendar-view #student-view #student-table td #input-update-name, #calendar-view #student-view #student-table th #input-update-name {
+  width: 70px;
+}
+
+#calendar-view #student-view #student-table td #input-update-age, #calendar-view #student-view #student-table th #input-update-age {
+  width: 40px;
+}
+
+#calendar-view #student-view #student-table td {
+  border-bottom: 1px solid #dddddd;
+}
 
 #panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 7; }
-  #panel #add-form {
-    margin-bottom: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    width: 400px;
-    background: #eee;
-    color: #111;
-    border-radius: 10px;
-    padding: 20px; }
-    #panel #add-form .label {
-      font-weight: bold;
-      color: #111;
-      margin-right: 5px; }
-    #panel #add-form #add-form-title {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      width: 100%;
-      justify-content: center;
-      font-weight: bold;
-      margin-bottom: 30px;
-      font-size: 20px; }
-    #panel #add-form #input-date-picker-form {
-      display:flex;
-      margin:5px auto;
-    }
-      #panel #add-form #input-date-picker-form #input-form {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin-bottom: 20px;}
+  z-index: 7;
+}
 
-        #panel #add-form #input-date-picker-form #input-form #input-title {
-          margin: 0;
-          padding: 0;
-          width: 120px;
-          height: 18px; }
-      #panel #add-form #input-date-picker-form #date-picker-form {
-        display: flex;
-        align-items: center;
-        margin-left:5px;
-        margin-bottom: 20px; }
-        #panel #add-form #input-date-picker-form #date-picker-form #date-picker input {
-          margin: 0;
-          padding: 0;
-          width: 120px;
-          height: 18px; }
-    #panel #add-form #hour-picker-form {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: baseline;
-      width:300px;
-      margin:5px auto;
-    }
-      #panel #add-form #hour-picker-form select {
-        margin-right: 5px; }
-    #panel #add-form #option-form {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      width: 100%;
-      justify-content: space-evenly; }
-      #panel #add-form #option-form .btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 30px;
-        border-radius: 5px;
-        border: solid 1px #111;
-        width: 60px;
-        cursor: pointer;
-        color: #111;
-        font-weight: bold; }
-        #panel #add-form #option-form .btn:hover {
-          opacity: 0.5; }
-      #panel #add-form #option-form #cancel-btn {
-        background: #eee; }
-      #panel #add-form #option-form #add-btn {
-        background: #769bff; }
-      #panel #add-form #option-form #edit-btn {
-        background: #a5d6a7; }
-      #panel #add-form #option-form #delete-btn {
-        background: #ef7a8b; }
+#panel #add-form {
+  margin-bottom: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 400px;
+  background: #F1F2F7;
+  color: #111;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#panel #add-form .label {
+  font-weight: bold;
+  color: #111;
+  margin-right: 5px;
+}
+
+#panel #add-form #add-form-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-weight: bold;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+
+#panel #add-form #input-date-picker-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 5px auto;
+}
+
+#panel #add-form #input-date-picker-form #input-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+}
+
+#panel #add-form #input-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+}
+
+#panel #add-form #input-form #input-title {
+  margin: 0;
+  padding: 0;
+  width: 120px;
+  height: 18px;
+}
+
+#panel #add-form #date-picker-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 5px;
+  margin-bottom: 20px;
+}
+
+#panel #add-form #date-picker-form #date-picker input {
+  margin: 0;
+  padding: 0;
+  width: 120px;
+  height: 18px;
+}
+
+#panel #add-form #hour-picker-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  width: 300px;
+  margin: 5px auto;
+}
+
+#panel #add-form #hour-picker-form select {
+  margin-right: 5px;
+}
+
+#panel #add-form #option-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+#panel #add-form #option-form .btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 30px;
+  border-radius: 5px;
+  border: solid 1px #111;
+  width: 60px;
+  cursor: pointer;
+  color: #111;
+  font-weight: bold;
+}
+
+#panel #add-form #option-form .btn:hover {
+  opacity: 0.5;
+}
+
+#panel #add-form #option-form #cancel-btn {
+  background: #A7C8E2;
+  border-color: #A7C8E2;
+  color: #182649;
+}
+
+#panel #add-form #option-form #add-btn {
+  background: #A7C8E2;
+  border-color: #A7C8E2;
+  color: #182649;
+}
+
+#panel #add-form #option-form #edit-btn {
+  background: #A7C8E2;
+  border-color: #A7C8E2;
+  color: #182649;
+}
+
+#panel #add-form #option-form #delete-btn {
+  background: #A7C8E2;
+  border-color: #A7C8E2;
+  color: #182649;
+}
 
 #error-panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   height: 100px;
-  z-index: 4; }
-  #error-panel #error-popup {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    opacity: 0.8; }
-  #error-panel .add {
-    background: #769bff; }
-  #error-panel .edit {
-    background: #a5d6a7; }
-  #error-panel .fail {
-    background: #ef7a8b; }
-  #error-panel .delete {
-    background: #111;
-    color: #eee; }
+  z-index: 4;
+}
+
+#error-panel #error-popup {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  opacity: 0.8;
+}
+
+#error-panel .add {
+  background: #769bff;
+}
+
+#error-panel .edit {
+  background: #FFFFFF;
+}
+
+#error-panel .fail {
+  background: #ef7a8b;
+}
+
+#error-panel .delete {
+  background: #111;
+  color: #FFFFFF;
+}

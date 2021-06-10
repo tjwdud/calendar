@@ -13,22 +13,22 @@ const DailyMainCell = (props) => {
     const [errorState, setErrorState] = useErrorState();
     const [userData, setUserData] = useUserData();
     const [dragAndDrop, setDragAndDrop] = useDragAndDrop();
-    const [curDateStr, setCurDateStr] = useState('');
+    const [curClassNum, setCurClassNum] = useState('');
 
     useEffect(
-		() => {
-            if( date !== '' ){
-                let newCurDateStr = date.getDate();
-			        if (schedule.length !== 0) {
-				        newCurDateStr += ' (' + schedule.length + ')';
-			            }
-			setCurDateStr(newCurDateStr);
+        () => {
+            if (date !== '') {
+                let class_num = '본수업';
+                if (schedule.length !== 0) {
+                    class_num += ' (' + schedule.length + ')';
+                }
+                setCurClassNum(class_num);
             }
-			
-		},
-		[ schedule,date ]
+
+        },
+        [schedule, date]
     );
-    
+
     const onClickDate = () => {//스케줄 추가할때 
         if (!active) {
             let startHour = 10
@@ -78,32 +78,38 @@ const DailyMainCell = (props) => {
             });
         }
     };
-    
+
 
     return (
         <div className='daily-main-cell' onClick={onClickDate}>
-            <p>{curDateStr}</p>
+            <p id="daily-main-class">{curClassNum}</p>
 
 
             {schedule.map((a, i) => (
-                <div style={{ backgroundColor: 'lightgrey'}}
+                <div
                     key={i}
                     className="daily-schedule"
-                    onClick={(e) => onClickSchedule(e, a)}
-                >
-                    <p>{a.title}</p>
-                    <p>{a.startHour + '시' + a.startMinute + '분 ~' + a.endHour + '시' + a.endMinute + '분'}</p>
+                    onClick={(e) => onClickSchedule(e, a)}>
+                    <div className="daily-hour">
+                        {a.startMinute < 10 ? <p>{a.startHour + ':' + '0' + a.startMinute}</p> :
+                            <p>{a.startHour + ':' + a.startMinute}</p>}
+                        {/*{a.endMinute <10 ? <p>{a.endHour + ':' + '0'+a.endMinute}</p>:
+								<p>{a.endHour + ':' + a.endMinute}</p>}*/}
+                    </div>
+                    <p className="daily-title">{a.title}</p>
+                    <div className="daily-student">
                     {a.students.map((b, j) => (
-                        <p
+                        <p 
                             key={j}
                         >
-                            {b.name}
-						</p>
-					))}
-				</div>
-			))}
-		</div>
-	);
+                            {b.studentName+'('+b.studentAge+')'}
+                        </p>
+                    ))}
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
 };
 
 

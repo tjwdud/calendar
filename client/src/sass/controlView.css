@@ -1,29 +1,73 @@
 #control-view {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  border: 1px solid black; }
-  #control-view #week-controller {
-    display: flex;
-    flex-direction: row;
-    align-items: center; }
-    #control-view #week-controller .arrow-btn {
-      display: flex;
-      width: 50px;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer; }
-      #control-view #week-controller .arrow-btn img {
-        max-width: 100%; }
-      #control-view #week-controller .arrow-btn:hover {
-        background-color: red; }
-  #control-view #mode-controller {
-    display: flex;
-    flex-direction: row;
-    align-items: center; }
-    #control-view #mode-controller #mode-btn {
-      cursor: pointer; }
-      #control-view #mode-controller #mode-btn:hover {
-        background-color: red; }
-    #control-view #mode-controller .active {
-      font-size: 20px; }
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid black;
+}
+
+#control-view #week-controller {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#control-view #week-controller .arrow-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+#control-view #week-controller .arrow-btn img {
+  max-width: 100%;
+}
+
+#control-view #week-controller .arrow-btn:hover {
+  background-color: red;
+}
+
+#control-view #mode-controller {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#control-view #mode-controller #mode-btn {
+  cursor: pointer;
+}
+
+#control-view #mode-controller #mode-btn:hover {
+  background-color: red;
+}
+
+#control-view #mode-controller .active {
+  font-size: 20px;
+}

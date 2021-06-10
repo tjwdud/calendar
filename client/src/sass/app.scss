@@ -1,14 +1,31 @@
-$white: #eee;
+$white: #FFFFFF;
 $black: #111;
 $red: #ef7a8b;
 $blue: #769bff;
 $green: #a5d6a7;
+$gray:#a6a6a6;
+$brightblue: #1D584B;
+$backgroundcolor:#F0F0F2;
+
+$cellcolor1:#D9F2EB;
+$cellcolor2:#C6E6EC;
+$cellcolor3:#C9EDDD;
+$cellcolor4:#E4F6E4;
+
+$backgroundbluecolor:#D1DCF0;
+$deepblue:#182649;
+
+$grayblue:#F1F2F7;
+$backgroundblue:#A7C8E2;
+$cellfontcolor:#120F2E;
 
 body {
 	margin: 0;
 	background: $white;
+  
 	#root {
 		#app {
+			width: 2100px;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -20,7 +37,7 @@ body {
 #control-view {
 	margin-top: 30px;
 	margin-bottom: 30px;
-	width: 400px;
+	width: 500px;
 	height: 50px;
 	display: flex;
 	flex-direction: row;
@@ -30,7 +47,7 @@ body {
 
 	#week-controller {
 		display: flex;
-		width: 250px;
+		width: 2000px;
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
@@ -65,15 +82,24 @@ body {
 		width: 150px;
 		flex-direction: row;
 		align-items: center;
+		margin-left: 20px;
 		justify-content: center;
 		font-weight: bold;
 
 		#mode-btn {
 			display: flex;
 			justify-content: center;
-			width: 25px;
+			width: 30px;
 			cursor: pointer;
 		}
+
+		#student-add {
+			width: 60px;
+			justify-content: center;
+			margin: 5px;
+			cursor: pointer;
+		}
+
 		&:hover {
 			opacity: 0.5;
 		}
@@ -85,13 +111,14 @@ body {
 }
 
 #calendar-view {
-	width: 100%;
+	min-width: 2100px;
 	height: 100%;
 	display: flex;
 	justify-content: center;
+	//overflow: scroll;
 
 	#monthly-view {
-		width: 840px;
+		width: 1400px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -102,19 +129,19 @@ body {
 			display: flex;
 			flex-direction: row;
 			justify-content: center;
-			border-bottom: solid 2px $black;
+			border-bottom: solid 2px $gray;
 
 			.day-cell {
-				width: 120px;
+				width: 200px;
 				height: 60px;
 				display: flex;
 				justify-content: center;
 				align-items: center;
 				box-sizing: border-box;
-				border-right: solid 1px $black;
-				border-top: solid 1px $black;
+				border-right: solid 1px $gray;
+				border-top: solid 1px $gray;
 				&:nth-child(1) {
-					border-left: solid 1px $black;
+					border-left: solid 1px $gray;
 					color: $red;
 				}
 				&:nth-child(7) {
@@ -128,17 +155,17 @@ body {
 			display: flex;
 			flex-direction: row;
 			justify-content: center;
-			border-bottom: solid 1px $black;
+			border-bottom: solid 1px $gray;
 			.monthly-cell {
-				width: 120px;
-				height: 120px;
+				width: 200px;
+				height: 200px;
 				display: flex;
 				flex-direction: column;
 				box-sizing: border-box;
-				border-right: solid 1px $black;
+				border-right: solid 1px $gray;
 				padding: 0px;
 				cursor: pointer;
-				overflow: scroll;
+				overflow: auto;
 				padding: 5px;
 
 				p {
@@ -153,99 +180,127 @@ body {
 				.monthly-schedule {
 					padding: 5px;
 					font-size: 12px;
-					background: $black;
-					// border: solid 1px $black;
-					color: $white;
+					background: $backgroundbluecolor;
+					color: $black;
 					border-radius: 5px;
 					z-index: 2;
 					margin-bottom: 10px;
 					cursor: pointer;
+					.monthly-title-hour{
+						display:flex;
+						font-weight: bold;
+						.start-end-hour{
+							display:flex;
+							.startHour{
+								width:49px;
+							}
+						}
+					}
+					.monthly-students{
+						p{
+							display:inline;
+							align-content: space-around;
+							margin:1.6px;
+						}
+					}
+				
 					&:hover {
 						opacity: 0.5;
 					}
 					p {
-						background: $black;
+						background: $backgroundbluecolor;
 						margin: 0;
 					}
 				}
 
 				&:nth-child(1) {
-					border-left: solid 1px $black;
+					border-left: solid 1px $gray;
 				}
 			}
 		}
 	}
 
 	#weekly-view {
-		width: 900px;
+		::-webkit-scrollbar { display: none; }
+
+		max-width: 2100px;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		box-sizing: border-box;
 		margin-bottom: 50px;
-
+		background-color: $white;
 		.hour-col {
-			width: 60px;
+			width: 20px;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			border-right: solid 0.5px $black;
-			border-top: solid 0.5px $black;
-			border-left: solid 0.5px $black;
-			border-bottom: solid 0.5px $black;
+			border-right: solid 0.5px $gray;
+			border-top: solid 0.5px $gray;
+			border-left: solid 0.5px $gray;
+			border-bottom: solid 0.5px $gray;
 			box-sizing: border-box;
 
 			.hour-cell {
 				width: 100%;
-				height: 50px;
+				height: 240px;
 				display: flex;
 				justify-content: center;
 				align-items: center;
 				box-sizing: border-box;
 				&:nth-child(1) {
 					height: 30px;
+
 				}
 				&:nth-child(2) {
 					height: 30px;
-					border-bottom: solid 2px $black;
+					border-bottom: solid 2px $gray;
 				}
 
-				&:nth-child(3) {
+				//&:nth-child(3) {
 					// border-top: solid 1px $black;
-				}
+				//}
 			}
 		}
 
 		.weekly-col {
-			width: 120px;
+			width: 334px;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			border-right: solid 0.5px $black;
-			border-top: solid 0.5px $black;
-			border-bottom: solid 0.5px $black;
+			border-right: solid 0.5px $gray;
+			border-top: solid 0.5px $gray;
+			border-bottom: solid 0.5px $gray;
 			box-sizing: border-box;
 
 			.weekly-cell {
 				width: 100%;
-				height: 50px;
+				height: 240px;
+
 				display: flex;
+				//min-height : 100px;
+				//height: fit-content;
+				flex-wrap: wrap;
 				justify-content: center;
 				box-sizing: border-box;
 				cursor: pointer;
-				overflow: visible;
+				overflow-y: auto;
+				
+
 
 				.weekly-schedule {
 					display: flex;
-					flex-direction: column;
-					width: 120px;
-					background: $black;
-					color: $white;
-					font-size: 12px;
-					padding: 5px;
-					border: solid 1px $black;
+					//flex-direction: column;
+					min-width: 300px;
+					background-color: $backgroundbluecolor;
+					border: solid 1px $backgroundbluecolor;
+					height: fit-content;
+					//min-height:90px;
+					color: $cellfontcolor;
+					font-size: 18px;
+					padding: 10px;
 					margin: 5px;
 					border-radius: 5px;
 					z-index: 3;
@@ -256,10 +311,33 @@ body {
 					}
 
 					p {
-						width: 100px;
+						width: 85px;
 						margin: 0;
-						overflow: scroll;
 					}
+					.week-title{
+						font-weight: bold;
+						background-color: $backgroundbluecolor;
+
+					}
+					.start-end-hour{
+						margin-right:10px;
+						margin-left:10px;
+						p{
+						display: inline;
+						font-size: 15px;
+						}
+					}
+
+						.student-name{
+							
+						p{
+							display:inline;
+							align-content: space-around;
+							margin:1.6px;
+						}
+					}
+					
+			
 				}
 
 				&:nth-child(1) {
@@ -272,17 +350,18 @@ body {
 					display: flex;
 					align-items: center;
 					height: 30px;
-					border-bottom: solid 2px black;
+					border-bottom: solid 2px gray;
 				}
 
-				&:nth-child(3) {
+				//&:nth-child(3) {
 					// border-top: solid 1px $black;
-				}
+				//}
 
 				&:nth-child(n + 3) {
-					border-bottom: solid 1px $black;
+					border-bottom: solid 1px $gray;
 				}
 			}
+		
 
 			.sunday {
 				color: $red;
@@ -292,6 +371,123 @@ body {
 			}
 		}
 	}
+	#daily-view {
+		width: 1400px;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		box-sizing: border-box;
+		margin-bottom: 50px; 
+		#main-class{
+			width:100%;
+			#daily-main-class{
+				//font-weight:bold;
+				font-size:18px;
+			}
+			.daily-schedule{
+				font-size:16px;
+				cursor: pointer;
+				border-radius: 5px;
+				margin-left:5px;
+				background-color:$backgroundbluecolor;
+				display: flex;
+				margin-bottom:20px;
+				padding:10px;
+
+				.daily-hour{
+					width:42px;
+					margin-left:30px;
+					font-weight:bold;
+					}
+				.daily-title{
+					width:180px;
+					font-weight:bold;
+					margin-left:30px;
+				}
+				.daily-student{
+					margin-left:250px;
+					display: block;
+				}
+				&:hover {
+					opacity: 0.5;
+				}
+			}
+			
+		}
+		#free-class{
+			width:100%;
+			#daily-free-class{
+				font-size:18px;
+				//font-weight: bold;
+			}
+			.daily-schedule{
+				font-size:16px;
+				cursor: pointer;
+				border-radius: 5px;
+				margin-left:5px;
+				background-color:$backgroundbluecolor;
+				display: flex;
+				margin-bottom:20px;
+				padding:10px;
+				.daily-hour{
+					width:42px;
+					margin-left:30px;
+					font-weight:bold;
+					}
+				.daily-title{
+					width:180px;
+					font-weight:bold;
+					margin-left:30px;
+				}
+				.daily-student{
+					margin-left:250px;
+					display: block;
+				}
+				&:hover {
+					opacity: 0.5;
+				}
+			}
+
+			
+		}
+	}
+	#student-view {
+		width: 1400px;
+		overflow: auto;
+		justify-content: center;
+		box-sizing: border-box;
+		//border: solid 0.5px #111;
+		margin-bottom: 50px; 
+		font-size:16px;
+		#student-table {
+			width: 100%;
+			border-collapse: collapse;
+			td,th {
+				width:180px;
+				border-bottom: 2px solid $deepblue;
+				height:50px;
+				text-align: center;
+				padding:10px;
+				#input-insert-age{
+					width:70px;
+				}
+				#input-update-name{
+					width:70px;
+				}
+				#input-update-age{
+					width:40px;
+				}
+			}
+			td{
+				border-bottom: 1px solid #dddddd;
+
+			}
+		}
+		
+	
+	}
+
+	
 }
 
 #panel {
@@ -314,9 +510,9 @@ body {
 		flex-direction: column;
 		justify-content: center;
 		align-items: flex-start;
-		width: 250px;
+		width: 400px;
 		// height: 100px;
-		background: $white;
+		background: $grayblue;
 		color: $black;
 		border-radius: 10px;
 		padding: 20px;
@@ -324,7 +520,7 @@ body {
 		.label {
 			font-weight: bold;
 			color: $black;
-			margin-right: 10px;
+			margin-right: 5px;
 		}
 
 		#add-form-title {
@@ -338,6 +534,17 @@ body {
 			font-size: 20px;
 		}
 
+		#input-date-picker-form {
+			display:flex;
+			margin:5px auto;
+			#input-form {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				margin-bottom: 20px;
+			}
+		}
+
 		#input-form {
 			display: flex;
 			flex-direction: row;
@@ -346,7 +553,7 @@ body {
 			#input-title {
 				margin: 0;
 				padding: 0;
-				width: 200px;
+				width: 120px;
 				height: 18px;
 			}
 		}
@@ -354,12 +561,13 @@ body {
 		#date-picker-form {
 			display: flex;
 			align-items: center;
+			margin-left:5px;
 			margin-bottom: 20px;
 			#date-picker {
 				input {
 					margin: 0;
 					padding: 0;
-					width: 200px;
+					width: 120px;
 					height: 18px;
 					// text-align: center;
 				}
@@ -371,7 +579,8 @@ body {
 			flex-direction: row;
 			justify-content: center;
 			align-items: baseline;
-			margin-bottom: 30px;
+			width:300px;
+			margin:5px auto;
 
 			select {
 				margin-right: 5px;
@@ -402,18 +611,27 @@ body {
 				}
 			}
 			#cancel-btn {
-				background: $white;
+				background: $backgroundblue;
+				border-color: $backgroundblue;
+				color: $deepblue;
 			}
 
 			#add-btn {
-				background: $blue;
+				background: $backgroundblue;
+				border-color: $backgroundblue;
+				color: $deepblue;
+
 			}
 			#edit-btn {
-				background: $green;
+				background: $backgroundblue;
+				border-color: $backgroundblue;
+				color: $deepblue;
 			}
 
 			#delete-btn {
-				background: $red;
+				background: $backgroundblue;
+				border-color: $backgroundblue;
+				color: $deepblue;
 			}
 		}
 	}
@@ -438,15 +656,14 @@ body {
 		flex-direction: column;
 		opacity: 0.8;
 
-		.error-message {
-		}
+	
 	}
 
 	.add {
 		background: $blue;
 	}
 	.edit {
-		background: $green;
+		background: $white;
 	}
 	.fail {
 		background: $red;

@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useStudentsData } from 'js/stores/studentsData';
 import { useAddStudentState } from 'js/stores/addStudentState';
+import 'antd/dist/antd.css';
+
+import { Button } from 'antd';
+import { Input } from 'antd';
+
 const StudentCell = (props) => {
 
-    const {  id, studentName, studentAge } = props;
+    const { id, studentName, studentAge } = props;
     const [studentsData, setStudentsData] = useStudentsData();
+
     const { students } = studentsData;
     const [addStudentState, setAddStudentState] = useAddStudentState();
     const [editing, setEditing] = useState(false);
@@ -31,8 +37,7 @@ const StudentCell = (props) => {
         //const newStudent = deleteStudent(index, students);
         
        // setStudentsData({ ...studentsData, students: newStudent });
-       console.log(id)
-       console.log(students.filter((user => user.id !== id)));
+  
        setStudentsData({ ...studentsData, students:students.filter((user => user.id !== id))});
     };
  
@@ -50,22 +55,25 @@ const StudentCell = (props) => {
     };
     const onClickEditDone = () => {
         setEditing(false);
+
+            setStudentsData( a => ({
+           
+                students:a.students.map(students =>
+                    students.studentName === studentName ? 
+                    { ...students, studentName: newAddStudentState.studentName, 
+                        studentAge: newAddStudentState.studentAge} : students)
+            }))
         
-        setStudentsData( a => ({
-            students:a.students.map(students =>
-                students.studentName === studentName ? 
-                { ...students, studentName: newAddStudentState.studentName, 
-                    studentAge: newAddStudentState.studentAge} : students)
-        }))
+
         
     };
 
     const onChangeInput = (e) => {
         const { id, value } = e.target;
-        if (id ==='input-name'){
+        if (id ==='input-update-name'){
             //setSstudentName(value)
             setNewAddStudentState({ ...newAddStudentState, studentName: value });
-        } else if(id ==='input-age'){
+        } else if(id ==='input-update-age'){
             setNewAddStudentState({ ...newAddStudentState, studentAge: value });
         }
     };
@@ -74,16 +82,18 @@ const StudentCell = (props) => {
         <tr>
             {editing ?
             <>
-                <td><input id = "input-name" value={newAddStudentState.studentName} onChange={onChangeInput}/></td>
-                <td><input id = "input-age" value={newAddStudentState.studentAge} onChange={onChangeInput} /></td>
-                <td><button onClick={onClickEditDone}>적용</button></td>
-                <td><button onClick={onClickDelete}>삭제</button></td>
+                <td><Input id = "input-update-name" value={newAddStudentState.studentName} onChange={onChangeInput}/></td>
+                <td><Input id = "input-update-age" value={newAddStudentState.studentAge} onChange={onChangeInput} /></td>
+                <td><Button onClick={onClickEditDone}>적용</Button></td>
+               
+
+                <td><Button onClick={onClickDelete}>삭제</Button></td>
             </>:
             <>
                 <td>{newAddStudentState.studentName}</td>
                 <td>{newAddStudentState.studentAge}</td>
-                <td><button onClick={onClickEdit}>수정</button></td>
-                <td><button onClick={onClickDelete}>삭제</button></td>
+                <td><Button onClick={onClickEdit}>수정</Button></td>
+                <td><Button onClick={onClickDelete}>삭제</Button></td>
             </>}
         </tr>
 

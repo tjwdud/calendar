@@ -8,12 +8,12 @@ import { useDragAndDrop } from 'js/stores/dragAndDrop';
 
 const MonthlyCell = (props) => {
 	const { date, schedule } = props;
-	const [ addFormState, setAddFormState ] = useAddFormState();
+	const [addFormState, setAddFormState] = useAddFormState();
 	const { active } = addFormState;
-	const [ errorState, setErrorState ] = useErrorState();
-	const [ userData, setUserData ] = useUserData();
-	const [ dragAndDrop, setDragAndDrop ] = useDragAndDrop();
-	const [ curDateStr, setCurDateStr ] = useState('');
+	const [errorState, setErrorState] = useErrorState();
+	const [userData, setUserData] = useUserData();
+	const [dragAndDrop, setDragAndDrop] = useDragAndDrop();
+	const [curDateStr, setCurDateStr] = useState('');
 	const class_type = 'main_class'
 
 	useEffect(
@@ -25,18 +25,18 @@ const MonthlyCell = (props) => {
 			}
 			setCurDateStr(newCurDateStr);
 		},
-		[ schedule ]
+		[schedule]
 	);
 
 	const onClickDate = () => {//스케줄 추가할때 
 		if (!active) {
 			let startHour = 10
 			const nowHour = new Date().getHours();
-			if(nowHour >= 10 && nowHour <= 21 ){
+			if (nowHour >= 10 && nowHour <= 21) {
 				startHour = nowHour
 			}
 			const startMinute = 0;
-			const endMinute = 0;          
+			const endMinute = 0;
 			setAddFormState({
 				...addFormState,
 				class_type: class_type,
@@ -87,14 +87,14 @@ const MonthlyCell = (props) => {
 				...errorState,
 				active: true,
 				mode: 'edit',
-				message: [ [ '일정이 수정 되었습니다.' ] ]
+				message: [['일정이 수정 되었습니다.']]
 			});
 		} else {
 			setErrorState({
 				...errorState,
 				active: true,
 				mode: 'fail',
-				message: [ [ '일정을 수정할 수 없습니다.' ], [ '해당 시간에 이미 다른 일정이 존재합니다.' ] ]
+				message: [['일정을 수정할 수 없습니다.'], ['해당 시간에 이미 다른 일정이 존재합니다.']]
 			});
 		}
 	};
@@ -105,14 +105,15 @@ const MonthlyCell = (props) => {
 
 	const onDragEnterCell = (e) => {
 		const { title, startHour, startMinute, endHour, endMinute, students } = dragAndDrop.from;
-		const newScheduleForm = { 
-			title: title, 
-			curDate: date, 
-			startHour: startHour, 
-			startMinute: startMinute, 
-			endHour: endHour, 
-			endMinute:endMinute, 
-			students: students};
+		const newScheduleForm = {
+			title: title,
+			curDate: date,
+			startHour: startHour,
+			startMinute: startMinute,
+			endHour: endHour,
+			endMinute: endMinute,
+			students: students
+		};
 		setDragAndDrop({ ...dragAndDrop, to: newScheduleForm });
 	};
 
@@ -127,16 +128,26 @@ const MonthlyCell = (props) => {
 					onClick={(e) => onClickSchedule(e, a)}
 					draggable
 					onDragStart={(e) => onDragCell(e, a)}
-				>					
-					<p>{a.title}</p>
-					<p>{a.startHour + '시' + a.startMinute + '분 ~' + a.endHour + '시' + a.endMinute + '분'}</p>
+				>
+					<div className="monthly-title-hour">
+						<p>{a.title}</p>
+						<div className="start-end-hour">
+							{a.startMinute < 10 ? <p className="startHour">{a.startHour + ':' + '0' + a.startMinute + '-'}</p> :
+								<p className="startHour">{a.startHour + ':' + a.startMinute + '-'}</p>}
+							{a.endMinute < 10 ? <p className="endHour">{a.endHour + ':' + '0' + a.endMinute}</p> :
+								<p className="endHour">{a.endHour + ':' + a.endMinute}</p>}
+
+						</div>
+					</div>
+					<div className="monthly-students">
 					{a.students.map((b, j) => (
 						<p
 							key={j}
 						>
-							{b.name}
+							{b.studentName}
 						</p>
 					))}
+					</div>
 				</div>
 			))}
 		</div>
