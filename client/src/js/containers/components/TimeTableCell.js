@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import 'sass/app.css';
-import 'sass/weekly.css';
+import 'sass/timetable.css';
 
 import { editDate } from 'js/containers/components/UserDataController';
 // store
 import { useErrorState } from 'js/stores/errorState';
 import { useAddFormState } from 'js/stores/addFormState';
-import { useUserData } from 'js/stores/userData';
+import { useTimeTableData } from 'js/stores/timeTableData';
 import { useDragAndDrop } from 'js/stores/dragAndDrop';
 
-const WeeklyCell = (props) => {
+const TimeTableCell = (props) => {
+
 	const { index, day, date, startHour, schedule } = props;
 	const [addFormState, setAddFormState] = useAddFormState();
 	const { active } = addFormState;
 	const [errorState, setErrorState] = useErrorState();
-	const [userData, setUserData] = useUserData();
+	const [ timeTableData, setTimeTableData] = useTimeTableData();
 	const [dragAndDrop, setDragAndDrop] = useDragAndDrop();
-	const class_type = 'main-class'
-	//console.log(schedule);
+	const class_type = 'timetable-class'
 
 	const onClickDate = () => {
 		if (!active) {
@@ -63,10 +63,10 @@ const WeeklyCell = (props) => {
 
 	const onDropSchedule = (e) => {
 		if (dragAndDrop.to.endHour > 20) return;
-		const newSchedule = editDate(dragAndDrop.to, dragAndDrop.from, userData.schedule);
+		const newSchedule = editDate(dragAndDrop.to, dragAndDrop.from, timeTableData.timeTableSchedule);
 
 		if (newSchedule !== false) {
-			setUserData({ ...userData, schedule: newSchedule });
+			setTimeTableData({ ...timeTableData, timeTableSchedule: newSchedule });
 			setAddFormState({ ...addFormState, active: false });
 			setErrorState({
 				...errorState,
@@ -103,20 +103,15 @@ const WeeklyCell = (props) => {
 		setDragAndDrop({ ...dragAndDrop, to: newScheduleForm });
 	};
 
+
+
 	if (index === 0) {
 		return (
-			<div className={day === '일' ? 'weekly-cell sunday' : day === '토' ? 'weekly-cell saturday' : 'weekly-cell'}>
+			<div className={day === '토' ? 'weekly-cell saturday' : 'weekly-cell'}>
 				{day}
 			</div>
 		);
 	}
-
-	if (index === 1)
-		return (
-			<div className={day === '일' ? 'weekly-cell sunday' : day === '토' ? 'weekly-cell saturday' : 'weekly-cell'}>
-				{date.getDate()}
-			</div>
-		);
 
 	return (
 		<div className="weekly-cell" onClick={onClickDate} onDragEnter={onDragEnterCell} onDragEnd={onDropSchedule}>
@@ -157,4 +152,4 @@ const WeeklyCell = (props) => {
 	);
 };
 
-export default WeeklyCell;
+export default TimeTableCell;

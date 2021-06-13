@@ -28,6 +28,8 @@ const ControlView = ( {history, location} ) => {
 				newCurDate = date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월 ' + (date.getDate()) + '일' + (week[date.getDay()]) + '요일';
 			} else if (mode === 'student') {
 				newCurDate = '학생추가 페이지'
+			} else if (mode === 'timetable') {
+				newCurDate = '시간표'
 			}
 			setCurDateStr(newCurDate);
 		},
@@ -86,11 +88,16 @@ const ControlView = ( {history, location} ) => {
 		setCalendarState({ ...calendarState, mode: mode });
 		history.push("/student")
 	}
+	const onClickTimetable = () => {
+		const mode = 'timetable';
+		setCalendarState({ ...calendarState, mode: mode });
+		history.push("/timetable")
+	}
 
 	return (
 		<div id="control-view">
 			<div id="week-controller">
-				{mode === 'student' ? 
+				{mode === 'student' || mode === 'timetable' ? 
 				<div className="arrow-btn">
 					<img src={require('img/arrow-left.png')} />
 				</div> : 
@@ -101,7 +108,7 @@ const ControlView = ( {history, location} ) => {
 
 					{curDateStr}
 				</div>
-				{mode === 'student' ? 
+				{mode === 'student' || mode === 'timetable' ? 
 				<div className="arrow-btn">
 					<img src={require('img/arrow-right.png')} />
 				</div> : 
@@ -121,6 +128,8 @@ const ControlView = ( {history, location} ) => {
 				</div>
 
 				<div id="student-add" className={mode === 'student' ? 'active' : null} onClick={onClickStudent}> 학생 </div>
+				<div id="timetable" className={mode === 'timetable' ? 'active' : null} onClick={onClickTimetable}> 시간표 </div>
+
 			</div>
 		</div>
 	);

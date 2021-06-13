@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'sass/app.css';
+import 'sass/daily.css';
+
 import { getScheduleDaily } from 'js/containers/components/UserDataController';
 import { useCalendarState } from 'js/stores/calendarState';
 import { useUserData } from 'js/stores/userData';
@@ -18,7 +20,7 @@ const Daily = () => {
     const [curSchedule, setCurSchedule] = useState([]);
     const [curFreeSchedule, setCurFreeSchedule] = useState([]);
     const [curDate, setCurDate] = useState('');
-
+    console.log(userData);
 
     useEffect(
         () => {

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useStudentsData } from 'js/stores/studentsData';
 import { useAddStudentState } from 'js/stores/addStudentState';
+import 'sass/app.css';
+import 'sass/student.css'; 
 import 'antd/dist/antd.css';
 
 import { Button } from 'antd';

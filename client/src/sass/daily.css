@@ -1,0 +1,100 @@
+#daily-view {
+  width: 1400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-bottom: 50px;
+}
+
+#daily-view #main-class {
+  width: 100%;
+}
+
+#daily-view #main-class #daily-main-class {
+  font-size: 18px;
+}
+
+#daily-view #main-class .daily-schedule {
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 5px;
+  background-color: #D1DCF0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+#daily-view #main-class .daily-schedule .daily-hour {
+  width: 42px;
+  margin-left: 30px;
+  font-weight: bold;
+}
+
+#daily-view #main-class .daily-schedule .daily-title {
+  width: 180px;
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+#daily-view #main-class .daily-schedule .daily-student {
+  margin-left: 250px;
+  display: block;
+}
+
+#daily-view #main-class .daily-schedule:hover {
+  opacity: 0.5;
+}
+
+#daily-view #free-class {
+  width: 100%;
+}
+
+#daily-view #free-class #daily-free-class {
+  font-size: 18px;
+}
+
+#daily-view #free-class .daily-schedule {
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 5px;
+  background-color: #D1DCF0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+#daily-view #free-class .daily-schedule .daily-hour {
+  width: 42px;
+  margin-left: 30px;
+  font-weight: bold;
+}
+
+#daily-view #free-class .daily-schedule .daily-title {
+  width: 180px;
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+#daily-view #free-class .daily-schedule .daily-student {
+  margin-left: 250px;
+  display: block;
+}
+
+#daily-view #free-class .daily-schedule:hover {
+  opacity: 0.5;
+}

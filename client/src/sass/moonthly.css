@@ -1,0 +1,148 @@
+#monthly-view {
+  width: 1400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 50px;
+}
+
+#monthly-view .day-row {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-bottom: solid 2px #a6a6a6;
+}
+
+#monthly-view .day-row .day-cell {
+  width: 200px;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-right: solid 1px #a6a6a6;
+  border-top: solid 1px #a6a6a6;
+}
+
+#monthly-view .day-row .day-cell:nth-child(1) {
+  border-left: solid 1px #a6a6a6;
+  color: #ef7a8b;
+}
+
+#monthly-view .day-row .day-cell:nth-child(7) {
+  color: #769bff;
+}
+
+#monthly-view .monthly-row {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-bottom: solid 1px #a6a6a6;
+}
+
+#monthly-view .monthly-row .monthly-cell {
+  width: 200px;
+  height: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-right: solid 1px #a6a6a6;
+  padding: 0px;
+  cursor: pointer;
+  overflow: auto;
+  padding: 5px;
+}
+
+#monthly-view .monthly-row .monthly-cell p {
+  width: 100%;
+  background: #FFFFFF;
+  z-index: 3;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin: 0;
+}
+
+#monthly-view .monthly-row .monthly-cell .monthly-schedule {
+  padding: 5px;
+  font-size: 12px;
+  background: #D1DCF0;
+  color: #111;
+  border-radius: 5px;
+  z-index: 2;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+#monthly-view .monthly-row .monthly-cell .monthly-schedule .monthly-title-hour {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: bold;
+}
+
+#monthly-view .monthly-row .monthly-cell .monthly-schedule .monthly-title-hour .start-end-hour {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#monthly-view .monthly-row .monthly-cell .monthly-schedule .monthly-title-hour .start-end-hour .startHour {
+  width: 49px;
+}
+
+#monthly-view .monthly-row .monthly-cell .monthly-schedule .monthly-students p {
+  display: inline;
+  -ms-flex-line-pack: distribute;
+      align-content: space-around;
+  margin: 1.6px;
+}
+
+#monthly-view .monthly-row .monthly-cell .monthly-schedule:hover {
+  opacity: 0.5;
+}
+
+#monthly-view .monthly-row .monthly-cell .monthly-schedule p {
+  background: #D1DCF0;
+  margin: 0;
+}
+
+#monthly-view .monthly-row .monthly-cell:nth-child(1) {
+  border-left: solid 1px #a6a6a6;
+}

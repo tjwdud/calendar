@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'sass/app.css';
+import 'sass/moonthly.css';
+
 import MonthlyCell from './MonthlyCell';
 import { getSchedule } from 'js/containers/components/UserDataController';
 // store

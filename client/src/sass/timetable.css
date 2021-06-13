@@ -1,0 +1,186 @@
+#timetable-view {
+  max-width: 2100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-bottom: 50px;
+  background-color: #FFFFFF;
+}
+
+#timetable-view ::-webkit-scrollbar {
+  display: none;
+}
+
+#timetable-view .hour-col {
+  width: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-right: solid 0.5px #a6a6a6;
+  border-top: solid 0.5px #a6a6a6;
+  border-left: solid 0.5px #a6a6a6;
+  border-bottom: solid 0.5px #a6a6a6;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#timetable-view .hour-col .hour-cell {
+  width: 100%;
+  height: 240px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#timetable-view .hour-col .hour-cell:nth-child(1) {
+  height: 30px;
+}
+
+#timetable-view .weekly-col {
+  width: 334px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-right: solid 0.5px #a6a6a6;
+  border-top: solid 0.5px #a6a6a6;
+  border-bottom: solid 0.5px #a6a6a6;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#timetable-view .weekly-col .weekly-cell {
+  width: 100%;
+  height: 240px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  cursor: pointer;
+  overflow-y: auto;
+}
+
+#timetable-view .weekly-col .weekly-cell .weekly-schedule {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 300px;
+  background-color: #D1DCF0;
+  border: solid 1px #D1DCF0;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  color: #120F2E;
+  font-size: 18px;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  z-index: 3;
+  cursor: pointer;
+}
+
+#timetable-view .weekly-col .weekly-cell .weekly-schedule:hover {
+  opacity: 0.5;
+}
+
+#timetable-view .weekly-col .weekly-cell .weekly-schedule p {
+  width: 85px;
+  margin: 0;
+}
+
+#timetable-view .weekly-col .weekly-cell .weekly-schedule .week-title {
+  font-weight: bold;
+  background-color: #D1DCF0;
+}
+
+#timetable-view .weekly-col .weekly-cell .weekly-schedule .start-end-hour {
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+#timetable-view .weekly-col .weekly-cell .weekly-schedule .start-end-hour p {
+  display: inline;
+  font-size: 15px;
+}
+
+#timetable-view .weekly-col .weekly-cell .weekly-schedule .student-name p {
+  display: inline;
+  -ms-flex-line-pack: distribute;
+      align-content: space-around;
+  margin: 1.6px;
+}
+
+#timetable-view .weekly-col .weekly-cell:nth-child(1) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 30px;
+}
+
+#timetable-view .weekly-col .weekly-cell:nth-child(2) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 30px;
+  border-bottom: solid 2px gray;
+}
+
+#timetable-view .weekly-col .weekly-cell:nth-child(n + 3) {
+  border-bottom: solid 1px #a6a6a6;
+}
+
+#timetable-view .weekly-col .sunday {
+  color: #ef7a8b;
+}
+
+#timetable-view .weekly-col .saturday {
+  color: #769bff;
+}

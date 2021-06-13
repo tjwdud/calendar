@@ -1,0 +1,101 @@
+$white: #FFFFFF;
+$black: #111;
+$red: #ef7a8b;
+$blue: #769bff;
+$green: #a5d6a7;
+$gray:#a6a6a6;
+$brightblue: #1D584B;
+$backgroundcolor:#F0F0F2;
+
+$cellcolor1:#D9F2EB;
+$cellcolor2:#C6E6EC;
+$cellcolor3:#C9EDDD;
+$cellcolor4:#E4F6E4;
+
+$backgroundbluecolor:#D1DCF0;
+$deepblue:#182649;
+
+$grayblue:#F1F2F7;
+$backgroundblue:#A7C8E2;
+$cellfontcolor:#120F2E;
+
+#daily-view {
+    width: 1400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: 50px; 
+    #main-class{
+        width:100%;
+        #daily-main-class{
+            //font-weight:bold;
+            font-size:18px;
+        }
+        .daily-schedule{
+            font-size:16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left:5px;
+            background-color:$backgroundbluecolor;
+            display: flex;
+            margin-bottom:20px;
+            padding:10px;
+
+            .daily-hour{
+                width:42px;
+                margin-left:30px;
+                font-weight:bold;
+                }
+            .daily-title{
+                width:180px;
+                font-weight:bold;
+                margin-left:30px;
+            }
+            .daily-student{
+                margin-left:250px;
+                display: block;
+            }
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+        
+    }
+    #free-class{
+        width:100%;
+        #daily-free-class{
+            font-size:18px;
+            //font-weight: bold;
+        }
+        .daily-schedule{
+            font-size:16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left:5px;
+            background-color:$backgroundbluecolor;
+            display: flex;
+            margin-bottom:20px;
+            padding:10px;
+            .daily-hour{
+                width:42px;
+                margin-left:30px;
+                font-weight:bold;
+                }
+            .daily-title{
+                width:180px;
+                font-weight:bold;
+                margin-left:30px;
+            }
+            .daily-student{
+                margin-left:250px;
+                display: block;
+            }
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+
+        
+    }
+}

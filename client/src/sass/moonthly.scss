@@ -1,0 +1,123 @@
+$white: #FFFFFF;
+$black: #111;
+$red: #ef7a8b;
+$blue: #769bff;
+$green: #a5d6a7;
+$gray:#a6a6a6;
+$brightblue: #1D584B;
+$backgroundcolor:#F0F0F2;
+
+$cellcolor1:#D9F2EB;
+$cellcolor2:#C6E6EC;
+$cellcolor3:#C9EDDD;
+$cellcolor4:#E4F6E4;
+
+$backgroundbluecolor:#D1DCF0;
+$deepblue:#182649;
+
+$grayblue:#F1F2F7;
+$backgroundblue:#A7C8E2;
+$cellfontcolor:#120F2E;
+
+#monthly-view {
+    width: 1400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 50px;
+
+    .day-row {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        border-bottom: solid 2px $gray;
+
+        .day-cell {
+            width: 200px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            border-right: solid 1px $gray;
+            border-top: solid 1px $gray;
+            &:nth-child(1) {
+                border-left: solid 1px $gray;
+                color: $red;
+            }
+            &:nth-child(7) {
+                color: $blue;
+            }
+        }
+    }
+
+    .monthly-row {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        border-bottom: solid 1px $gray;
+        .monthly-cell {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            border-right: solid 1px $gray;
+            padding: 0px;
+            cursor: pointer;
+            overflow: auto;
+            padding: 5px;
+
+            p {
+                width: 100%;
+                background: $white;
+                z-index: 3;
+                position: sticky;
+                top: 0;
+                margin: 0;
+            }
+
+            .monthly-schedule {
+                padding: 5px;
+                font-size: 12px;
+                background: $backgroundbluecolor;
+                color: $black;
+                border-radius: 5px;
+                z-index: 2;
+                margin-bottom: 10px;
+                cursor: pointer;
+                .monthly-title-hour{
+                    display:flex;
+                    font-weight: bold;
+                    .start-end-hour{
+                        display:flex;
+                        .startHour{
+                            width:49px;
+                        }
+                    }
+                }
+                .monthly-students{
+                    p{
+                        display:inline;
+                        align-content: space-around;
+                        margin:1.6px;
+                    }
+                }
+            
+                &:hover {
+                    opacity: 0.5;
+                }
+                p {
+                    background: $backgroundbluecolor;
+                    margin: 0;
+                }
+            }
+
+            &:nth-child(1) {
+                border-left: solid 1px $gray;
+            }
+        }
+    }
+}

@@ -1,6 +1,6 @@
 export const getSchedule = (startDate, endDate, schedule) => {
 	if (schedule.length === 0) return [];
-
+	
 	const start = schedule[0].curDate.getTime();
 	const end = schedule[schedule.length - 1].curDate.getTime();
 	if (endDate.getTime() < start) return [];//인자 마지막날짜가 스케줄의 시작시간보다 작으면 []
@@ -74,6 +74,7 @@ export const isConflict = (curDate, startHour, startMinute, schedule) => {//날�
 };
 
 export const insertDate = (addFormState, schedule) => {
+
 	const { title, curDate, startHour, startMinute, endHour, endMinute, students } = addFormState;
 	const index = isConflict(curDate, startHour, startMinute, schedule);
 

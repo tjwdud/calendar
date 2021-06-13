@@ -8,6 +8,7 @@ import { useAddFormState } from 'js/stores/addFormState';
 import { useUserData } from 'js/stores/userData';
 import { useFreeUserData } from 'js/stores/freeUserData';
 import { useStudentsData } from 'js/stores/studentsData';
+import { useTimeTableData } from 'js/stores/timeTableData';
 
 import { useErrorState } from 'js/stores/errorState';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -45,18 +46,15 @@ const AddForm = () => {
 	const [studentsData, setStudentsData] = useStudentsData();
 
 	const [hourOptions] = useState([
-		10,//0
-		11,//1
-		12,//2
-		13,//3
-		14,//4
-		15,//5
-		16,//6
-		17,//7
-		18,//8
-		19,//9
-		20,//10
-		21//11
+		12,
+		13,
+		14,
+		15,
+		16,
+		17,
+		18,
+		19,
+	
 	]);
 
 	const [minuteOptions] = useState([
@@ -84,14 +82,14 @@ const AddForm = () => {
 		endHour: 11,
 		endminute: 0,
 		students: [],
-		background_color: ''
 	});
 	const { title, curDate, startHour, startMinute, endHour, endMinute, students } = newAddFormState;
 	const [userData, setUserData] = useUserData();
 	const [freeUserData, setFreeUserData] = useFreeUserData();
-
+	const [timeTableData, setTimeTableData] = useTimeTableData();
 	let  { schedule } = [];
-	if (class_type === 'free_class'){ schedule = freeUserData; }
+	if (class_type === 'free-class'){ schedule = freeUserData; }
+	else if(class_type === 'timetable-class'){ schedule = timeTableData; }
 	else { schedule = userData; }
 	const [beforeEdit, setBeforeEdit] = useState();
 	const [errorState, setErrorState] = useErrorState();
@@ -150,18 +148,28 @@ const AddForm = () => {
 	const onClickAdd = () => {
 		if (title === '') return;
 		let newSchedule = [];
-		if(class_type === 'free_class'){
+		if(class_type === 'free-class'){
+	
 			newSchedule = insertDate(newAddFormState, schedule.freeSchedule);
-		} else {
+
+		} else if(class_type === 'timetable-class'){
+
+			newSchedule = insertDate(newAddFormState, schedule.timeTableSchedule);
+		}
+		else {
+			console.log(newAddFormState);
+			console.log(schedule.schedule);
 			newSchedule = insertDate(newAddFormState, schedule.schedule);
 		}
 		if (newSchedule !== false) {
-			if(class_type === 'free_class'){
-				setFreeUserData({ ...freeUserData, freeSchedule: newSchedule})
-			} else {
-				setUserData({ ...userData, schedule: newSchedule });
-				console.log(userData);
+			if(class_type === 'free-class'){
+				setFreeUserData({ ...freeUserData, freeSchedule: newSchedule});
+			} else if(class_type === 'timetable-class'){
+				setTimeTableData({ ...timeTableData, timeTableSchedule: newSchedule});
 			}
+			else {
+				setUserData({ ...userData, schedule: newSchedule });
+			} 
 			setAddFormState({ ...addFormState, active: false });
 			setErrorState({
 				...errorState,
@@ -182,18 +190,25 @@ const AddForm = () => {
 	const onClickEdit = () => {
 		if (title === '') return;
 		let newSchedule = [];
-		if(class_type === 'free_class'){
+		if(class_type === 'free-class'){
 
 			newSchedule = editDate(newAddFormState, beforeEdit, schedule.freeSchedule);
-		} else {
+		} else if (class_type === 'timetable-class'){
+			newSchedule = editDate(newAddFormState, beforeEdit, schedule.timeTableSchedule);
+
+		}
+		else {
 
 			newSchedule = editDate(newAddFormState, beforeEdit, schedule.schedule);
 		}
 
 		if (newSchedule !== false) {
-			if(class_type ==='free_class'){
+			if(class_type ==='free-class'){
 				setFreeUserData({ ...freeUserData, freeSchedule: newSchedule})
-			} else {
+			} else if (class_type === 'timetable-class'){
+				setTimeTableData({ ...timeTableData, timeTableSchedule: newSchedule});
+			} 
+			else {
 				setUserData({ ...userData, schedule: newSchedule })
 			}
 			setAddFormState({ ...addFormState, active: false });
@@ -215,14 +230,18 @@ const AddForm = () => {
 
 	const onClickDelete = () => {
 		let newSchedule = [];
-		if(class_type === 'free_class'){
+		if(class_type === 'free-class'){
 			newSchedule = deleteDate(title, curDate, startHour, startMinute, endHour, endMinute, schedule.freeSchedule);
-		} else {
+		} else if(class_type === 'timetable-class'){
+			newSchedule = deleteDate(title, curDate, startHour, startMinute, endHour, endMinute, schedule.timeTableSchedule);
+		}else {
 			newSchedule = deleteDate(title, curDate, startHour, startMinute, endHour, endMinute, schedule.schedule);
 		}
-		if(class_type ==='free_class'){
+		if(class_type ==='free-class'){
 			setFreeUserData({ ...freeUserData, freeSchedule: newSchedule})
-		} else {
+		} else if (class_type === 'timetable-class'){
+			setTimeTableData({ ...timeTableData, timeTableSchedule: newSchedule});
+		}else {
 			setUserData({ ...userData, schedule: newSchedule })
 		}
 		setAddFormState({ ...addFormState, active: false });
@@ -309,6 +328,7 @@ const AddForm = () => {
 							value={students}
 							options={studentOptions2}
 							getOptionLabel={(option) => option.studentName}
+							getOptionSelected={(option,value)=>option.studentName===value.studentName}
 							onChange={onChangeStudents}							
 							renderInput={(params) => (
 								<TextField

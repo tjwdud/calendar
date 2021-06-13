@@ -1,0 +1,56 @@
+$white: #FFFFFF;
+$black: #111;
+$red: #ef7a8b;
+$blue: #769bff;
+$green: #a5d6a7;
+$gray:#a6a6a6;
+$brightblue: #1D584B;
+$backgroundcolor:#F0F0F2;
+
+$cellcolor1:#D9F2EB;
+$cellcolor2:#C6E6EC;
+$cellcolor3:#C9EDDD;
+$cellcolor4:#E4F6E4;
+
+$backgroundbluecolor:#D1DCF0;
+$deepblue:#182649;
+
+$grayblue:#F1F2F7;
+$backgroundblue:#A7C8E2;
+$cellfontcolor:#120F2E;
+
+#student-view {
+    width: 1400px;
+    overflow: auto;
+    justify-content: center;
+    box-sizing: border-box;
+    //border: solid 0.5px #111;
+    margin-bottom: 50px; 
+    font-size:16px;
+    #student-table {
+        width: 100%;
+        border-collapse: collapse;
+        td,th {
+            width:180px;
+            border-bottom: 2px solid $deepblue;
+            height:50px;
+            text-align: center;
+            padding:10px;
+            #input-insert-age{
+                width:70px;
+            }
+            #input-update-name{
+                width:70px;
+            }
+            #input-update-age{
+                width:50px;
+            }
+        }
+        td{
+            border-bottom: 1px solid #dddddd;
+
+        }
+    }
+    
+
+}

@@ -1,0 +1,159 @@
+$white: #FFFFFF;
+$black: #111;
+$red: #ef7a8b;
+$blue: #769bff;
+$green: #a5d6a7;
+$gray:#a6a6a6;
+$brightblue: #1D584B;
+$backgroundcolor:#F0F0F2;
+
+$cellcolor1:#D9F2EB;
+$cellcolor2:#C6E6EC;
+$cellcolor3:#C9EDDD;
+$cellcolor4:#E4F6E4;
+
+$backgroundbluecolor:#D1DCF0;
+$deepblue:#182649;
+
+$grayblue:#F1F2F7;
+$backgroundblue:#A7C8E2;
+$cellfontcolor:#120F2E;
+
+#timetable-view {
+    ::-webkit-scrollbar { display: none; }
+
+    max-width: 2100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+    background-color: $white;
+    .hour-col {
+        width: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-right: solid 0.5px $gray;
+        border-top: solid 0.5px $gray;
+        border-left: solid 0.5px $gray;
+        border-bottom: solid 0.5px $gray;
+        box-sizing: border-box;
+
+        .hour-cell {
+            width: 100%;
+            height: 240px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            &:nth-child(1) {
+                height: 30px;
+
+            }
+      
+
+        }
+    }
+
+    .weekly-col {
+        width: 334px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-right: solid 0.5px $gray;
+        border-top: solid 0.5px $gray;
+        border-bottom: solid 0.5px $gray;
+        box-sizing: border-box;
+        .weekly-cell {
+            width: 100%;
+            height: 240px;
+
+            display: flex;
+            //min-height : 100px;
+            //height: fit-content;
+            flex-wrap: wrap;
+            justify-content: center;
+            box-sizing: border-box;
+            cursor: pointer;
+            overflow-y: auto;
+
+            .weekly-schedule {
+                display: flex;
+                //flex-direction: column;
+                min-width: 300px;
+                background-color: $backgroundbluecolor;
+                border: solid 1px $backgroundbluecolor;
+                height: fit-content;
+                //min-height:90px;
+                color: $cellfontcolor;
+                font-size: 18px;
+                padding: 10px;
+                margin: 5px;
+                border-radius: 5px;
+                z-index: 3;
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.5;
+                }
+
+                p {
+                    width: 85px;
+                    margin: 0;
+                }
+                .week-title{
+                    font-weight: bold;
+                    background-color: $backgroundbluecolor;
+
+                }
+                .start-end-hour{
+                    margin-right: 8px;
+                    margin-left: 8px;
+                    p{
+                    display: inline;
+                    font-size: 15px;
+                    }
+                }
+
+                    .student-name{
+                        
+                    p{
+                        display:inline;
+                        align-content: space-around;
+                        margin:1.6px;
+                    }
+                }
+                
+        
+            }
+            
+            &:nth-child(1) {
+                display: flex;
+                align-items: center;
+                height: 30px;
+
+            }
+            &:nth-child(2) {
+                display: flex;
+                align-items: center;
+                height: 30px;
+                border-bottom: solid 2px gray;
+
+            }
+        
+            &:nth-child(n + 3) {
+                border-bottom: solid 1px $gray;
+            }
+        }
+
+        .sunday {
+            color: $red;
+        }
+        .saturday {
+            color: $blue;
+        }
+    }
+}

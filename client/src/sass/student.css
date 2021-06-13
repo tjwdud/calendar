@@ -1,0 +1,40 @@
+#student-view {
+  width: 1400px;
+  overflow: auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-bottom: 50px;
+  font-size: 16px;
+}
+
+#student-view #student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#student-view #student-table td, #student-view #student-table th {
+  width: 180px;
+  border-bottom: 2px solid #182649;
+  height: 50px;
+  text-align: center;
+  padding: 10px;
+}
+
+#student-view #student-table td #input-insert-age, #student-view #student-table th #input-insert-age {
+  width: 70px;
+}
+
+#student-view #student-table td #input-update-name, #student-view #student-table th #input-update-name {
+  width: 70px;
+}
+
+#student-view #student-table td #input-update-age, #student-view #student-table th #input-update-age {
+  width: 50px;
+}
+
+#student-view #student-table td {
+  border-bottom: 1px solid #dddddd;
+}

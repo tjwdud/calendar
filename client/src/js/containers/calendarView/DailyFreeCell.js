@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'sass/app.css';
+import 'sass/daily.css';
+
 import { editDate } from 'js/containers/components/UserDataController';
 import { useAddFormState } from 'js/stores/addFormState';
 import { useErrorState } from 'js/stores/errorState';
@@ -14,7 +16,7 @@ const DailyFreeCell = (props) => {
     const [freeUserData, setFreeUserData] = useFreeUserData();
     const [dragAndDrop, setDragAndDrop] = useDragAndDrop();
     const [curClassNum, setCurClassNum] = useState('');
-    const class_type = 'free_class';
+    const class_type = 'free-class';
 
     useEffect(
         () => {

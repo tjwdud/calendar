@@ -3,6 +3,7 @@ import { useStudentsData } from 'js/stores/studentsData';
 import { useAddStudentState } from 'js/stores/addStudentState';
 import StudentCell from './StudentCell';
 import 'antd/dist/antd.css';
+import 'sass/student.css'; 
 import { Button } from 'antd';
 import { Input } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
@@ -50,12 +51,12 @@ const StudentsControl = () => {
     const onClickAdd = () => {
 
         if (studentName === '') return;
-        console.log(newAddStudentState);
+
         const newStudent = insertStudent(newAddStudentState, students);
 
         if (newStudent !== false) {
             setStudentsData({ ...studentsData, students: newStudent })
-            console.log(studentsData);
+
         }
 
         nameInput.current.focus();
