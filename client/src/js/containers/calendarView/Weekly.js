@@ -37,7 +37,6 @@ const Weekly = () => {
 
 	const [curSchedule, setCurSchedule] = useState([]);
 	const [btnMode, setBtnMode]= useState(false);
-	console.log(btnMode)
 
 	useEffect(
 		() => {

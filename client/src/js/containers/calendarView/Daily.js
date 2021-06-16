@@ -20,7 +20,6 @@ const Daily = () => {
     const [curSchedule, setCurSchedule] = useState([]);
     const [curFreeSchedule, setCurFreeSchedule] = useState([]);
     const [curDate, setCurDate] = useState('');
-    console.log(userData);
 
     useEffect(
         () => {

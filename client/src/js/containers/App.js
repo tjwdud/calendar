@@ -1,31 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import 'sass/app.css';
-import ControlView from 'js/containers/controlView/ControlView';
-import CalendarView from 'js/containers/calendarView/CalendarView';
-import AddForm from 'js/containers/components/AddForm';
-import ErrorPopup from 'js/containers/components/ErrorPopup';
+
 import { useUserData } from 'js/stores/userData';
 import { useFreeUserData } from 'js/stores/freeUserData';
 import { useStudentsData } from 'js/stores/studentsData';
 import { useTimeTableData } from 'js/stores/timeTableData';
+import firebase from 'firebase/app'
+import { dbService, arrayService,timeService } from "../../fbase";
 
-import StudentsControl from 'js/containers/components/StudentsControl';
-import TimeTable from 'js/containers/components/TimeTable';
-import Monthly from 'js/containers/calendarView/Monthly';
-import Weekly from 'js/containers/calendarView/Weekly';
-import Daily from 'js/containers/calendarView/Daily';
+import AppRouter from 'js/containers/components/AppRouter';
 
 
+//import fbase from "fbase"
+import { authService } from "fbase";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { convertLegacyProps } from 'antd/lib/button/button';
 
 
 const App = () => {
-	const [ userData, setUserData ] = useUserData();
-    const [ freeUserData, setFreeUserData ] = useFreeUserData();
-	const [ studentsData, setStudentsData ] = useStudentsData();
-	const [ timeTableData, setTimeTableData ] = useTimeTableData();
+	//const auth = fbase.auth();
+	//console.log(auth.currentUser);
+	const [init, setInit] = useState(false);
+	const [userData, setUserData] = useUserData();
+	const [freeUserData, setFreeUserData] = useFreeUserData();
+	const [studentsData, setStudentsData] = useStudentsData();
+	const [timeTableData, setTimeTableData] = useTimeTableData();
+	const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
+
+
+
 
 	useEffect(() => {
+		authService.onAuthStateChanged((user) => {
+			if (user) {
+				setIsLoggedIn(true);
+			} else {
+				setIsLoggedIn(false);
+			}
+			setInit(true);
+		});
+
 		loadUserData();
 		loadFreeUserData();
 		loadStudentsData();
@@ -36,126 +50,138 @@ const App = () => {
 		() => {
 			saveUserData();
 		},
-		[ userData ]
+		[userData]
 	);
 
 	useEffect(
 		() => {
 			saveFreeUserData();
 		},
-		[ freeUserData ]
+		[freeUserData]
 	);
 
 	useEffect(
 		() => {
 			saveStudentsData();
 		},
-		[ studentsData ]
+		[studentsData]
 	);
 
 	useEffect(
 		() => {
 			saveTimeTableData();
 		},
-		[ timeTableData ]
+		[timeTableData]
 	);
 
 
 
-	const saveUserData = () => {
-		const data = JSON.stringify(userData);//userData object를 string으로 변환
-		localStorage.setItem('userData', data);
-	};
-
-    const saveFreeUserData = () => {
-		const data = JSON.stringify(freeUserData);//userData object를 string으로 변환
-		localStorage.setItem('freeUserData', data);
-	};
-
-	const saveStudentsData = () => {
-		const data = JSON.stringify(studentsData);
-		localStorage.setItem('studentsData', data);
-	};
-
-	const saveTimeTableData = () => {
-		const data = JSON.stringify(timeTableData);
-		localStorage.setItem('timeTableData', data);
-	};
-
-
-
-	const loadUserData = () => {//값 불러올 때 string을 object로 변환
-		const data = JSON.parse(localStorage.getItem('userData'));
-
-		if (!data) return;
-		setUserData({
-			...userData,
-			schedule: data.schedule.map((a) => {
-				return { ...a, curDate: new Date(a.curDate) };
-			})
+	const saveUserData = async () => {
+	
+		await dbService.collection('schedule').doc('schedule').set({
+			schedule:
+				arrayService.arrayUnion(...userData.schedule)
 		});
 	};
 
-
-	const loadFreeUserData = () => {//값 불러올 때 string을 object로 변환
-		const data = JSON.parse(localStorage.getItem('freeUserData'));
-
-		if (!data) return;
-		setFreeUserData({
-			...freeUserData,
-			freeSchedule: data.freeSchedule.map((a) => {
-				return { ...a, curDate: new Date(a.curDate) };
-			})
+	const saveFreeUserData =  async () => {
+	
+		await dbService.collection('freeSchedule').doc('freeSchedule').set({
+			freeSchedule:
+				arrayService.arrayUnion(...freeUserData.freeSchedule)
 		});
 	};
 
-	const loadStudentsData = () => {
-		const data = JSON.parse(localStorage.getItem('studentsData'));
+	const saveStudentsData = async () => {
+	
+		await dbService.collection('students').doc('students').set({
+			students:
+				arrayService.arrayUnion(...studentsData.students)
+		});
+	};
 
-		if(!data) return;
-		setStudentsData({ 
-			...studentsData,
-			students: data.students.map((a)=> {
-				return { ...a };
-			})
+	const saveTimeTableData = async () => {
+	
+		await dbService.collection('timeTableSchedule').doc('timeTableSchedule').set({
+			timeTableSchedule:
+				arrayService.arrayUnion(...timeTableData.timeTableSchedule)
+		});
+		console.log('save')
+		console.log(timeTableData);
+	};
+
+
+
+	const loadUserData = async () => {//값 불러올 때 string을 object로 변환
+		await dbService.collection('schedule').doc('schedule').get().then((doc) => {
+			if (!doc.exists) return; 
+			setUserData({
+					...userData,
+					schedule: doc.data().schedule.map((a) => {
+						return { ...a, curDate: a.curDate.toDate() };
+					})
+				})
+			
+
+		})
+	};
+
+
+	const loadFreeUserData = async () => {//값 불러올 때 string을 object로 변환
+		await dbService.collection('freeSchedule').doc('freeSchedule').get().then((doc) => {
+			if (!doc.exists) return; 
+	
+				setFreeUserData({
+					...freeUserData,
+					freeSchedule: doc.data().freeSchedule.map((a) => {
+						return { ...a, curDate: a.curDate.toDate() };
+					})
+				})
+			
+
+		})
+	};
+
+	const loadStudentsData = async () => {
+		await dbService.collection('students').doc('students').get().then((doc) => {
+			if (!doc.exists) return; 
+	
+				setStudentsData({
+					...studentsData,
+					students: doc.data().students.map((a) => {
+						return { ...a };
+					})
+				})
+			
+
 		})
 
-	}
+	};
 
-	const loadTimeTableData = () => {
-		const data = JSON.parse(localStorage.getItem('timeTableData'));
+	const loadTimeTableData = async () => {
+		await dbService.collection('timeTableSchedule').doc('timeTableSchedule').get().then((doc) => {
+			if (!doc.exists) return; 
 
-		if(!data) return;
-		setTimeTableData({ 
-			...timeTableData,
-			timeTableSchedule: data.timeTableSchedule.map((a)=> {
-				return { ...a, curDate: new Date(a.curDate) };
-			})
+			setTimeTableData({
+					...timeTableData,
+					timeTableSchedule: doc.data().timeTableSchedule.map((a) => {
+						
+						return { ...a, curDate: a.curDate.toDate() };
+					})
+				})
+				
+			
+
 		})
 
-	}
+	};
 
 
 
 	return (
-		<BrowserRouter>
-			<div id="app">
-				<ControlView />
-				<div id="calendar-view">
-					<Switch>
-						<Route exact path="/monthly" component={Monthly} />
-						<Route exact path="/weekly" component={Weekly} />
-						<Route exact path="/daily" component={Daily} />
-						<Route exact path="/student" component={StudentsControl} /> 
-						<Route exact path="/timetable" component={TimeTable} />
-					</Switch>
-				</div>
-						<AddForm />
-						<ErrorPopup />
-			</div>
-		</BrowserRouter>
-			
-
+		<>
+			{init ? <AppRouter isLoggedIn={isLoggedIn} /> : "Initializing..."}
+		</>
 
 	);
 };

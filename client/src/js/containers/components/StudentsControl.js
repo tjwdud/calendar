@@ -7,6 +7,8 @@ import 'sass/student.css';
 import { Button } from 'antd';
 import { Input } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { dbService } from "fbase";
+import { v4 as uuidv4 } from 'uuid';
 
 const StudentsControl = () => {
     const [studentsData, setStudentsData] = useStudentsData();
@@ -53,19 +55,22 @@ const StudentsControl = () => {
         if (studentName === '') return;
 
         const newStudent = insertStudent(newAddStudentState, students);
-
+      
+  
         if (newStudent !== false) {
             setStudentsData({ ...studentsData, students: newStudent })
 
         }
 
         nameInput.current.focus();
+
         setNewAddStudentState({
             studentName: '',
             studentAge: ''
         });
 
     }
+
     const onKeyDownEnter = (e) => {
         if (e.key === 'Enter') {
             onClickAdd();
@@ -75,11 +80,7 @@ const StudentsControl = () => {
     const insertStudent = (addStudentState, students) => {
         const { studentName, studentAge } = addStudentState;
         let index;
-
-        if (students.length === 0) id = 0;
-        else {
-            id = students[students.length - 1].id + 1;
-        }
+        id = uuidv4();//랜덤 id생성
         if (students.length === 0) {
             index = 0
         } else {
