@@ -16,29 +16,29 @@ import 'sass/app.css';
 const AppRouter = ({ isLoggedIn, location }) => {
 
     return (
-        <BrowserRouter>
-            <div id="app">
-                {isLoggedIn ?
-                    <>
-                        <Switch>
-                            <>
+        < BrowserRouter basename={process.env.PUBLIC_URL} >          
+          <div id="app">
+            {isLoggedIn ?
+                <>
+                    <Switch>
+                        <>
                             <Navigation />
                             <ControlView />
-                                <div id="calendar-view">
-                                    <Route exact path="/monthly" component={Monthly} />
-                                    <Route exact path="/weekly" component={Weekly} />
-                                    <Route exact path="/daily" component={Daily} />
-                                    <Route exact path="/student" component={StudentsControl} />
-                                    <Route exact path="/timetable" component={TimeTable} />
-                                    <Route exact path="/profile" component={Profile} />
-                                </div>
-                            </>
-                        </Switch>
-                        <AddForm />
-                        <ErrorPopup /></> : <Route exact path="/"><Auth /></Route>
-                }
-            </div>
-        </BrowserRouter>
+                            <div id="calendar-view">
+                                <Route exact path="/monthly" component={Monthly} />
+                                <Route exact path="/weekly" component={Weekly} />
+                                <Route exact path="/daily" component={Daily} />
+                                <Route exact path="/student" component={StudentsControl} />
+                                <Route exact path="/timetable" component={TimeTable} />
+                                <Route exact path="/profile" component={Profile} />
+                            </div>
+                        </>
+                    </Switch>
+                    <AddForm />
+                    <ErrorPopup /></> : <Route exact path="/"><Auth /></Route>
+            }
+        </div>
+        </BrowserRouter >
     )
 };
 
