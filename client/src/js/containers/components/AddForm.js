@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'sass/app.css';
 import { insertDate, deleteDate, editDate } from 'js/containers/components/UserDataController';
-// store
+
 import { useAddFormState } from 'js/stores/addFormState';
 import { useUserData } from 'js/stores/userData';
 import { useFreeUserData } from 'js/stores/freeUserData';
@@ -20,23 +20,23 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		marginBottom: "10px",
 		width: "100%",
-	  "& .MuiInputLabel-root": {
-		color: "black",
-		fontWeight: "bold",
-		marginRight: "5px",
-		fontSize: "20px"
-	  },
-	  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-		borderColor: "purple"
-	  },
-	  "& .MuiInput-underline:after": {
-		borderBottom: "2px solid #000000"
-	  },
-	  "& label + .MuiInput-formControl": {
-		marginTop: "20px"
+		"& .MuiInputLabel-root": {
+			color: "black",
+			fontWeight: "bold",
+			marginRight: "5px",
+			fontSize: "20px"
+		},
+		"& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+			borderColor: "purple"
+		},
+		"& .MuiInput-underline:after": {
+			borderBottom: "2px solid #000000"
+		},
+		"& label + .MuiInput-formControl": {
+			marginTop: "20px"
+		}
 	}
-	}
-  }));
+}));
 
 const AddForm = () => {
 	const classes = useStyles();
@@ -54,7 +54,7 @@ const AddForm = () => {
 		17,
 		18,
 		19,
-	
+
 	]);
 
 	const [minuteOptions] = useState([
@@ -87,9 +87,9 @@ const AddForm = () => {
 	const [userData, setUserData] = useUserData();
 	const [freeUserData, setFreeUserData] = useFreeUserData();
 	const [timeTableData, setTimeTableData] = useTimeTableData();
-	let  { schedule } = [];
-	if (class_type === 'free-class'){ schedule = freeUserData; }
-	else if(class_type === 'timetable-class'){ schedule = timeTableData; }
+	let { schedule } = [];
+	if (class_type === 'free-class') { schedule = freeUserData; }
+	else if (class_type === 'timetable-class') { schedule = timeTableData; }
 	else { schedule = userData; }
 	const [beforeEdit, setBeforeEdit] = useState();
 	const [errorState, setErrorState] = useErrorState();
@@ -97,7 +97,7 @@ const AddForm = () => {
 	useEffect(
 		() => {
 
-		
+
 			if (active) {
 				const { title, curDate, startHour, startMinute, endHour, endMinute, students } = addFormState;
 				setNewAddFormState({ title, curDate, startHour, startMinute, endHour, endMinute, students });
@@ -148,41 +148,39 @@ const AddForm = () => {
 	const onClickAdd = () => {
 		if (title === '') return;
 		let newSchedule = [];
-		if(class_type === 'free-class'){
-	
+		if (class_type === 'free-class') {
+
 			newSchedule = insertDate(newAddFormState, schedule.freeSchedule);
 
-		} else if(class_type === 'timetable-class'){
+		} else if (class_type === 'timetable-class') {
 
 			newSchedule = insertDate(newAddFormState, schedule.timeTableSchedule);
 		}
 		else {
-			console.log(newAddFormState);
-			console.log(schedule.schedule);
 			newSchedule = insertDate(newAddFormState, schedule.schedule);
 		}
 		if (newSchedule !== false) {
-			if(class_type === 'free-class'){
-				setFreeUserData({ ...freeUserData, freeSchedule: newSchedule});
-			} else if(class_type === 'timetable-class'){
-				setTimeTableData({ ...timeTableData, timeTableSchedule: newSchedule});
+			if (class_type === 'free-class') {
+				setFreeUserData({ ...freeUserData, freeSchedule: newSchedule });
+			} else if (class_type === 'timetable-class') {
+				setTimeTableData({ ...timeTableData, timeTableSchedule: newSchedule });
 			}
 			else {
 				setUserData({ ...userData, schedule: newSchedule });
-			} 
+			}
 			setAddFormState({ ...addFormState, active: false });
 			setErrorState({
 				...errorState,
 				active: true,
 				mode: 'add',
-				message: [['일정이 추가 되었습니다.']]
+				message: [['수업이 추가 되었습니다.']]
 			});
 		} else {
 			setErrorState({
 				...errorState,
 				active: true,
 				mode: 'fail',
-				message: [['일정을 추가할 수 없습니다.'], ['해당 시간에 이미 다른 일정이 존재합니다.']]
+				message: [['수업을 추가할 수 없습니다.']]
 			});
 		}
 	};
@@ -190,10 +188,10 @@ const AddForm = () => {
 	const onClickEdit = () => {
 		if (title === '') return;
 		let newSchedule = [];
-		if(class_type === 'free-class'){
+		if (class_type === 'free-class') {
 
 			newSchedule = editDate(newAddFormState, beforeEdit, schedule.freeSchedule);
-		} else if (class_type === 'timetable-class'){
+		} else if (class_type === 'timetable-class') {
 			newSchedule = editDate(newAddFormState, beforeEdit, schedule.timeTableSchedule);
 
 		}
@@ -203,11 +201,11 @@ const AddForm = () => {
 		}
 
 		if (newSchedule !== false) {
-			if(class_type ==='free-class'){
-				setFreeUserData({ ...freeUserData, freeSchedule: newSchedule})
-			} else if (class_type === 'timetable-class'){
-				setTimeTableData({ ...timeTableData, timeTableSchedule: newSchedule});
-			} 
+			if (class_type === 'free-class') {
+				setFreeUserData({ ...freeUserData, freeSchedule: newSchedule })
+			} else if (class_type === 'timetable-class') {
+				setTimeTableData({ ...timeTableData, timeTableSchedule: newSchedule });
+			}
 			else {
 				setUserData({ ...userData, schedule: newSchedule })
 			}
@@ -216,32 +214,32 @@ const AddForm = () => {
 				...errorState,
 				active: true,
 				mode: 'edit',
-				message: [['일정이 수정 되었습니다.']]
+				message: [['수업 수정 되었습니다.']]
 			});
 		} else {
 			setErrorState({
 				...errorState,
 				active: true,
 				mode: 'fail',
-				message: [['일정을 수정할 수 없습니다.'], ['해당 시간에 이미 다른 일정이 존재합니다.']]
+				message: [['수업 수정할 수 없습니다.']]
 			});
 		}
 	};
 
 	const onClickDelete = () => {
 		let newSchedule = [];
-		if(class_type === 'free-class'){
+		if (class_type === 'free-class') {
 			newSchedule = deleteDate(title, curDate, startHour, startMinute, endHour, endMinute, schedule.freeSchedule);
-		} else if(class_type === 'timetable-class'){
+		} else if (class_type === 'timetable-class') {
 			newSchedule = deleteDate(title, curDate, startHour, startMinute, endHour, endMinute, schedule.timeTableSchedule);
-		}else {
+		} else {
 			newSchedule = deleteDate(title, curDate, startHour, startMinute, endHour, endMinute, schedule.schedule);
 		}
-		if(class_type ==='free-class'){
-			setFreeUserData({ ...freeUserData, freeSchedule: newSchedule})
-		} else if (class_type === 'timetable-class'){
-			setTimeTableData({ ...timeTableData, timeTableSchedule: newSchedule});
-		}else {
+		if (class_type === 'free-class') {
+			setFreeUserData({ ...freeUserData, freeSchedule: newSchedule })
+		} else if (class_type === 'timetable-class') {
+			setTimeTableData({ ...timeTableData, timeTableSchedule: newSchedule });
+		} else {
 			setUserData({ ...userData, schedule: newSchedule })
 		}
 		setAddFormState({ ...addFormState, active: false });
@@ -249,7 +247,7 @@ const AddForm = () => {
 			...errorState,
 			active: true,
 			mode: 'delete',
-			message: [['일정이 삭제 되었습니다.']]
+			message: [['수업이 삭제 되었습니다.']]
 		});
 	};
 
@@ -260,7 +258,7 @@ const AddForm = () => {
 		return (
 			<div id="panel">
 				<div id="add-form">
-					<div id="add-form-title">{mode === 'add' ? '일정 추가' : '일정 수정'}</div>
+					<div id="add-form-title">{mode === 'add' ? '수업 추가' : '수업 수정'}</div>
 					<div id="input-date-picker-form">
 						<div id="input-form">
 							<div className="label">수업</div>
@@ -328,8 +326,8 @@ const AddForm = () => {
 							value={students}
 							options={studentOptions2}
 							getOptionLabel={(option) => option.studentName}
-							getOptionSelected={(option,value)=>option.studentName===value.studentName}
-							onChange={onChangeStudents}							
+							getOptionSelected={(option, value) => option.studentName === value.studentName}
+							onChange={onChangeStudents}
 							renderInput={(params) => (
 								<TextField
 									{...params}
@@ -339,7 +337,7 @@ const AddForm = () => {
 								/>
 							)}
 						/>
-						
+
 
 					</div>
 					<div id="option-form">
@@ -366,6 +364,6 @@ const AddForm = () => {
 				</div>
 			</div>
 		);
-	};
+};
 
 export default AddForm;

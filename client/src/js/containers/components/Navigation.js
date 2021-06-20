@@ -1,17 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
+import { authService } from '../../../fbase'
+import { useHistory } from "react-router-dom";
+import 'sass/app.css';
 
 const Navigation = () => {
+    const history = useHistory();
+    const onLogOutClick = () => {
+        authService.signOut();
+        history.push("/");
+    }
     return (
         <nav>
-            <ul>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/profile">My profile</Link>
-                </li>
-            </ul>
+            <div id="logoutbtn"onClick={onLogOutClick}>Log out</div> 
         </nav>
     );
 }

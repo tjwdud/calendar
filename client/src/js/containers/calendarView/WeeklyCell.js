@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import 'sass/app.css';
 import 'sass/weekly.css';
 
@@ -17,7 +17,7 @@ const WeeklyCell = (props) => {
 	const [userData, setUserData] = useUserData();
 	const [dragAndDrop, setDragAndDrop] = useDragAndDrop();
 	const class_type = 'main-class'
-	//console.log(schedule);
+
 
 	const onClickDate = () => {
 		if (!active) {
@@ -72,14 +72,14 @@ const WeeklyCell = (props) => {
 				...errorState,
 				active: true,
 				mode: 'edit',
-				message: [['일정이 수정 되었습니다.']]
+				message: [['수업 수정 되었습니다.']]
 			});
 		} else {//editDate가 false를 return 하면
 			setErrorState({
 				...errorState,
 				active: true,
 				mode: 'fail',
-				message: [['일정을 수정할 수 없습니다.'], ['해당 시간에 이미 다른 일정이 존재합니다.']]
+				message: [['수업을 수정할 수 없습니다.']]
 			});
 		}
 	};

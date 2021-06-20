@@ -81,7 +81,7 @@ $cellfontcolor:#120F2E;
 
             .monthly-schedule {
                 padding: 5px;
-                font-size: 12px;
+                font-size: 14px;
                 background: $backgroundbluecolor;
                 color: $black;
                 border-radius: 5px;
@@ -93,6 +93,7 @@ $cellfontcolor:#120F2E;
                     font-weight: bold;
                     .start-end-hour{
                         display:flex;
+                        letter-spacing: 1.5px;
                         .startHour{
                             width:49px;
                         }

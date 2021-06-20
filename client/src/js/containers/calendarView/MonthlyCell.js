@@ -89,14 +89,14 @@ const MonthlyCell = (props) => {
 				...errorState,
 				active: true,
 				mode: 'edit',
-				message: [['일정이 수정 되었습니다.']]
+				message: [['수업이 수정 되었습니다.']]
 			});
 		} else {
 			setErrorState({
 				...errorState,
 				active: true,
 				mode: 'fail',
-				message: [['일정을 수정할 수 없습니다.'], ['해당 시간에 이미 다른 일정이 존재합니다.']]
+				message: [['수업을 수정할 수 없습니다.']]
 			});
 		}
 	};

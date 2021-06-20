@@ -1,19 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useStudentsData } from 'js/stores/studentsData';
-import { useAddStudentState } from 'js/stores/addStudentState';
 import StudentCell from './StudentCell';
 import 'antd/dist/antd.css';
 import 'sass/student.css'; 
 import { Button } from 'antd';
 import { Input } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { dbService } from "fbase";
 import { v4 as uuidv4 } from 'uuid';
 
 const StudentsControl = () => {
     const [studentsData, setStudentsData] = useStudentsData();
     const { students } = studentsData;
-    const [addStudentState, setAddStudentState] = useAddStudentState();
     const [newAddStudentState, setNewAddStudentState] = useState({
         id: '',
         studentName: '',
@@ -23,20 +20,6 @@ const StudentsControl = () => {
     const nameInput = useRef();//추가후에 커서를 학생에 두기 위해서 
 
     let id;
-
-
-
-
-    useEffect(
-        () => {
-            const { studentName, studentAge } = addStudentState;
-            //setNewAddStudentState({ studentName, studentAge });
-            // nextId = students[students.length-1].id +1;
-            // console.log(nextId);
-
-        },
-        [studentsData]
-    )
 
     const onChangeStudent = (e) => {
         const { id, value } = e.target;

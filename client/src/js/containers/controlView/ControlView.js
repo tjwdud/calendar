@@ -1,21 +1,22 @@
-import React, { useState, useEffect, Router, Link } from 'react';
+import React, { useState, useEffect} from 'react';
 import 'sass/app.css';
+import 'sass/homeController.css';
 import { useCalendarState } from 'js/stores/calendarState';
 import { withRouter } from 'react-router-dom';
+import ModeController from './ModeController';
 
 const ControlView = ( {history, location} ) => {
 	const [calendarState, setCalendarState] = useCalendarState();
 	const { mode, date } = calendarState;
 	const [curDateStr, setCurDateStr] = useState('');
+
 	
 	useEffect(
 		() => {
 			let newCurDate;
-			let x = location.pathname
-			let newDate;
-			 x = x.substring(1, x.length)
-
-			const mode= x;
+			let modeName = 'monthly'
+			modeName = location.pathname.substring(1, location.pathname.length)
+			const mode= modeName;
 			setCalendarState({ ...calendarState, mode: mode });//새로고침 할 경우
 
 			if (mode === 'monthly') {
@@ -60,43 +61,15 @@ const ControlView = ( {history, location} ) => {
 		setCalendarState({ ...calendarState, date: newDate });
 	};
 
-	/*const onClickModeController = () => {
-	
-		const nextMode = mode === 'monthly' ? 'weekly' : 'monthly';//몬슬리이면 위클리가 넥스트모드 위클리면 몬슬리가 넥스트 모드 
-		setCalendarState({ ...calendarState, mode: nextMode });
-	};*/
-	const onClickMonthly = () => {
-		const mode = 'monthly'
-		setCalendarState({ ...calendarState, mode: mode });
-		history.push("/monthly")
-
-	}
-	const onClickWeekly = () => {
-		const mode = 'weekly'
-		setCalendarState({ ...calendarState, mode: mode });
-		history.push("/weekly")
-
-	}
-	const onClickDaily = () => {
-		const mode = 'daily';
-		setCalendarState({ ...calendarState, mode: mode });
-		history.push("/daily")
-
-	};
-	const onClickStudent = () => {
-		const mode = 'student';
-		setCalendarState({ ...calendarState, mode: mode });
-		history.push("/student")
-	}
-	const onClickTimetable = () => {
-		const mode = 'timetable';
-		setCalendarState({ ...calendarState, mode: mode });
-		history.push("/timetable")
-	}
+	if(window.location.pathname === '/') return (
+		<div id="home-controller">
+        	<ModeController history={history} home={true}/>
+   		</div>
+	);
 
 	return (
 		<div id="control-view">
-			<div id="week-controller">
+			<div id="date-controller">
 				{mode === 'student' || mode === 'timetable' ? 
 				<div className="arrow-btn">
 					<img src={require('img/arrow-left.png')} />
@@ -117,19 +90,7 @@ const ControlView = ( {history, location} ) => {
 				</div>}
 			</div>
 			<div id="mode-controller">
-				<div id="mode-btn" className={mode === 'monthly' ? 'active' : null} onClick={onClickMonthly}>
-					월	
-				</div>
-				<div id="mode-btn" className={mode === 'weekly' ? 'active' : null} onClick={onClickWeekly}>
-					주
-				</div>
-				<div id="mode-btn" className={mode === 'daily' ? 'active' : null} onClick={onClickDaily}>
-					일
-				</div>
-
-				<div id="student-add" className={mode === 'student' ? 'active' : null} onClick={onClickStudent}> 학생 </div>
-				<div id="timetable" className={mode === 'timetable' ? 'active' : null} onClick={onClickTimetable}> 시간표 </div>
-
+				<ModeController history={history} home={false}/>
 			</div>
 		</div>
 	);

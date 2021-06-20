@@ -2,19 +2,12 @@ import React, { useState, useEffect } from 'react';
 import 'sass/app.css';
 import 'sass/daily.css';
 
-import { editDate } from 'js/containers/components/UserDataController';
 import { useAddFormState } from 'js/stores/addFormState';
-import { useErrorState } from 'js/stores/errorState';
-import { useUserData } from 'js/stores/userData';
-import { useDragAndDrop } from 'js/stores/dragAndDrop';
 
 const DailyMainCell = (props) => {
     const { date, schedule } = props;
     const [addFormState, setAddFormState] = useAddFormState();
     const { active } = addFormState;
-    const [errorState, setErrorState] = useErrorState();
-    const [userData, setUserData] = useUserData();
-    const [dragAndDrop, setDragAndDrop] = useDragAndDrop();
     const [curClassNum, setCurClassNum] = useState('');
 
     useEffect(

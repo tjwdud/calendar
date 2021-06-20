@@ -1,0 +1,68 @@
+$greyblue: #f1f2f7;
+$backgroundblue: #a7c8e2;
+$deepblue:#6ca3cf;
+.authContainer {
+  display: flex;
+  width: 500px;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    width:500px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    #sign-up {
+      font-size: 50px;
+    }
+    .authInput {
+      max-width: 500px;
+      height: 50px;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: $greyblue;
+      margin-top: 20px;
+      margin-bottom:20px; 
+      &:focus{
+        outline: none;
+      }
+      margin-bottom: 10px;
+      font-size: 20px;
+      border:none;
+    }
+
+    .authSubmit {
+      text-align: center;
+      background: $deepblue;
+      color: white;
+      margin-top: 10;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+
+    .authError {
+      color: tomato;
+      text-align: center;
+      font-weight: 500;
+      font-size: 17px;
+    }
+
+  
+  }
+  .authSwitch {
+    color: $deepblue;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    display: block;
+    font-size: 17px;
+    &:hover {
+      opacity: 0.5;
+    }
+ 
+  }
+}

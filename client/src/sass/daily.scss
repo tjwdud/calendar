@@ -26,10 +26,9 @@ $cellfontcolor:#120F2E;
     justify-content: center;
     box-sizing: border-box;
     margin-bottom: 50px; 
-    #main-class{
+    #main-class,#free-class{
         width:100%;
-        #daily-main-class{
-            //font-weight:bold;
+        #daily-main-class,#daily-free-class{
             font-size:18px;
         }
         .daily-schedule{
@@ -46,6 +45,8 @@ $cellfontcolor:#120F2E;
                 width:42px;
                 margin-left:30px;
                 font-weight:bold;
+                letter-spacing: 1.5px;
+
                 }
             .daily-title{
                 width:180px;
@@ -62,40 +63,7 @@ $cellfontcolor:#120F2E;
         }
         
     }
-    #free-class{
-        width:100%;
-        #daily-free-class{
-            font-size:18px;
-            //font-weight: bold;
-        }
-        .daily-schedule{
-            font-size:16px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-left:5px;
-            background-color:$backgroundbluecolor;
-            display: flex;
-            margin-bottom:20px;
-            padding:10px;
-            .daily-hour{
-                width:42px;
-                margin-left:30px;
-                font-weight:bold;
-                }
-            .daily-title{
-                width:180px;
-                font-weight:bold;
-                margin-left:30px;
-            }
-            .daily-student{
-                margin-left:250px;
-                display: block;
-            }
-            &:hover {
-                opacity: 0.5;
-            }
-        }
+  
 
         
-    }
 }

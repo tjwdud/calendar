@@ -1,0 +1,82 @@
+.authContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 500px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.authContainer .container {
+  width: 500px;
+  max-width: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.authContainer .container #sign-up {
+  font-size: 50px;
+}
+
+.authContainer .container .authInput {
+  max-width: 500px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f1f2f7;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  border: none;
+}
+
+.authContainer .container .authInput:focus {
+  outline: none;
+}
+
+.authContainer .container .authSubmit {
+  text-align: center;
+  background: #6ca3cf;
+  color: white;
+  margin-top: 10;
+  cursor: pointer;
+}
+
+.authContainer .container .authSubmit:hover {
+  opacity: 0.5;
+}
+
+.authContainer .container .authError {
+  color: tomato;
+  text-align: center;
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.authContainer .authSwitch {
+  color: #6ca3cf;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  display: block;
+  font-size: 17px;
+}
+
+.authContainer .authSwitch:hover {
+  opacity: 0.5;
+}

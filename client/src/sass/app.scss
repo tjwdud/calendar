@@ -1,308 +1,364 @@
-$white: #FFFFFF;
+$white: #ffffff;
 $black: #111;
-$red: #ef7a8b;
-$blue: #769bff;
-$green: #a5d6a7;
-$gray:#a6a6a6;
-$brightblue: #1D584B;
-$backgroundcolor:#F0F0F2;
 
-$cellcolor1:#D9F2EB;
-$cellcolor2:#C6E6EC;
-$cellcolor3:#C9EDDD;
-$cellcolor4:#E4F6E4;
 
-$backgroundbluecolor:#D1DCF0;
-$deepblue:#182649;
+$mainblue:#6ca3cf;
 
-$grayblue:#F1F2F7;
-$backgroundblue:#A7C8E2;
-$cellfontcolor:#120F2E;
+$backgroundbluecolor: #c9d1dc;
 
-body {
-	margin: 0;
-	background: $white;
-  
-	#root {
-		#app {
-			width: 2100px;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			min-height: 100vh;
-		}
-	}
+
+$grayblue: #f1f2f7;
+$backgroundblue: #a7c8e2;
+$cellfontcolor: #120f2e;
+$greyblue: #f1f2f7;
+$backgroundblue: #a7c8e2;
+$selectblue:#f1f6fa;
+$deepblue:#384f62;
+$grey: #8d8d8d;
+
+$addcolor: #99d6c1;
+$editcolor: #3C8DAD;
+$deletcolor: #DDDDDD;
+$errorcolor: #BC5449;
+@font-face {
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../style/fonts/NotoSansKR-WEB/NotoSansKR-Regular.woff2")
+      format("woff2"),
+    url("../style/fonts/NotoSansKR-WEB/NotoSansKR-Regular.woff") format("woff"),
+    url("../style/fonts/NotoSansKR-WEB/NotoSansKR-Regular.otf")
+      format("truetype");
 }
 
+@font-face {
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: bold;
+  src: url("../style/fonts/NotoSansKR-WEB/NotoSansKR-Bold.woff2")
+      format("woff2"),
+    url("../style/fonts/NotoSansKR-WEB/NotoSansKR-Bold.woff") format("woff"),
+    url("../style/fonts/NotoSansKR-WEB/NotoSansKR-Bold.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: normal;
+  unicode-range: U+0020-007E;
+  src: url("../style/fonts/open-sans-v20-latin/open-sans-v20-latin-regular.woff2")
+      format("woff2"),
+    url("../style/fonts/open-sans-v20-latin/open-sans-v20-latin-regular.woff")
+      format("woff"),
+    url("../style/fonts/open-sans-v20-latin/open-sans-v20-latin-regular.ttf")
+      format("truetype");
+}
+
+@font-face {
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: bold;
+  unicode-range: U+0020-007E;
+  src: url("../style/fonts/open-sans-v20-latin/open-sans-v20-latin-600.woff2")
+      format("woff2"),
+    url("../style/fonts/open-sans-v20-latin/open-sans-v20-latin-600.woff")
+      format("woff"),
+    url("../style/fonts/open-sans-v20-latin/open-sans-v20-latin-600.ttf")
+      format("truetype");
+}
+
+body {
+  font-family: "Noto Sans CJK KR";
+  margin: 0;
+  background: $white;
+
+  #root {
+    #app {
+      width: 2100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+  }
+}
+#logoutbtn {
+  margin-top: 10px;
+  font-size: 20px;
+  margin-right: 1340px;
+  cursor: pointer;
+  &:hover{
+    opacity: 0.5;
+  }
+}
 #control-view {
-	margin-top: 30px;
-	margin-bottom: 30px;
-	width: 600px;
-	height: 50px;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	color: $black;
+  margin-top: 25px;
+  margin-bottom: 70px;
+  margin-left: 500px;
+  width: 900px;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: $black;
 
-	#week-controller {
-		display: flex;
-		width: 2000px;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
+  #date-controller {
+    display: flex;
+    width: 400px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    #date-view {
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: bold;
+      &:hover {
+        opacity: 0.5;
+      }
+    }
 
-		#date-view {
-			cursor: pointer;
-			font-size: 20px;
-			font-weight: bold;
-			&:hover {
-				opacity: 0.5;
-			}
-		}
+    .arrow-btn {
+      display: flex;
+      width: 25px;
+      align-items: center;
+      justify-content: center;
+    
+      cursor: pointer;
+      img {
+        max-width: 100%;
+        color: $white;
+      }
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
 
-		.arrow-btn {
-			display: flex;
-			width: 25px;
-			align-items: center;
-			justify-content: center;
-			cursor: pointer;
-			img {
-				max-width: 100%;
-				color: $white;
-			}
-			&:hover {
-				opacity: 0.5;
-			}
-		}
-	}
+  #mode-controller {
+    display: flex;
+    width: 600px;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 20px;
 
-	#mode-controller {
-		display: flex;
-		width: 200px;
-		flex-direction: row;
-		align-items: center;
-		margin-left: 20px;
-		justify-content: center;
-		font-weight: bold;
+  
+    justify-content: center;
+    font-weight: bold;
 
-		#mode-btn {
-			display: flex;
-			justify-content: center;
-			width: 30px;
-			cursor: pointer;
-		}
+    #mode-btn {
+      border-radius: 10px;
+      background-color: $greyblue;
+      margin: 10px;
+      cursor: pointer;
+      width: 85px;
+      height: 85px;
+      text-align: center;
+      &:hover {
+        box-shadow: 1px 1px 20px #ddd;
+      }
+      .iconbtn {
+        color: $mainblue;
+        margin-top: 20px;
+        font-size: 30px;
+      }
+      .mode-title {
+        margin-top: 5px;
+        font-size: 16px;
+        color: $grey;
+      }
+    }
+    .active {
+      opacity: 0.5;
 
-		#student-add {
-			width: 60px;
-			justify-content: center;
-			margin: 5px;
-			cursor: pointer;
-		}
-		#timetable {
-			width: 70px;
-			margin: 5px;
-			cursor: pointer;
-		}
-
-		&:hover {
-			opacity: 0.5;
-		}
-
-		.active {
-			font-size: 20px;
-		}
-	}
+    }
+  }
 }
 
 #calendar-view {
-	min-width: 2100px;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	//overflow: scroll;
+  min-width: 2100px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  //overflow: scroll;
 }
 
 #panel {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: rgba(0, 0, 0, 0.5);
-	z-index: 7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 7;
 
-	#add-form {
-		// position: absolute;
-		// top: 0;
-		margin-bottom: 100px;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: flex-start;
-		width: 400px;
-		// height: 100px;
-		background: $grayblue;
-		color: $black;
-		border-radius: 10px;
-		padding: 20px;
+  #add-form {
+    // position: absolute;
+    // top: 0;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 400px;
+    // height: 100px;
+    background: $grayblue;
+    color: $black;
+    border-radius: 10px;
+    padding: 20px;
 
-		.label {
-			font-weight: bold;
-			color: $black;
-			margin-right: 5px;
-		}
+    .label {
+      font-weight: bold;
+      color: $black;
+      margin-right: 5px;
+    }
 
-		#add-form-title {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			width: 100%;
-			justify-content: center;
-			font-weight: bold;
-			margin-bottom: 30px;
-			font-size: 20px;
-		}
+    #add-form-title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      justify-content: center;
+      font-weight: bold;
+      margin-bottom: 30px;
+      font-size: 20px;
+    }
 
-		#input-date-picker-form {
-			display:flex;
-			margin:5px auto;
-			#input-form {
-				display: flex;
-				flex-direction: row;
-				align-items: center;
-				margin-bottom: 20px;
-			}
-		}
+    #input-date-picker-form {
+      display: flex;
+      margin: 5px auto;
+      #input-form {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+    }
 
-		#input-form {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			margin-bottom: 20px;
-			#input-title {
-				margin: 0;
-				padding: 0;
-				width: 120px;
-				height: 18px;
-			}
-		}
+    #input-form {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 20px;
+      #input-title {
+        margin: 0;
+        padding: 0;
+        width: 120px;
+        height: 18px;
+      }
+    }
 
-		#date-picker-form {
-			display: flex;
-			align-items: center;
-			margin-left:5px;
-			margin-bottom: 20px;
-			#date-picker {
-				input {
-					margin: 0;
-					padding: 0;
-					width: 120px;
-					height: 18px;
-					// text-align: center;
-				}
-			}
-		}
+    #date-picker-form {
+      display: flex;
+      align-items: center;
+      margin-left: 5px;
+      margin-bottom: 20px;
+      #date-picker {
+        input {
+          margin: 0;
+          padding: 0;
+          width: 120px;
+          height: 18px;
+          // text-align: center;
+        }
+      }
+    }
 
-		#hour-picker-form {
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			align-items: baseline;
-			width:300px;
-			margin:5px auto;
+    #hour-picker-form {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: baseline;
+      width: 300px;
+      margin: 5px auto;
 
-			select {
-				margin-right: 5px;
-			}
-		}
+      select {
+        margin-right: 5px;
+      }
+    }
 
-		#option-form {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			width: 100%;
-			justify-content: space-evenly;
+    #option-form {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      justify-content: space-evenly;
 
-			.btn {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				height: 30px;
-				border-radius: 5px;
-				border: solid 1px $black;
-				width: 60px;
+      .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        border-radius: 5px;
+        border: solid 1px $black;
+        width: 60px;
 
-				cursor: pointer;
-				color: $black;
-				font-weight: bold;
-				&:hover {
-					opacity: 0.5;
-				}
-			}
-			#cancel-btn {
-				background: $backgroundblue;
-				border-color: $backgroundblue;
-				color: $deepblue;
-			}
+        cursor: pointer;
+        color: $black;
+        font-weight: bold;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+      #cancel-btn {
+        background: $backgroundbluecolor;
+        border-color: $backgroundbluecolor;
+        color: $deepblue;
+      }
 
-			#add-btn {
-				background: $backgroundblue;
-				border-color: $backgroundblue;
-				color: $deepblue;
+      #add-btn {
+        background: $backgroundbluecolor;
+        border-color: $backgroundbluecolor;
+        color: $deepblue;
+      }
+      #edit-btn {
+        background: $backgroundbluecolor;
+        border-color: $backgroundbluecolor;
+        color: $deepblue;
+      }
 
-			}
-			#edit-btn {
-				background: $backgroundblue;
-				border-color: $backgroundblue;
-				color: $deepblue;
-			}
-
-			#delete-btn {
-				background: $backgroundblue;
-				border-color: $backgroundblue;
-				color: $deepblue;
-			}
-		}
-	}
+      #delete-btn {
+        background: $backgroundbluecolor;
+        border-color: $backgroundbluecolor;
+        color: $deepblue;
+      }
+    }
+  }
 }
 
 #error-panel {
-	display: flex;
-	position: fixed;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	height: 100px;
-	z-index: 4;
-	#error-popup {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-radius: 5px;
-		padding: 20px;
-		display: flex;
-		flex-direction: column;
-		opacity: 0.8;
+  display: flex;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100px;
+  z-index: 4;
+  #error-popup {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0.8;
+  }
 
-	
-	}
+  .add {
+    background: $addcolor;
+  }
+  .edit {
+    background: $editcolor;
+  }
+  .fail {
+    background: $errorcolor;
+  }
+  .delete {
+    background: $deletcolor;
 
-	.add {
-		background: $blue;
-	}
-	.edit {
-		background: $white;
-	}
-	.fail {
-		background: $red;
-	}
-	.delete {
-		background: $black;
-		color: $white;
-	}
+  }
 }

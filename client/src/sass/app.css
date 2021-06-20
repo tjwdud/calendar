@@ -1,6 +1,37 @@
+@font-face {
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../style/fonts/NotoSansKR-WEB/NotoSansKR-Regular.woff2") format("woff2"), url("../style/fonts/NotoSansKR-WEB/NotoSansKR-Regular.woff") format("woff"), url("../style/fonts/NotoSansKR-WEB/NotoSansKR-Regular.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: bold;
+  src: url("../style/fonts/NotoSansKR-WEB/NotoSansKR-Bold.woff2") format("woff2"), url("../style/fonts/NotoSansKR-WEB/NotoSansKR-Bold.woff") format("woff"), url("../style/fonts/NotoSansKR-WEB/NotoSansKR-Bold.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: normal;
+  unicode-range: U+0020-007E;
+  src: url("../style/fonts/open-sans-v20-latin/open-sans-v20-latin-regular.woff2") format("woff2"), url("../style/fonts/open-sans-v20-latin/open-sans-v20-latin-regular.woff") format("woff"), url("../style/fonts/open-sans-v20-latin/open-sans-v20-latin-regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: bold;
+  unicode-range: U+0020-007E;
+  src: url("../style/fonts/open-sans-v20-latin/open-sans-v20-latin-600.woff2") format("woff2"), url("../style/fonts/open-sans-v20-latin/open-sans-v20-latin-600.woff") format("woff"), url("../style/fonts/open-sans-v20-latin/open-sans-v20-latin-600.ttf") format("truetype");
+}
+
 body {
+  font-family: "Noto Sans CJK KR";
   margin: 0;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 
 body #root #app {
@@ -18,11 +49,23 @@ body #root #app {
   min-height: 100vh;
 }
 
+#logoutbtn {
+  margin-top: 10px;
+  font-size: 20px;
+  margin-right: 1340px;
+  cursor: pointer;
+}
+
+#logoutbtn:hover {
+  opacity: 0.5;
+}
+
 #control-view {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  width: 600px;
-  height: 50px;
+  margin-top: 25px;
+  margin-bottom: 70px;
+  margin-left: 500px;
+  width: 900px;
+  height: 70px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -30,20 +73,17 @@ body #root #app {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   color: #111;
 }
 
-#control-view #week-controller {
+#control-view #date-controller {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 2000px;
+  width: 400px;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -56,17 +96,17 @@ body #root #app {
           justify-content: space-between;
 }
 
-#control-view #week-controller #date-view {
+#control-view #date-controller #date-view {
   cursor: pointer;
   font-size: 20px;
   font-weight: bold;
 }
 
-#control-view #week-controller #date-view:hover {
+#control-view #date-controller #date-view:hover {
   opacity: 0.5;
 }
 
-#control-view #week-controller .arrow-btn {
+#control-view #date-controller .arrow-btn {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -80,12 +120,12 @@ body #root #app {
   cursor: pointer;
 }
 
-#control-view #week-controller .arrow-btn img {
+#control-view #date-controller .arrow-btn img {
   max-width: 100%;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
-#control-view #week-controller .arrow-btn:hover {
+#control-view #date-controller .arrow-btn:hover {
   opacity: 0.5;
 }
 
@@ -93,7 +133,7 @@ body #root #app {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 200px;
+  width: 600px;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -109,37 +149,34 @@ body #root #app {
 }
 
 #control-view #mode-controller #mode-btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 30px;
+  border-radius: 10px;
+  background-color: #f1f2f7;
+  margin: 10px;
   cursor: pointer;
+  width: 85px;
+  height: 85px;
+  text-align: center;
 }
 
-#control-view #mode-controller #student-add {
-  width: 60px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin: 5px;
-  cursor: pointer;
+#control-view #mode-controller #mode-btn:hover {
+  -webkit-box-shadow: 1px 1px 20px #ddd;
+          box-shadow: 1px 1px 20px #ddd;
 }
 
-#control-view #mode-controller #timetable {
-  width: 70px;
-  margin: 5px;
-  cursor: pointer;
+#control-view #mode-controller #mode-btn .iconbtn {
+  color: #6ca3cf;
+  margin-top: 20px;
+  font-size: 30px;
 }
 
-#control-view #mode-controller:hover {
-  opacity: 0.5;
+#control-view #mode-controller #mode-btn .mode-title {
+  margin-top: 5px;
+  font-size: 16px;
+  color: #8d8d8d;
 }
 
 #control-view #mode-controller .active {
-  font-size: 20px;
+  opacity: 0.5;
 }
 
 #calendar-view {
@@ -188,7 +225,7 @@ body #root #app {
       -ms-flex-align: start;
           align-items: flex-start;
   width: 400px;
-  background: #F1F2F7;
+  background: #f1f2f7;
   color: #111;
   border-radius: 10px;
   padding: 20px;
@@ -343,27 +380,27 @@ body #root #app {
 }
 
 #panel #add-form #option-form #cancel-btn {
-  background: #A7C8E2;
-  border-color: #A7C8E2;
-  color: #182649;
+  background: #c9d1dc;
+  border-color: #c9d1dc;
+  color: #384f62;
 }
 
 #panel #add-form #option-form #add-btn {
-  background: #A7C8E2;
-  border-color: #A7C8E2;
-  color: #182649;
+  background: #c9d1dc;
+  border-color: #c9d1dc;
+  color: #384f62;
 }
 
 #panel #add-form #option-form #edit-btn {
-  background: #A7C8E2;
-  border-color: #A7C8E2;
-  color: #182649;
+  background: #c9d1dc;
+  border-color: #c9d1dc;
+  color: #384f62;
 }
 
 #panel #add-form #option-form #delete-btn {
-  background: #A7C8E2;
-  border-color: #A7C8E2;
-  color: #182649;
+  background: #c9d1dc;
+  border-color: #c9d1dc;
+  color: #384f62;
 }
 
 #error-panel {
@@ -400,18 +437,17 @@ body #root #app {
 }
 
 #error-panel .add {
-  background: #769bff;
+  background: #99d6c1;
 }
 
 #error-panel .edit {
-  background: #FFFFFF;
+  background: #3C8DAD;
 }
 
 #error-panel .fail {
-  background: #ef7a8b;
+  background: #BC5449;
 }
 
 #error-panel .delete {
-  background: #111;
-  color: #FFFFFF;
+  background: #DDDDDD;
 }

@@ -5,40 +5,37 @@ import { useUserData } from 'js/stores/userData';
 import { useFreeUserData } from 'js/stores/freeUserData';
 import { useStudentsData } from 'js/stores/studentsData';
 import { useTimeTableData } from 'js/stores/timeTableData';
-import firebase from 'firebase/app'
 import { dbService, arrayService,timeService } from "../../fbase";
 
 import AppRouter from 'js/containers/components/AppRouter';
-
-
-//import fbase from "fbase"
 import { authService } from "fbase";
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { convertLegacyProps } from 'antd/lib/button/button';
-
 
 const App = () => {
-	//const auth = fbase.auth();
-	//console.log(auth.currentUser);
+
 	const [init, setInit] = useState(false);
 	const [userData, setUserData] = useUserData();
 	const [freeUserData, setFreeUserData] = useFreeUserData();
 	const [studentsData, setStudentsData] = useStudentsData();
 	const [timeTableData, setTimeTableData] = useTimeTableData();
 	const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
-
+	
 
 
 
 	useEffect(() => {
-		authService.onAuthStateChanged((user) => {
-			if (user) {
-				setIsLoggedIn(true);
-			} else {
-				setIsLoggedIn(false);
-			}
-			setInit(true);
-		});
+		try {
+			authService.onAuthStateChanged((user) => {
+				if (user) {
+					setIsLoggedIn(true);
+				} else {
+					setIsLoggedIn(false);
+				}
+				setInit(true);
+			});
+		} catch (error) {
+			alert(error.message);
+		}
+
 
 		loadUserData();
 		loadFreeUserData();
@@ -106,8 +103,6 @@ const App = () => {
 			timeTableSchedule:
 				arrayService.arrayUnion(...timeTableData.timeTableSchedule)
 		});
-		console.log('save')
-		console.log(timeTableData);
 	};
 
 

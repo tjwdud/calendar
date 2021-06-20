@@ -1,0 +1,33 @@
+$greyblue: #f1f2f7;
+$backgroundblue: #a7c8e2;
+$mainblue:#6ca3cf;
+#home-controller {
+    padding-top:100px;
+    font-size: 30px;
+    display: flex;
+ 
+    #mode-btn {
+        border-radius: 10px;
+        background-color: $mainblue;
+        margin:10px;
+        cursor: pointer;
+        width: 200px;
+        height: 200px;
+        text-align:center;
+        &:hover{
+            box-shadow:1px 1px 20px #ddd;
+        }
+        .iconbtn{
+            color:$deepblue;
+            margin-top:50px;
+            margin-bottom:10px;
+            font-size: 80px;
+        }
+        .mode-title{
+            font-size:17px;
+            color: #8d8d8d;
+        }
+
+    }
+  
+}
