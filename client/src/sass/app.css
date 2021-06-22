@@ -35,7 +35,7 @@ body {
 }
 
 body #root #app {
-  width: 2100px;
+  width: 1440px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -51,7 +51,7 @@ body #root #app {
 
 #logoutbtn {
   margin-top: 10px;
-  font-size: 20px;
+  font-size: 16px;
   margin-right: 1340px;
   cursor: pointer;
 }
@@ -98,7 +98,7 @@ body #root #app {
 
 #control-view #date-controller #date-view {
   cursor: pointer;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -153,8 +153,8 @@ body #root #app {
   background-color: #f1f2f7;
   margin: 10px;
   cursor: pointer;
-  width: 85px;
-  height: 85px;
+  width: 70px;
+  height: 70px;
   text-align: center;
 }
 
@@ -166,12 +166,12 @@ body #root #app {
 #control-view #mode-controller #mode-btn .iconbtn {
   color: #6ca3cf;
   margin-top: 20px;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 #control-view #mode-controller #mode-btn .mode-title {
   margin-top: 5px;
-  font-size: 16px;
+  font-size: 12px;
   color: #8d8d8d;
 }
 
@@ -180,7 +180,7 @@ body #root #app {
 }
 
 #calendar-view {
-  min-width: 2100px;
+  min-width: 1440px;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;

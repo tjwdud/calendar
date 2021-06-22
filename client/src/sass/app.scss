@@ -71,10 +71,10 @@ body {
   font-family: "Noto Sans CJK KR";
   margin: 0;
   background: $white;
-
+  
   #root {
     #app {
-      width: 2100px;
+      width: 1440px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -84,7 +84,7 @@ body {
 }
 #logoutbtn {
   margin-top: 10px;
-  font-size: 20px;
+  font-size: 16px;
   margin-right: 1340px;
   cursor: pointer;
   &:hover{
@@ -110,7 +110,7 @@ body {
     justify-content: space-between;
     #date-view {
       cursor: pointer;
-      font-size: 20px;
+      font-size: 15px;
       font-weight: bold;
       &:hover {
         opacity: 0.5;
@@ -150,8 +150,8 @@ body {
       background-color: $greyblue;
       margin: 10px;
       cursor: pointer;
-      width: 85px;
-      height: 85px;
+      width: 70px;
+      height: 70px;
       text-align: center;
       &:hover {
         box-shadow: 1px 1px 20px #ddd;
@@ -159,11 +159,11 @@ body {
       .iconbtn {
         color: $mainblue;
         margin-top: 20px;
-        font-size: 30px;
+        font-size: 20px;
       }
       .mode-title {
         margin-top: 5px;
-        font-size: 16px;
+        font-size: 12px;
         color: $grey;
       }
     }
@@ -175,7 +175,7 @@ body {
 }
 
 #calendar-view {
-  min-width: 2100px;
+  min-width: 1440px;
   height: 100%;
   display: flex;
   justify-content: center;

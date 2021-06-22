@@ -20,7 +20,7 @@ $backgroundblue:#A7C8E2;
 $cellfontcolor:#120F2E;
 
 #daily-view {
-    width: 1400px;
+    width: 1200px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -29,27 +29,26 @@ $cellfontcolor:#120F2E;
     #main-class,#free-class{
         width:100%;
         #daily-main-class,#daily-free-class{
-            font-size:18px;
+            font-size:13px;
         }
         .daily-schedule{
-            font-size:16px;
+            font-size:12px;
             cursor: pointer;
             border-radius: 5px;
-            margin-left:5px;
+            margin:5px 0px 5px 5px;
             background-color:$backgroundbluecolor;
             display: flex;
-            margin-bottom:20px;
-            padding:10px;
+            padding:7px;
 
             .daily-hour{
-                width:42px;
-                margin-left:30px;
+                width:39px;
+                margin-left:20px;
                 font-weight:bold;
                 letter-spacing: 1.5px;
 
                 }
             .daily-title{
-                width:180px;
+                width:160px;
                 font-weight:bold;
                 margin-left:30px;
             }

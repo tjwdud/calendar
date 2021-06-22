@@ -142,13 +142,12 @@ const MonthlyCell = (props) => {
 						</div>
 					</div>
 					<div className="monthly-students">
-					{a.students.map((b, j) => (
-						<p
-							key={j}
-						>
-							{b.studentName}
-						</p>
-					))}
+						{a.students.map((b, j) => (
+							<p
+								key={j}
+							>
+								{b.studentName + '(' + b.studentAge + ')'}						</p>
+						))}
 					</div>
 				</div>
 			))}

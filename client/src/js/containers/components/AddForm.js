@@ -264,12 +264,12 @@ const AddForm = () => {
 							<div className="label">수업</div>
 							<input id="input-title" value={title} onChange={onChangeNewAddFormState} />
 						</div>
-						<div id="date-picker-form">
+						{class_type !== 'timetable-class' ? <div id="date-picker-form">
 							<div className="label">날짜</div>
 							<div id="date-picker">
 								<DatePicker selected={curDate} onChange={onChangeCurDate} />
 							</div>
-						</div>
+						</div> : null}
 					</div>
 
 					<div id="hour-picker-form">

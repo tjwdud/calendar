@@ -1,10 +1,10 @@
-#weekly-view-btn #timetable-call-btn {
-  margin-left: 1500px;
+#weekly-view #timetable-call-btn {
+  margin-left: 1250px;
   margin-bottom: 10px;
 }
 
-#weekly-view-btn #weekly-view {
-  max-width: 2100px;
+#weekly-view #weekly-view {
+  max-width: 1440px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -21,12 +21,12 @@
   background-color: #ffffff;
 }
 
-#weekly-view-btn #weekly-view ::-webkit-scrollbar {
+#weekly-view #weekly-view ::-webkit-scrollbar {
   display: none;
 }
 
-#weekly-view-btn #weekly-view .hour-col {
-  width: 20px;
+#weekly-view #weekly-view .hour-col {
+  width: 13px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -48,9 +48,9 @@
           box-sizing: border-box;
 }
 
-#weekly-view-btn #weekly-view .hour-col .hour-cell {
+#weekly-view #weekly-view .hour-col .hour-cell {
   width: 100%;
-  height: 240px;
+  height: 200px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -64,17 +64,17 @@
           box-sizing: border-box;
 }
 
-#weekly-view-btn #weekly-view .hour-col .hour-cell:nth-child(1) {
-  height: 30px;
+#weekly-view #weekly-view .hour-col .hour-cell:nth-child(1) {
+  height: 20px;
 }
 
-#weekly-view-btn #weekly-view .hour-col .hour-cell:nth-child(2) {
-  height: 30px;
+#weekly-view #weekly-view .hour-col .hour-cell:nth-child(2) {
+  height: 20px;
   border-bottom: solid 2px #a6a6a6;
 }
 
-#weekly-view-btn #weekly-view .weekly-col {
-  width: 334px;
+#weekly-view #weekly-view .weekly-col {
+  width: 227px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -95,14 +95,10 @@
           box-sizing: border-box;
 }
 
-#weekly-view-btn #weekly-view .weekly-col .weekly-cell {
+#weekly-view #weekly-view .weekly-col .weekly-cell {
   width: 100%;
-  height: 240px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  height: 200px;
+  display: block;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -112,87 +108,89 @@
   overflow-y: auto;
 }
 
-#weekly-view-btn #weekly-view .weekly-col .weekly-cell .weekly-schedule {
+#weekly-view #weekly-view .weekly-col .weekly-cell .weekly-schedule {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  min-width: 300px;
+  width: 216px;
   background-color: #d1dcf0;
   border: solid 1px #d1dcf0;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   color: #120f2e;
-  font-size: 18px;
-  padding: 10px;
+  font-size: 10px;
+  padding: 5px;
   margin: 5px;
   border-radius: 5px;
   z-index: 3;
   cursor: pointer;
 }
 
-#weekly-view-btn #weekly-view .weekly-col .weekly-cell .weekly-schedule:hover {
+#weekly-view #weekly-view .weekly-col .weekly-cell .weekly-schedule:hover {
   opacity: 0.5;
 }
 
-#weekly-view-btn #weekly-view .weekly-col .weekly-cell .weekly-schedule p {
-  width: 85px;
+#weekly-view #weekly-view .weekly-col .weekly-cell .weekly-schedule p {
+  width: 57px;
   margin: 0;
 }
 
-#weekly-view-btn #weekly-view .weekly-col .weekly-cell .weekly-schedule .week-title {
+#weekly-view #weekly-view .weekly-col .weekly-cell .weekly-schedule .week-title {
   font-weight: bold;
   background-color: #d1dcf0;
 }
 
-#weekly-view-btn #weekly-view .weekly-col .weekly-cell .weekly-schedule .start-end-hour {
-  margin-right: 8px;
-  margin-left: 8px;
+#weekly-view #weekly-view .weekly-col .weekly-cell .weekly-schedule .start-end-hour {
+  margin-right: 3px;
+  margin-left: 3px;
   font-weight: bold;
   letter-spacing: 1.5px;
 }
 
-#weekly-view-btn #weekly-view .weekly-col .weekly-cell .weekly-schedule .start-end-hour p {
+#weekly-view #weekly-view .weekly-col .weekly-cell .weekly-schedule .start-end-hour p {
   display: inline;
-  font-size: 15px;
+  font-size: 10px;
 }
 
-#weekly-view-btn #weekly-view .weekly-col .weekly-cell .weekly-schedule .student-name p {
-  display: inline;
+#weekly-view #weekly-view .weekly-col .weekly-cell .weekly-schedule .student-name p {
+  display: inline-block;
   -ms-flex-line-pack: distribute;
       align-content: space-around;
-  margin: 1.6px;
+  margin-left: 1.6px;
+  margin-right: 1.6px;
+  width: 46px;
 }
 
-#weekly-view-btn #weekly-view .weekly-col .weekly-cell:nth-child(1) {
+#weekly-view #weekly-view .weekly-col .weekly-cell:nth-child(1) {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 30px;
+  height: 20px;
 }
 
-#weekly-view-btn #weekly-view .weekly-col .weekly-cell:nth-child(2) {
+#weekly-view #weekly-view .weekly-col .weekly-cell:nth-child(2) {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 30px;
+  height: 20px;
   border-bottom: solid 2px gray;
 }
 
-#weekly-view-btn #weekly-view .weekly-col .weekly-cell:nth-child(n + 3) {
+#weekly-view #weekly-view .weekly-col .weekly-cell:nth-child(n + 3) {
   border-bottom: solid 1px #a6a6a6;
 }
 
-#weekly-view-btn #weekly-view .weekly-col .sunday {
+#weekly-view #weekly-view .weekly-col .sunday {
   color: #ef7a8b;
 }
 
-#weekly-view-btn #weekly-view .weekly-col .saturday {
+#weekly-view #weekly-view .weekly-col .saturday {
   color: #769bff;
 }

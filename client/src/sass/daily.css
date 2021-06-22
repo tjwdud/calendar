@@ -1,5 +1,5 @@
 #daily-view {
-  width: 1400px;
+  width: 1200px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -20,31 +20,30 @@
 }
 
 #daily-view #main-class #daily-main-class, #daily-view #main-class #daily-free-class, #daily-view #free-class #daily-main-class, #daily-view #free-class #daily-free-class {
-  font-size: 18px;
+  font-size: 13px;
 }
 
 #daily-view #main-class .daily-schedule, #daily-view #free-class .daily-schedule {
-  font-size: 16px;
+  font-size: 12px;
   cursor: pointer;
   border-radius: 5px;
-  margin-left: 5px;
+  margin: 5px 0px 5px 5px;
   background-color: #D1DCF0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 20px;
-  padding: 10px;
+  padding: 7px;
 }
 
 #daily-view #main-class .daily-schedule .daily-hour, #daily-view #free-class .daily-schedule .daily-hour {
-  width: 42px;
-  margin-left: 30px;
+  width: 39px;
+  margin-left: 20px;
   font-weight: bold;
   letter-spacing: 1.5px;
 }
 
 #daily-view #main-class .daily-schedule .daily-title, #daily-view #free-class .daily-schedule .daily-title {
-  width: 180px;
+  width: 160px;
   font-weight: bold;
   margin-left: 30px;
 }

@@ -141,7 +141,7 @@ const TimeTableCell = (props) => {
 							<p
 								key={j}
 							>
-								{b.studentName}
+								{b.studentName + '(' + b.studentAge + ')'}
 							</p>
 
 						))}

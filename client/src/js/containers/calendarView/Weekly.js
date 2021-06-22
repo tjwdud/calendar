@@ -144,7 +144,7 @@ const Weekly = () => {
 		setBtnMode(false);
 	}
 	return (
-		<div id="weekly-view-btn">
+		<div id="weekly-view">
 			{btnMode ? <Button id="timetable-call-btn" onClick={onClickTime}>시간표 불러오기</Button> :
 				<Button id="timetable-call-btn" disabled onClick={onClickTime}>시간표 불러오기</Button>}
 			<div id="weekly-view">

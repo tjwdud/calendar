@@ -16,7 +16,7 @@ import 'sass/app.css';
 const AppRouter = ({ isLoggedIn, location }) => {
 
     return (
-        < BrowserRouter basename={process.env.PUBLIC_URL} >          
+        < BrowserRouter >          
           <div id="app">
             {isLoggedIn ?
                 <>

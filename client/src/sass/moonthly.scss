@@ -20,7 +20,7 @@ $backgroundblue:#A7C8E2;
 $cellfontcolor:#120F2E;
 
 #monthly-view {
-    width: 1400px;
+    width: 1300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -81,7 +81,7 @@ $cellfontcolor:#120F2E;
 
             .monthly-schedule {
                 padding: 5px;
-                font-size: 14px;
+                font-size: 10px;
                 background: $backgroundbluecolor;
                 color: $black;
                 border-radius: 5px;
@@ -101,9 +101,11 @@ $cellfontcolor:#120F2E;
                 }
                 .monthly-students{
                     p{
-                        display:inline;
+                        display:inline-block;
+                        width:48px;
                         align-content: space-around;
-                        margin:1.6px;
+                        margin:0.5px;
+                        font-size: 8px;
                     }
                 }
             
