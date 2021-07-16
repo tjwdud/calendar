@@ -8,16 +8,18 @@ import { useErrorState } from 'js/stores/errorState';
 import { useAddFormState } from 'js/stores/addFormState';
 import { useTimeTableData } from 'js/stores/timeTableData';
 import { useDragAndDrop } from 'js/stores/dragAndDrop';
+import { useFreeTimeTableData } from '../../stores/freeTimeTableData';
 
 const TimeTableCell = (props) => {
 
-	const { index, day, date, startHour, schedule } = props;
+	const { mode, index, day, date, startHour, schedule } = props;
 	const [addFormState, setAddFormState] = useAddFormState();
 	const { active } = addFormState;
 	const [errorState, setErrorState] = useErrorState();
 	const [ timeTableData, setTimeTableData] = useTimeTableData();
+	const [ freeTimeTableData, setFreeTimeTableData] = useFreeTimeTableData();
 	const [dragAndDrop, setDragAndDrop] = useDragAndDrop();
-	const class_type = 'timetable-class'
+	
 
 	const onClickDate = () => {
 		if (!active) {
@@ -25,7 +27,7 @@ const TimeTableCell = (props) => {
 			const endMinute = 0;
 			setAddFormState({
 				...addFormState,
-				class_type: class_type,
+				class_type: mode,
 				active: true,
 				mode: 'add',
 				title: '',
@@ -46,7 +48,7 @@ const TimeTableCell = (props) => {
 
 			setAddFormState({
 				...addFormState,
-				class_type: class_type,
+				class_type: mode,
 				active: true,
 				mode: 'edit',
 				title: title,
@@ -63,10 +65,20 @@ const TimeTableCell = (props) => {
 
 	const onDropSchedule = (e) => {
 		if (dragAndDrop.to.endHour > 20) return;
-		const newSchedule = editDate(dragAndDrop.to, dragAndDrop.from, timeTableData.timeTableSchedule);
+		let newSchedule = [];
+		if (mode === 'timetable-class') {
+			newSchedule = editDate(dragAndDrop.to, dragAndDrop.from, timeTableData.timeTableSchedule);
+		} else {
+			newSchedule = editDate(dragAndDrop.to, dragAndDrop.from, freeTimeTableData.freeTimeTableSchedule);
+		}
+		
 
 		if (newSchedule !== false) {
-			setTimeTableData({ ...timeTableData, timeTableSchedule: newSchedule });
+			if (mode === 'timetable-class') {
+				setTimeTableData({ ...timeTableData, timeTableSchedule: newSchedule });
+			} else {
+				setFreeTimeTableData({ ...freeTimeTableData, freeTimeTableSchedule: newSchedule });
+			}
 			setAddFormState({ ...addFormState, active: false });
 			setErrorState({
 				...errorState,
@@ -114,7 +126,7 @@ const TimeTableCell = (props) => {
 	}
 
 	return (
-		<div className="weekly-cell" onClick={onClickDate} onDragEnter={onDragEnterCell} onDragEnd={onDropSchedule}>
+		<div className={mode === 'timetable-class' ? "main-timetable-cell weekly-cell": "free-timetable-cell weekly-cell"} onClick={onClickDate} onDragEnter={onDragEnterCell} onDragEnd={onDropSchedule}>
 			{schedule && schedule.map((a, i) => (
 				<div
 					key={i}
@@ -131,11 +143,7 @@ const TimeTableCell = (props) => {
 							<p>{a.startHour + ':' + a.startMinute}</p>}
 						{/*{a.endMinute <10 ? <p>{a.endHour + ':' + '0'+a.endMinute}</p>:
 								<p>{a.endHour + ':' + a.endMinute}</p>}*/}
-
-
 					</div>
-
-
 					<div className="student-name">
 						{a.students.map((b, j) => (
 							<p
@@ -143,7 +151,6 @@ const TimeTableCell = (props) => {
 							>
 								{b.studentName + '(' + b.studentAge + ')'}
 							</p>
-
 						))}
 					</div>
 				</div>

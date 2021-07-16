@@ -7,16 +7,17 @@ import { editDate } from 'js/containers/components/UserDataController';
 import { useErrorState } from 'js/stores/errorState';
 import { useAddFormState } from 'js/stores/addFormState';
 import { useUserData } from 'js/stores/userData';
+import { useFreeUserData } from 'js/stores/freeUserData';
 import { useDragAndDrop } from 'js/stores/dragAndDrop';
 
 const WeeklyCell = (props) => {
-	const { index, day, date, startHour, schedule } = props;
+	const { class_mode, index, day, date, startHour, schedule } = props;
 	const [addFormState, setAddFormState] = useAddFormState();
 	const { active } = addFormState;
 	const [errorState, setErrorState] = useErrorState();
 	const [userData, setUserData] = useUserData();
+	const [freeUserData, setFreeUserData ] = useFreeUserData();
 	const [dragAndDrop, setDragAndDrop] = useDragAndDrop();
-	const class_type = 'main-class'
 
 
 	const onClickDate = () => {
@@ -25,7 +26,7 @@ const WeeklyCell = (props) => {
 			const endMinute = 0;
 			setAddFormState({
 				...addFormState,
-				class_type: class_type,
+				class_type: class_mode,
 				active: true,
 				mode: 'add',
 				title: '',
@@ -46,7 +47,7 @@ const WeeklyCell = (props) => {
 
 			setAddFormState({
 				...addFormState,
-				class_type: class_type,
+				class_type: class_mode,
 				active: true,
 				mode: 'edit',
 				title: title,
@@ -63,10 +64,20 @@ const WeeklyCell = (props) => {
 
 	const onDropSchedule = (e) => {
 		if (dragAndDrop.to.endHour > 20) return;
-		const newSchedule = editDate(dragAndDrop.to, dragAndDrop.from, userData.schedule);
+		let newSchedule = [];
+		if (class_mode === 'free-class') {
+			newSchedule = editDate(dragAndDrop.to, dragAndDrop.from, freeUserData.freeSchedule);
+		} else {
+			newSchedule = editDate(dragAndDrop.to, dragAndDrop.from, userData.schedule);
+		}
 
 		if (newSchedule !== false) {
-			setUserData({ ...userData, schedule: newSchedule });
+			if (class_mode === 'free-class'){
+				setFreeUserData({ ...freeUserData, freeSchedule: newSchedule });
+			} else {
+				setUserData({ ...userData, schedule: newSchedule });
+			}
+
 			setAddFormState({ ...addFormState, active: false });
 			setErrorState({
 				...errorState,
@@ -119,7 +130,7 @@ const WeeklyCell = (props) => {
 		);
 
 	return (
-		<div className="weekly-cell" onClick={onClickDate} onDragEnter={onDragEnterCell} onDragEnd={onDropSchedule}>
+		<div className={class_mode === 'free-class' ? "free-weekly-cell weekly-cell" : "main-weekly-cell weekly-cell"} onClick={onClickDate} onDragEnter={onDragEnterCell} onDragEnd={onDropSchedule}>
 			{schedule && schedule.map((a, i) => (
 				<div
 					key={i}

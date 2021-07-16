@@ -13,6 +13,7 @@ $cellcolor3: #c9eddd;
 $cellcolor4: #e4f6e4;
 
 $backgroundbluecolor: #d1dcf0;
+$freecellcolor: #e7e8f4;
 $deepblue: #182649;
 
 $grayblue: #f1f2f7;
@@ -20,11 +21,10 @@ $backgroundblue: #a7c8e2;
 $cellfontcolor: #120f2e;
 
 #weekly-view {
-    #timetable-call-btn{
-        
-        margin-left:1250px;
-        margin-bottom:10px;
-    }
+  #timetable-call-btn {
+    margin-left: 1250px;
+    margin-bottom: 10px;
+  }
   #weekly-view {
     ::-webkit-scrollbar {
       display: none;
@@ -76,13 +76,32 @@ $cellfontcolor: #120f2e;
       border-top: solid 0.5px $gray;
       border-bottom: solid 0.5px $gray;
       box-sizing: border-box;
-
+      .main-weekly-cell {
+        .weekly-schedule {
+          background-color: $backgroundbluecolor;
+          border: solid 1px $backgroundbluecolor;
+          .week-title {
+            font-weight: bold;
+            background-color: $backgroundbluecolor;
+          }
+        }
+      }
+      .free-weekly-cell {
+        .weekly-schedule {
+          background-color: $freecellcolor;
+          border: solid 1px $freecellcolor;
+          .week-title {
+            font-weight: bold;
+            background-color: $freecellcolor;
+          }
+        }
+      }
       .weekly-cell {
         width: 100%;
         height: 200px;
 
         display: block;
-       
+
         justify-content: center;
         box-sizing: border-box;
         cursor: pointer;
@@ -91,8 +110,6 @@ $cellfontcolor: #120f2e;
         .weekly-schedule {
           display: flex;
           width: 216px;
-          background-color: $backgroundbluecolor;
-          border: solid 1px $backgroundbluecolor;
           height: fit-content;
           color: $cellfontcolor;
           font-size: 10px;
@@ -109,10 +126,6 @@ $cellfontcolor: #120f2e;
           p {
             width: 57px;
             margin: 0;
-          }
-          .week-title {
-            font-weight: bold;
-            background-color: $backgroundbluecolor;
           }
           .start-end-hour {
             margin-right: 3px;

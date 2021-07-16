@@ -23,7 +23,10 @@ const ControlView = ( {history, location} ) => {
 				newCurDate = date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월';
 			} else if (mode === 'weekly') {
 				let lastDate = parseInt((date.getDate() + (6 - date.getDay())) / 7) + 1;
-				newCurDate = date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월 ' + lastDate + '주';
+				newCurDate = '본수업 ' + date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월 ' + lastDate + '주';
+			} else if (mode === 'freeweekly') {
+				let lastDate = parseInt((date.getDate() + (6 - date.getDay())) / 7) + 1;
+				newCurDate = '자유수업 ' + date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월 ' + lastDate + '주';
 			} else if (mode === 'daily') {
 				let week = ['일', '월', '화', '수', '목', '금', '토',]
 				newCurDate = date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월 ' + (date.getDate()) + '일' + (week[date.getDay()]) + '요일';
@@ -31,6 +34,8 @@ const ControlView = ( {history, location} ) => {
 				newCurDate = '학생추가 페이지'
 			} else if (mode === 'timetable') {
 				newCurDate = '시간표'
+			} else if (mode === 'freetimetable') {
+				newCurDate = '자유 시간표'
 			}
 			setCurDateStr(newCurDate);
 		},
@@ -51,7 +56,7 @@ const ControlView = ( {history, location} ) => {
 
 	const changeDate = (value) => {
 		let newDate; 
-		if (mode === 'weekly') {
+		if (mode === 'weekly' || mode === 'freeweekly') {
 			newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + value * 7);
 		} else if (mode === 'monthly') {
 			newDate = new Date(date.getFullYear(), date.getMonth() + value, date.getDate());
@@ -70,7 +75,7 @@ const ControlView = ( {history, location} ) => {
 	return (
 		<div id="control-view">
 			<div id="date-controller">
-				{mode === 'student' || mode === 'timetable' ? 
+				{mode === 'student' || mode === 'timetable' || mode === 'freetimetable' ? 
 				<div className="arrow-btn">
 					<img src={require('img/arrow-left.png')} />
 				</div> : 

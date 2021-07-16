@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Monthly from 'js/containers/calendarView/Monthly';
 import Weekly from 'js/containers/calendarView/Weekly';
+import FreeWeekly from 'js/containers/calendarView/FreeWeekly';
 import Daily from 'js/containers/calendarView/Daily';
 import ControlView from 'js/containers/controlView/ControlView';
 import AddForm from 'js/containers/components/AddForm';
 import ErrorPopup from 'js/containers/components/ErrorPopup';
 import StudentsControl from 'js/containers/components/StudentsControl';
-import TimeTable from 'js/containers/components/TimeTable';
+import TimeTable from 'js/containers/calendarView/TimeTable';
+import FreeTimeTable from 'js/containers/calendarView/FreeTimeTable';
 import Profile from 'js/containers/components/Profile';
 import Auth from 'js/containers/components/Auth';
 import Navigation from 'js/containers/components/Navigation';
@@ -27,9 +29,11 @@ const AppRouter = ({ isLoggedIn, location }) => {
                             <div id="calendar-view">
                                 <Route exact path="/monthly" component={Monthly} />
                                 <Route exact path="/weekly" component={Weekly} />
+                                <Route exact path="/freeweekly" component={FreeWeekly} />
                                 <Route exact path="/daily" component={Daily} />
                                 <Route exact path="/student" component={StudentsControl} />
                                 <Route exact path="/timetable" component={TimeTable} />
+                                <Route exact path="/freetimetable" component={FreeTimeTable} />
                                 <Route exact path="/profile" component={Profile} />
                             </div>
                         </>

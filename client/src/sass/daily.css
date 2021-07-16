@@ -15,6 +15,14 @@
   margin-bottom: 50px;
 }
 
+#daily-view #free-class .daily-schedule {
+  background-color: #e7e8f4;
+}
+
+#daily-view #main-class .daily-schedule {
+  background-color: #D1DCF0;
+}
+
 #daily-view #main-class, #daily-view #free-class {
   width: 100%;
 }
@@ -28,7 +36,6 @@
   cursor: pointer;
   border-radius: 5px;
   margin: 5px 0px 5px 5px;
-  background-color: #D1DCF0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

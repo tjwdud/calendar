@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import 'sass/timetable.css';
-import TimeTableCell from'../components/TimeTableCell';
+import TimeTableCell from 'js/containers/calendarView/TimeTableCell';
 import { useTimeTableData } from 'js/stores/timeTableData';
+import { makeTimeTable, getCurDateSchedule } from 'js/containers/calendarView/CalendarController';
 
 const TimeTable = () => {    
     const [dates, setDates] = useState([]);
@@ -24,31 +25,6 @@ const TimeTable = () => {
             setDates(makeTimeTable);
         }, [ timeTableData ]);
 
-
-    const makeTimeTable = () => {
-        let tempDate = new Date(2021, 2, 0);
-        const newDates = [['일'], ['월'], ['화'], ['수'], ['목'], ['금'], ['토']];
-        const tempTime = [12, 13, 14, 15, 16, 17, 18, 19];
-        for (let i = 0; i < 7; i++) {
-            newDates[i].push(tempDate);
-            newDates[i] = newDates[i].concat(tempTime);
-            tempDate = new Date(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate() + 1);//다음날
-
-        }
-        return newDates.slice();
-    };
-
-	const getCurDateSchedule = (curDate, startHour) => {
-		let curDateSchedule = [];
-		schedule.forEach((date) => {
-			if (date.curDate.getTime() === curDate.getTime() && date.startHour === startHour) {
-				curDateSchedule.push(date);
-			}
-		});
-		
-
-		return curDateSchedule;
-	};
   
     return (
         <div id="timetable-view">
@@ -65,25 +41,20 @@ const TimeTable = () => {
                         {a.map((b, j) => (//j0123456
 
                             <TimeTableCell
+                                mode={'timetable-class'}
                                 index={j}
                                 key={j}
                                 day={a[0]}
                                 date={a[1]}
                                 startHour={b}
-                                schedule={getCurDateSchedule(a[1], b)}
-
-
-
+                                schedule={getCurDateSchedule(a[1], b, schedule)}
                             />
-
 
                         ))}
                     </div>
                     : null
             ))}
-
         </div>
-
     );
 };
 

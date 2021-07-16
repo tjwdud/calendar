@@ -9,7 +9,7 @@ import { useUserData } from 'js/stores/userData';
 import { useFreeUserData } from 'js/stores/freeUserData';
 import { useStudentsData } from 'js/stores/studentsData';
 import { useTimeTableData } from 'js/stores/timeTableData';
-
+import { useFreeTimeTableData } from 'js/stores/freeTimeTableData';
 import { useErrorState } from 'js/stores/errorState';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
@@ -40,11 +40,9 @@ const useStyles = makeStyles((theme) => ({
 
 const AddForm = () => {
 	const classes = useStyles();
-
 	const [addFormState, setAddFormState] = useAddFormState();
 	const { active, mode, class_type } = addFormState;
 	const [studentsData, setStudentsData] = useStudentsData();
-
 	const [hourOptions] = useState([
 		12,
 		13,
@@ -54,9 +52,7 @@ const AddForm = () => {
 		17,
 		18,
 		19,
-
 	]);
-
 	const [minuteOptions] = useState([
 		0,
 		5,
@@ -71,9 +67,7 @@ const AddForm = () => {
 		50,
 		55
 	]);
-
 	const [studentOptions2] = [studentsData.students];
-
 	const [newAddFormState, setNewAddFormState] = useState({
 		title: '',
 		curDate: new Date(),
@@ -87,9 +81,11 @@ const AddForm = () => {
 	const [userData, setUserData] = useUserData();
 	const [freeUserData, setFreeUserData] = useFreeUserData();
 	const [timeTableData, setTimeTableData] = useTimeTableData();
+	const [freeTimeTableData, setFreeTimeTableData ] = useFreeTimeTableData();
 	let { schedule } = [];
 	if (class_type === 'free-class') { schedule = freeUserData; }
 	else if (class_type === 'timetable-class') { schedule = timeTableData; }
+	else if (class_type === 'free-timetable-class') { schedule = freeTimeTableData; }
 	else { schedule = userData; }
 	const [beforeEdit, setBeforeEdit] = useState();
 	const [errorState, setErrorState] = useErrorState();
@@ -149,14 +145,12 @@ const AddForm = () => {
 		if (title === '') return;
 		let newSchedule = [];
 		if (class_type === 'free-class') {
-
 			newSchedule = insertDate(newAddFormState, schedule.freeSchedule);
-
 		} else if (class_type === 'timetable-class') {
-
 			newSchedule = insertDate(newAddFormState, schedule.timeTableSchedule);
-		}
-		else {
+		} else if (class_type === 'free-timetable-class') {
+			newSchedule = insertDate(newAddFormState, schedule.freeTimeTableSchedule);
+		} else {
 			newSchedule = insertDate(newAddFormState, schedule.schedule);
 		}
 		if (newSchedule !== false) {
@@ -164,8 +158,9 @@ const AddForm = () => {
 				setFreeUserData({ ...freeUserData, freeSchedule: newSchedule });
 			} else if (class_type === 'timetable-class') {
 				setTimeTableData({ ...timeTableData, timeTableSchedule: newSchedule });
-			}
-			else {
+			} else if (class_type === 'free-timetable-class') {
+				setFreeTimeTableData({ ...freeTimeTableData, freeTimeTableSchedule: newSchedule });
+			} else {
 				setUserData({ ...userData, schedule: newSchedule });
 			}
 			setAddFormState({ ...addFormState, active: false });
@@ -189,14 +184,12 @@ const AddForm = () => {
 		if (title === '') return;
 		let newSchedule = [];
 		if (class_type === 'free-class') {
-
 			newSchedule = editDate(newAddFormState, beforeEdit, schedule.freeSchedule);
 		} else if (class_type === 'timetable-class') {
 			newSchedule = editDate(newAddFormState, beforeEdit, schedule.timeTableSchedule);
-
-		}
-		else {
-
+		} else if (class_type === 'free-timetable-class') {
+			newSchedule = editDate(newAddFormState, beforeEdit, schedule.freeTimeTableSchedule);
+		} else {
 			newSchedule = editDate(newAddFormState, beforeEdit, schedule.schedule);
 		}
 
@@ -205,8 +198,9 @@ const AddForm = () => {
 				setFreeUserData({ ...freeUserData, freeSchedule: newSchedule })
 			} else if (class_type === 'timetable-class') {
 				setTimeTableData({ ...timeTableData, timeTableSchedule: newSchedule });
-			}
-			else {
+			} else if (class_type === 'free-timetable-class') {
+				setFreeTimeTableData({ ...freeTimeTableData, freeTimeTableSchedule: newSchedule });
+			} else {
 				setUserData({ ...userData, schedule: newSchedule })
 			}
 			setAddFormState({ ...addFormState, active: false });
@@ -232,6 +226,8 @@ const AddForm = () => {
 			newSchedule = deleteDate(title, curDate, startHour, startMinute, endHour, endMinute, schedule.freeSchedule);
 		} else if (class_type === 'timetable-class') {
 			newSchedule = deleteDate(title, curDate, startHour, startMinute, endHour, endMinute, schedule.timeTableSchedule);
+		} else if (class_type === 'free-timetable-class') {
+			newSchedule = deleteDate(title, curDate, startHour, startMinute, endHour, endMinute, schedule.freeTimeTableSchedule);
 		} else {
 			newSchedule = deleteDate(title, curDate, startHour, startMinute, endHour, endMinute, schedule.schedule);
 		}
@@ -239,6 +235,8 @@ const AddForm = () => {
 			setFreeUserData({ ...freeUserData, freeSchedule: newSchedule })
 		} else if (class_type === 'timetable-class') {
 			setTimeTableData({ ...timeTableData, timeTableSchedule: newSchedule });
+		} else if (class_type === 'free-timetable-class') {
+			setFreeTimeTableData({ ...freeTimeTableData, freeTimeTableSchedule: newSchedule });
 		} else {
 			setUserData({ ...userData, schedule: newSchedule })
 		}

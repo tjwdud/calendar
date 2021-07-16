@@ -13,6 +13,7 @@ $cellcolor3:#C9EDDD;
 $cellcolor4:#E4F6E4;
 
 $backgroundbluecolor:#D1DCF0;
+$freecellcolor: #e7e8f4;
 $deepblue:#182649;
 
 $grayblue:#F1F2F7;
@@ -26,6 +27,16 @@ $cellfontcolor:#120F2E;
     justify-content: center;
     box-sizing: border-box;
     margin-bottom: 50px; 
+    #free-class{
+        .daily-schedule{
+            background-color:$freecellcolor;
+        }
+    }
+    #main-class{
+        .daily-schedule{
+            background-color:$backgroundbluecolor;
+        }
+    }
     #main-class,#free-class{
         width:100%;
         #daily-main-class,#daily-free-class{
@@ -36,7 +47,6 @@ $cellfontcolor:#120F2E;
             cursor: pointer;
             border-radius: 5px;
             margin:5px 0px 5px 5px;
-            background-color:$backgroundbluecolor;
             display: flex;
             padding:7px;
 

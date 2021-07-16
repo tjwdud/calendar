@@ -27,6 +27,10 @@ const ModeController = ({ history, home }) => {
                 setCalendarState({ ...calendarState, mode: mode });
                 history.push("/weekly");
                 break;
+            case 'freeweekly':
+                setCalendarState({ ...calendarState, mode: mode });
+                history.push("/freeweekly")
+                break;
             case 'daily':
                 setCalendarState({ ...calendarState, mode: mode });
                 history.push("/daily");
@@ -39,12 +43,17 @@ const ModeController = ({ history, home }) => {
                 setCalendarState({ ...calendarState, mode: mode });
                 history.push("/timetable");
                 break;
+            case 'freetimetable':
+                setCalendarState({ ...calendarState, mode: mode });
+                history.push("/freetimetable");
+                break;
 
         }
     }
     
-    const modeList = ["monthly", "weekly", "daily", "student", "timetable"];
-    const modeIconList = [faCalendar, faCalendarWeek, faCalendarDay, faUserPlus, faChalkboardTeacher];
+    const modeList = ["monthly", "weekly", "freeweekly", "daily", "student", "timetable", "freetimetable"];
+    const modeNameList = ["월", "주", "자유 주", "일", "학생", "시간표", "자유 시간표"];
+    const modeIconList = [faCalendar, faCalendarWeek, faCalendarWeek, faCalendarDay, faUserPlus, faChalkboardTeacher, faChalkboardTeacher];
 
     return (
 
@@ -52,7 +61,7 @@ const ModeController = ({ history, home }) => {
             <div id="mode-btn" key={i} className={mode === a ? 'active' : null} onClick={() => onClickModeBtn(a)}>
                 <FontAwesomeIcon icon={modeIconList[i]} className="iconbtn" />
                 <div className="mode-title">
-                    {a}
+                    {modeNameList[i]}
                 </div>
             </div>
         ))}

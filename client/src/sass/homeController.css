@@ -11,8 +11,8 @@
   background-color: #f1f2f7;
   margin: 10px;
   cursor: pointer;
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   text-align: center;
 }
 
@@ -23,12 +23,12 @@
 
 #home-controller #mode-btn .iconbtn {
   color: #6ca3cf;
-  margin-top: 50px;
-  margin-bottom: 10px;
-  font-size: 80px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-size: 30px;
 }
 
 #home-controller #mode-btn .mode-title {
-  font-size: 17px;
+  font-size: 13px;
   color: #8d8d8d;
 }

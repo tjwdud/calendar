@@ -5,7 +5,9 @@ import { useUserData } from 'js/stores/userData';
 import { useFreeUserData } from 'js/stores/freeUserData';
 import { useStudentsData } from 'js/stores/studentsData';
 import { useTimeTableData } from 'js/stores/timeTableData';
-import { dbService, arrayService,timeService } from "../../fbase";
+import { useFreeTimeTableData } from 'js/stores/freeTimeTableData';
+
+import { dbService, arrayService, timeService } from "../../fbase";
 
 import AppRouter from 'js/containers/components/AppRouter';
 import { authService } from "fbase";
@@ -17,8 +19,9 @@ const App = () => {
 	const [freeUserData, setFreeUserData] = useFreeUserData();
 	const [studentsData, setStudentsData] = useStudentsData();
 	const [timeTableData, setTimeTableData] = useTimeTableData();
+	const [freeTimeTableData, setFreeTimeTableData] = useFreeTimeTableData();
 	const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
-	
+
 
 
 
@@ -41,6 +44,7 @@ const App = () => {
 		loadFreeUserData();
 		loadStudentsData();
 		loadTimeTableData();
+		loadFreeTimeTableData();
 	}, []);
 
 	useEffect(
@@ -71,18 +75,24 @@ const App = () => {
 		[timeTableData]
 	);
 
+	useEffect(
+		() => {
+			saveFreeTimeTableData();
+		},
+		[freeTimeTableData]
+	);
 
 
 	const saveUserData = async () => {
-	
+
 		await dbService.collection('schedule').doc('schedule').set({
 			schedule:
 				arrayService.arrayUnion(...userData.schedule)
 		});
 	};
 
-	const saveFreeUserData =  async () => {
-	
+	const saveFreeUserData = async () => {
+
 		await dbService.collection('freeSchedule').doc('freeSchedule').set({
 			freeSchedule:
 				arrayService.arrayUnion(...freeUserData.freeSchedule)
@@ -90,7 +100,7 @@ const App = () => {
 	};
 
 	const saveStudentsData = async () => {
-	
+
 		await dbService.collection('students').doc('students').set({
 			students:
 				arrayService.arrayUnion(...studentsData.students)
@@ -98,10 +108,18 @@ const App = () => {
 	};
 
 	const saveTimeTableData = async () => {
-	
+
 		await dbService.collection('timeTableSchedule').doc('timeTableSchedule').set({
 			timeTableSchedule:
 				arrayService.arrayUnion(...timeTableData.timeTableSchedule)
+		});
+	};
+
+	const saveFreeTimeTableData = async () => {
+
+		await dbService.collection('freeTimeTableSchedule').doc('freeTimeTableSchedule').set({
+			freeTimeTableSchedule:
+				arrayService.arrayUnion(...freeTimeTableData.freeTimeTableSchedule)
 		});
 	};
 
@@ -109,66 +127,69 @@ const App = () => {
 
 	const loadUserData = async () => {//값 불러올 때 string을 object로 변환
 		await dbService.collection('schedule').doc('schedule').get().then((doc) => {
-			if (!doc.exists) return; 
+			if (!doc.exists) return;
 			setUserData({
-					...userData,
-					schedule: doc.data().schedule.map((a) => {
-						return { ...a, curDate: a.curDate.toDate() };
-					})
+				...userData,
+				schedule: doc.data().schedule.map((a) => {
+					return { ...a, curDate: a.curDate.toDate() };
 				})
-			
-
+			})
 		})
 	};
 
 
 	const loadFreeUserData = async () => {//값 불러올 때 string을 object로 변환
 		await dbService.collection('freeSchedule').doc('freeSchedule').get().then((doc) => {
-			if (!doc.exists) return; 
-	
-				setFreeUserData({
-					...freeUserData,
-					freeSchedule: doc.data().freeSchedule.map((a) => {
-						return { ...a, curDate: a.curDate.toDate() };
-					})
-				})
-			
+			if (!doc.exists) return;
 
+			setFreeUserData({
+				...freeUserData,
+				freeSchedule: doc.data().freeSchedule.map((a) => {
+					return { ...a, curDate: a.curDate.toDate() };
+				})
+			})
 		})
 	};
 
 	const loadStudentsData = async () => {
 		await dbService.collection('students').doc('students').get().then((doc) => {
-			if (!doc.exists) return; 
-	
-				setStudentsData({
-					...studentsData,
-					students: doc.data().students.map((a) => {
-						return { ...a };
-					})
+			if (!doc.exists) return;
+
+			setStudentsData({
+				...studentsData,
+				students: doc.data().students.map((a) => {
+					return { ...a };
 				})
-			
-
+			})
 		})
-
 	};
 
 	const loadTimeTableData = async () => {
 		await dbService.collection('timeTableSchedule').doc('timeTableSchedule').get().then((doc) => {
-			if (!doc.exists) return; 
+			if (!doc.exists) return;
 
 			setTimeTableData({
-					...timeTableData,
-					timeTableSchedule: doc.data().timeTableSchedule.map((a) => {
-						
-						return { ...a, curDate: a.curDate.toDate() };
-					})
+				...timeTableData,
+				timeTableSchedule: doc.data().timeTableSchedule.map((a) => {
+
+					return { ...a, curDate: a.curDate.toDate() };
 				})
-				
-			
-
+			})
 		})
+	};
 
+	const loadFreeTimeTableData = async () => {
+		await dbService.collection('freeTimeTableSchedule').doc('freeTimeTableSchedule').get().then((doc) => {
+			if (!doc.exists) return;
+
+			setFreeTimeTableData({
+				...freeTimeTableData,
+				freeTimeTableSchedule: doc.data().freeTimeTableSchedule.map((a) => {
+
+					return { ...a, curDate: a.curDate.toDate() };
+				})
+			})
+		})
 	};
 
 

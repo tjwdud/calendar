@@ -8,23 +8,23 @@ $mainblue:#6ca3cf;
  
     #mode-btn {
         border-radius: 10px;
-        background-color: $mainblue;
+        background-color: $greyblue;
         margin:10px;
         cursor: pointer;
-        width: 200px;
-        height: 200px;
+        width: 100px;
+        height: 100px;
         text-align:center;
         &:hover{
             box-shadow:1px 1px 20px #ddd;
         }
         .iconbtn{
-            color:$deepblue;
-            margin-top:50px;
-            margin-bottom:10px;
-            font-size: 80px;
+            color:$mainblue;
+            margin-top:20px;
+            margin-bottom:5px;
+            font-size: 30px;
         }
         .mode-title{
-            font-size:17px;
+            font-size:13px;
             color: #8d8d8d;
         }
 
