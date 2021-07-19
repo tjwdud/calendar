@@ -83,12 +83,14 @@ const AddForm = () => {
 	const [timeTableData, setTimeTableData] = useTimeTableData();
 	const [freeTimeTableData, setFreeTimeTableData ] = useFreeTimeTableData();
 	let { schedule } = [];
+	let class_type_is_timetable = false;
 	if (class_type === 'free-class') { schedule = freeUserData; }
-	else if (class_type === 'timetable-class') { schedule = timeTableData; }
-	else if (class_type === 'free-timetable-class') { schedule = freeTimeTableData; }
+	else if (class_type === 'timetable-class') { schedule = timeTableData; class_type_is_timetable = true; }
+	else if (class_type === 'free-timetable-class') { schedule = freeTimeTableData; class_type_is_timetable = true;}
 	else { schedule = userData; }
 	const [beforeEdit, setBeforeEdit] = useState();
 	const [errorState, setErrorState] = useErrorState();
+	
 
 	useEffect(
 		() => {
@@ -262,12 +264,12 @@ const AddForm = () => {
 							<div className="label">수업</div>
 							<input id="input-title" value={title} onChange={onChangeNewAddFormState} />
 						</div>
-						{class_type !== 'timetable-class' ? <div id="date-picker-form">
+						{class_type_is_timetable ? null:<div id="date-picker-form">
 							<div className="label">날짜</div>
 							<div id="date-picker">
 								<DatePicker selected={curDate} onChange={onChangeCurDate} />
 							</div>
-						</div> : null}
+						</div>}
 					</div>
 
 					<div id="hour-picker-form">
