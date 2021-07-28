@@ -74,6 +74,7 @@ $cellfontcolor:#120F2E;
                 border: solid 1px $freecellcolor;
                 .week-title{
                     font-weight: bold;
+                    margin-left: 5px;
                     background-color: $freecellcolor;
                 }
             }
@@ -125,6 +126,7 @@ $cellfontcolor:#120F2E;
                 .start-end-hour{
                     margin-right: 3px;
                     margin-left: 3px;
+                    font-weight: bold;
                     letter-spacing: 1.5px;
                     p{
                     display: inline;

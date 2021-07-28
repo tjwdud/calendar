@@ -1,16 +1,19 @@
-$greyblue: #f1f2f7;
-$backgroundblue: #a7c8e2;
-$deepblue:#6ca3cf;
+@import "./variables";
+
+
 .authContainer {
   display: flex;
   width: 500px;
   flex-direction: column;
   height: 100vh;
-  justify-content: center;
+
   align-items: center;
+  position: absolute; left: 50%; top: 50%; 
+  transform: translate(-50%, -50%); text-align: center;
 
   .container {
     width:500px;
+    margin-top: 20vh;
     max-width: 500px;
     display: flex;
     flex-direction: column;
@@ -22,7 +25,7 @@ $deepblue:#6ca3cf;
       height: 50px;
       padding: 10px;
       border-radius: 10px;
-      background-color: $greyblue;
+      background-color: $grayblue;
       margin-top: 20px;
       margin-bottom:20px; 
       &:focus{
@@ -35,7 +38,7 @@ $deepblue:#6ca3cf;
 
     .authSubmit {
       text-align: center;
-      background: $deepblue;
+      background: $mainblue;
       color: white;
       margin-top: 10;
       cursor: pointer;
@@ -54,7 +57,7 @@ $deepblue:#6ca3cf;
   
   }
   .authSwitch {
-    color: $deepblue;
+    color: $mainblue;
     cursor: pointer;
     margin-top: 10px;
     margin-bottom: 50px;
@@ -65,4 +68,17 @@ $deepblue:#6ca3cf;
     }
  
   }
+}
+
+@media screen and (max-width:$breakpoint-mobile){
+  .authContainer{
+    .container {
+      width:350px;
+    }
+
+
+}
+
+
+
 }

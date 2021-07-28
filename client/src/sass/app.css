@@ -31,7 +31,7 @@
 body {
   font-family: "Noto Sans CJK KR";
   margin: 0;
-  background: #ffffff;
+  background: #FFFFFF;
 }
 
 body #root #app {
@@ -122,7 +122,7 @@ body #root #app {
 
 #control-view #date-controller .arrow-btn img {
   max-width: 100%;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 #control-view #date-controller .arrow-btn:hover {
@@ -149,7 +149,7 @@ body #root #app {
 
 #control-view #mode-controller #mode-btn {
   border-radius: 10px;
-  background-color: #f1f2f7;
+  background-color: #F1F2F7;
   margin: 6px;
   cursor: pointer;
   width: 70px;
@@ -224,7 +224,7 @@ body #root #app {
       -ms-flex-align: start;
           align-items: flex-start;
   width: 400px;
-  background: #f1f2f7;
+  background: #F1F2F7;
   color: #111;
   border-radius: 10px;
   padding: 20px;
@@ -379,26 +379,26 @@ body #root #app {
 }
 
 #panel #add-form #option-form #cancel-btn {
-  background: #c9d1dc;
-  border-color: #c9d1dc;
+  background: #D1DCF0;
+  border-color: #D1DCF0;
   color: #384f62;
 }
 
 #panel #add-form #option-form #add-btn {
-  background: #c9d1dc;
-  border-color: #c9d1dc;
+  background: #D1DCF0;
+  border-color: #D1DCF0;
   color: #384f62;
 }
 
 #panel #add-form #option-form #edit-btn {
-  background: #c9d1dc;
-  border-color: #c9d1dc;
+  background: #D1DCF0;
+  border-color: #D1DCF0;
   color: #384f62;
 }
 
 #panel #add-form #option-form #delete-btn {
-  background: #c9d1dc;
-  border-color: #c9d1dc;
+  background: #D1DCF0;
+  border-color: #D1DCF0;
   color: #384f62;
 }
 
@@ -449,4 +449,10 @@ body #root #app {
 
 #error-panel .delete {
   background: #DDDDDD;
+}
+
+@media screen and (max-width: 500px) {
+  #app {
+    width: 100%;
+  }
 }

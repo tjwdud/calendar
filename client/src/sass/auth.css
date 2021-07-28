@@ -8,16 +8,20 @@
       -ms-flex-direction: column;
           flex-direction: column;
   height: 100vh;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .authContainer .container {
   width: 500px;
+  margin-top: 20vh;
   max-width: 500px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -37,7 +41,7 @@
   height: 50px;
   padding: 10px;
   border-radius: 10px;
-  background-color: #f1f2f7;
+  background-color: #F1F2F7;
   margin-top: 20px;
   margin-bottom: 20px;
   margin-bottom: 10px;
@@ -79,4 +83,10 @@
 
 .authContainer .authSwitch:hover {
   opacity: 0.5;
+}
+
+@media screen and (max-width: 500px) {
+  .authContainer .container {
+    width: 350px;
+  }
 }

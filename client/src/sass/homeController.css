@@ -4,11 +4,17 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  -webkit-transform: translate(-50%, -20%);
+          transform: translate(-50%, -20%);
+  text-align: center;
 }
 
 #home-controller #mode-btn {
   border-radius: 10px;
-  background-color: #f1f2f7;
+  background-color: #F1F2F7;
   margin: 10px;
   cursor: pointer;
   width: 100px;
@@ -31,4 +37,15 @@
 #home-controller #mode-btn .mode-title {
   font-size: 13px;
   color: #8d8d8d;
+}
+
+@media screen and (max-width: 850px) {
+  #home-controller {
+    width: 240px;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  #home-controller:nth-child(1) {
+    width: 220px;
+  }
 }

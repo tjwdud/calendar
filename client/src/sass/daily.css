@@ -43,6 +43,8 @@
 }
 
 #daily-view #main-class .daily-schedule .daily-hour, #daily-view #free-class .daily-schedule .daily-hour {
+  margin-top: 1em;
+  margin-bottom: 1em;
   width: 39px;
   margin-left: 20px;
   font-weight: bold;
@@ -50,14 +52,21 @@
 }
 
 #daily-view #main-class .daily-schedule .daily-title, #daily-view #free-class .daily-schedule .daily-title {
-  width: 160px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 120px;
   font-weight: bold;
   margin-left: 30px;
 }
 
 #daily-view #main-class .daily-schedule .daily-student, #daily-view #free-class .daily-schedule .daily-student {
-  margin-left: 250px;
+  margin-left: 10px;
   display: block;
+}
+
+#daily-view #main-class .daily-schedule .daily-student p, #daily-view #free-class .daily-schedule .daily-student p {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 #daily-view #main-class .daily-schedule:hover, #daily-view #free-class .daily-schedule:hover {

@@ -92,6 +92,7 @@
 
 #timetable-view .weekly-col .free-timetable-cell .weekly-schedule .week-title {
   font-weight: bold;
+  margin-left: 5px;
   background-color: #e7e8f4;
 }
 
@@ -147,6 +148,7 @@
 #timetable-view .weekly-col .weekly-cell .weekly-schedule .start-end-hour {
   margin-right: 3px;
   margin-left: 3px;
+  font-weight: bold;
   letter-spacing: 1.5px;
 }
 

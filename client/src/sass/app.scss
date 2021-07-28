@@ -1,24 +1,5 @@
-$white: #ffffff;
-$black: #111;
+@import "./variables";
 
-
-$mainblue:#6ca3cf;
-
-$backgroundbluecolor: #c9d1dc;
-
-$grayblue: #f1f2f7;
-$backgroundblue: #a7c8e2;
-$cellfontcolor: #120f2e;
-$greyblue: #f1f2f7;
-$backgroundblue: #a7c8e2;
-$selectblue:#f1f6fa;
-$deepblue:#384f62;
-$grey: #8d8d8d;
-
-$addcolor: #99d6c1;
-$editcolor: #3C8DAD;
-$deletcolor: #DDDDDD;
-$errorcolor: #BC5449;
 
 @font-face {
   font-family: "Noto Sans CJK KR";
@@ -144,7 +125,7 @@ body {
 
     #mode-btn {
       border-radius: 10px;
-      background-color: $greyblue;
+      background-color: $grayblue;
       margin: 6px;
       cursor: pointer;
       width: 70px;
@@ -161,7 +142,7 @@ body {
       .mode-title {
         margin-top: 1px;
         font-size: 3px;
-        color: $grey;
+        color: $lightgray;
       }
     }
     .active {
@@ -302,24 +283,24 @@ body {
       #cancel-btn {
         background: $backgroundbluecolor;
         border-color: $backgroundbluecolor;
-        color: $deepblue;
+        color: $darkblue;
       }
 
       #add-btn {
         background: $backgroundbluecolor;
         border-color: $backgroundbluecolor;
-        color: $deepblue;
+        color: $darkblue;
       }
       #edit-btn {
         background: $backgroundbluecolor;
         border-color: $backgroundbluecolor;
-        color: $deepblue;
+        color: $darkblue;
       }
 
       #delete-btn {
         background: $backgroundbluecolor;
         border-color: $backgroundbluecolor;
-        color: $deepblue;
+        color: $darkblue;
       }
     }
   }
@@ -357,5 +338,12 @@ body {
   .delete {
     background: $deletcolor;
 
+  }
+}
+
+@media screen and (max-width: $breakpoint-mobile) {
+  #app{
+    width: 100%;
+   
   }
 }

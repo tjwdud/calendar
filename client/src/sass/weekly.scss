@@ -82,6 +82,7 @@ $cellfontcolor: #120f2e;
           border: solid 1px $backgroundbluecolor;
           .week-title {
             font-weight: bold;
+            margin-left: 5px;
             background-color: $backgroundbluecolor;
           }
         }
@@ -92,6 +93,7 @@ $cellfontcolor: #120f2e;
           border: solid 1px $freecellcolor;
           .week-title {
             font-weight: bold;
+            margin-left: 5px;
             background-color: $freecellcolor;
           }
         }

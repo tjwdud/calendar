@@ -102,6 +102,7 @@
 
 #weekly-view #weekly-view .weekly-col .main-weekly-cell .weekly-schedule .week-title {
   font-weight: bold;
+  margin-left: 5px;
   background-color: #d1dcf0;
 }
 
@@ -112,6 +113,7 @@
 
 #weekly-view #weekly-view .weekly-col .free-weekly-cell .weekly-schedule .week-title {
   font-weight: bold;
+  margin-left: 5px;
   background-color: #e7e8f4;
 }
 
