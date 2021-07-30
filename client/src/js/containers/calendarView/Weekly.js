@@ -19,7 +19,6 @@ const Weekly = () => {
 	const { date } = calendarState;
 	const [timeTableData, setTimeTableData] = useTimeTableData();
 	const timetableValue = timeTableData.timeTableSchedule;
-	console.log(timetableValue);
 	const [dates, setDates] = useState([]);
 	const [timeTable, setTimeTable] = useState([
 		' ',

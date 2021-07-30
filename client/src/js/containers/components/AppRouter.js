@@ -1,4 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useUserData } from 'js/stores/userData';
+import { useFreeUserData } from 'js/stores/freeUserData';
+import { useStudentsData } from 'js/stores/studentsData';
+import { useTimeTableData } from 'js/stores/timeTableData';
+import { useFreeTimeTableData } from 'js/stores/freeTimeTableData';
+
+import { dbService, arrayService, timeService } from "../../../fbase";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Monthly from 'js/containers/calendarView/Monthly';
 import Weekly from 'js/containers/calendarView/Weekly';
@@ -16,7 +23,182 @@ import Navigation from 'js/containers/components/Navigation';
 import 'sass/app.css';
 
 const AppRouter = ({ isLoggedIn, location }) => {
+	const [userData, setUserData] = useUserData();
+	const [freeUserData, setFreeUserData] = useFreeUserData();
+	const [studentsData, setStudentsData] = useStudentsData();
+	const [timeTableData, setTimeTableData] = useTimeTableData();
+    const [freeTimeTableData, setFreeTimeTableData] = useFreeTimeTableData();
+ 
+ 
+    useEffect(() => {
+        if(isLoggedIn){
+            loadUserData();
+            loadFreeUserData();
+            loadStudentsData();
+            loadTimeTableData();
+            loadFreeTimeTableData();
+        }
+    
+       
+    },[isLoggedIn]);
+    useEffect(
+		() => {
+            if(isLoggedIn){
+                saveUserData();
+            }
+		
+		},
+		[userData]
+	);
 
+	useEffect(
+		() => {
+            if(isLoggedIn){
+                saveFreeUserData();
+            }
+		},
+		[freeUserData]
+	);
+
+	useEffect(
+		() => {
+            if(isLoggedIn){
+                saveStudentsData();
+            }
+
+		},
+		[studentsData]
+	);
+
+	useEffect(
+		() => {
+            if(isLoggedIn){
+                saveTimeTableData();
+
+            }
+		},
+		[timeTableData]
+	);
+
+	useEffect(
+		() => {
+            if(isLoggedIn){
+                saveFreeTimeTableData();
+            }
+		},
+		[freeTimeTableData]
+	);
+
+
+	const saveUserData = async () => {
+
+		await dbService.collection('schedule').doc('schedule').set({
+			schedule:
+				arrayService.arrayUnion(...userData.schedule)
+		});
+	};
+
+	const saveFreeUserData = async () => {
+
+		await dbService.collection('freeSchedule').doc('freeSchedule').set({
+			freeSchedule:
+				arrayService.arrayUnion(...freeUserData.freeSchedule)
+		});
+	};
+
+	const saveStudentsData = async () => {
+
+		await dbService.collection('students').doc('students').set({
+			students:
+				arrayService.arrayUnion(...studentsData.students)
+		});
+	};
+
+	const saveTimeTableData = async () => {
+
+		await dbService.collection('timeTableSchedule').doc('timeTableSchedule').set({
+			timeTableSchedule:
+				arrayService.arrayUnion(...timeTableData.timeTableSchedule)
+		});
+	};
+
+	const saveFreeTimeTableData = async () => {
+
+		await dbService.collection('freeTimeTableSchedule').doc('freeTimeTableSchedule').set({
+			freeTimeTableSchedule:
+				arrayService.arrayUnion(...freeTimeTableData.freeTimeTableSchedule)
+		});
+	};
+
+
+
+	const loadUserData = async () => {//값 불러올 때 string을 object로 변환
+		await dbService.collection('schedule').doc('schedule').get().then((doc) => {
+			if (!doc.exists) return;
+			setUserData({
+				...userData,
+				schedule: doc.data().schedule.map((a) => {
+					return { ...a, curDate: a.curDate.toDate() };
+				})
+			})
+		})
+	};
+
+
+	const loadFreeUserData = async () => {//값 불러올 때 string을 object로 변환
+		await dbService.collection('freeSchedule').doc('freeSchedule').get().then((doc) => {
+			if (!doc.exists) return;
+
+			setFreeUserData({
+				...freeUserData,
+				freeSchedule: doc.data().freeSchedule.map((a) => {
+					return { ...a, curDate: a.curDate.toDate() };
+				})
+			})
+		})
+	};
+
+	const loadStudentsData = async () => {
+		await dbService.collection('students').doc('students').get().then((doc) => {
+			if (!doc.exists) return;
+
+			setStudentsData({
+				...studentsData,
+				students: doc.data().students.map((a) => {
+					return { ...a };
+				})
+			})
+		})
+	};
+
+	const loadTimeTableData = async () => {
+		await dbService.collection('timeTableSchedule').doc('timeTableSchedule').get().then((doc) => {
+			if (!doc.exists) return;
+
+			setTimeTableData({
+				...timeTableData,
+				timeTableSchedule: doc.data().timeTableSchedule.map((a) => {
+
+					return { ...a, curDate: a.curDate.toDate() };
+				})
+			})
+		})
+	};
+
+	const loadFreeTimeTableData = async () => {
+		await dbService.collection('freeTimeTableSchedule').doc('freeTimeTableSchedule').get().then((doc) => {
+			if (!doc.exists) return;
+
+			setFreeTimeTableData({
+				...freeTimeTableData,
+				freeTimeTableSchedule: doc.data().freeTimeTableSchedule.map((a) => {
+
+					return { ...a, curDate: a.curDate.toDate() };
+				})
+			})
+		})
+    };
+    
     return (
         < BrowserRouter >          
           <div id="app">

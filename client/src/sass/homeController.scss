@@ -36,9 +36,10 @@
     #home-controller {
         width: 240px;
         flex-wrap: wrap;
-            &:nth-child(1) {
-                width: 220px;
-            }
+        #mode-btn:nth-child(1) {
+            width: 220px;
+        }
+         
         }
         
     }

@@ -19,7 +19,6 @@ const FreeWeekly = () => {
 	const { date } = calendarState;
 	const [freeTimeTableData, setFreeTimeTableData] = useFreeTimeTableData();
 	const freeTimetableValue = freeTimeTableData.freeTimeTableSchedule;
-	console.log(freeTimetableValue);
 	const [dates, setDates] = useState([]);
 	const [timeTable, setTimeTable] = useState([
 		' ',
