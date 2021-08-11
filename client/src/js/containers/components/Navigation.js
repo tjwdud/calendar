@@ -9,6 +9,7 @@ const Navigation = () => {
     const onLogOutClick = () => {
         authService.signOut();
         history.push("/");
+
     }
     return (
         <nav>

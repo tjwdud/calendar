@@ -60,7 +60,23 @@
 }
 
 #timetable-view .hour-col .hour-cell:nth-child(1) {
-  height: 20px;
+  height: 40px;
+}
+
+#timetable-view .hour-col .hour-cell:nth-child(2) {
+  height: 100px;
+}
+
+#timetable-view .hour-col .hour-cell:nth-child(5) {
+  height: 300px;
+}
+
+#timetable-view .hour-col .hour-cell:nth-child(6) {
+  height: 300px;
+}
+
+#timetable-view .hour-col .hour-cell:nth-child(9) {
+  height: 100px;
 }
 
 #timetable-view .weekly-col {
@@ -185,6 +201,22 @@
           align-items: center;
   height: 20px;
   border-bottom: solid 2px gray;
+}
+
+#timetable-view .weekly-col .weekly-cell:nth-child(3) {
+  height: 100px;
+}
+
+#timetable-view .weekly-col .weekly-cell:nth-child(6) {
+  height: 300px;
+}
+
+#timetable-view .weekly-col .weekly-cell:nth-child(7) {
+  height: 300px;
+}
+
+#timetable-view .weekly-col .weekly-cell:nth-child(10) {
+  height: 100px;
 }
 
 #timetable-view .weekly-col .weekly-cell:nth-child(n + 3) {

@@ -18,7 +18,7 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   margin-bottom: 50px;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
 
 #weekly-view #weekly-view ::-webkit-scrollbar {
@@ -73,6 +73,22 @@
   border-bottom: solid 2px #a6a6a6;
 }
 
+#weekly-view #weekly-view .hour-col .hour-cell:nth-child(3) {
+  height: 100px;
+}
+
+#weekly-view #weekly-view .hour-col .hour-cell:nth-child(6) {
+  height: 300px;
+}
+
+#weekly-view #weekly-view .hour-col .hour-cell:nth-child(7) {
+  height: 300px;
+}
+
+#weekly-view #weekly-view .hour-col .hour-cell:nth-child(10) {
+  height: 100px;
+}
+
 #weekly-view #weekly-view .weekly-col {
   width: 227px;
   display: -webkit-box;
@@ -96,14 +112,30 @@
 }
 
 #weekly-view #weekly-view .weekly-col .main-weekly-cell .weekly-schedule {
-  background-color: #d1dcf0;
-  border: solid 1px #d1dcf0;
+  background-color: #D1DCF0;
+  border: solid 1px #D1DCF0;
 }
 
 #weekly-view #weekly-view .weekly-col .main-weekly-cell .weekly-schedule .week-title {
   font-weight: bold;
   margin-left: 5px;
-  background-color: #d1dcf0;
+  background-color: #D1DCF0;
+}
+
+#weekly-view #weekly-view .weekly-col .main-weekly-cell:nth-child(3) {
+  height: 100px;
+}
+
+#weekly-view #weekly-view .weekly-col .main-weekly-cell:nth-child(6) {
+  height: 300px;
+}
+
+#weekly-view #weekly-view .weekly-col .main-weekly-cell:nth-child(7) {
+  height: 300px;
+}
+
+#weekly-view #weekly-view .weekly-col .main-weekly-cell:nth-child(10) {
+  height: 100px;
 }
 
 #weekly-view #weekly-view .weekly-col .free-weekly-cell .weekly-schedule {
@@ -115,6 +147,22 @@
   font-weight: bold;
   margin-left: 5px;
   background-color: #e7e8f4;
+}
+
+#weekly-view #weekly-view .weekly-col .free-weekly-cell:nth-child(3) {
+  height: 100px;
+}
+
+#weekly-view #weekly-view .weekly-col .free-weekly-cell:nth-child(6) {
+  height: 300px;
+}
+
+#weekly-view #weekly-view .weekly-col .free-weekly-cell:nth-child(7) {
+  height: 300px;
+}
+
+#weekly-view #weekly-view .weekly-col .free-weekly-cell:nth-child(10) {
+  height: 100px;
 }
 
 #weekly-view #weekly-view .weekly-col .weekly-cell {
@@ -138,7 +186,7 @@
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  color: #120f2e;
+  color: #120F2E;
   font-size: 10px;
   padding: 5px;
   margin: 5px;

@@ -4,9 +4,8 @@ import { useFreeUserData } from 'js/stores/freeUserData';
 import { useStudentsData } from 'js/stores/studentsData';
 import { useTimeTableData } from 'js/stores/timeTableData';
 import { useFreeTimeTableData } from 'js/stores/freeTimeTableData';
-
 import { dbService, arrayService, timeService } from "../../../fbase";
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route,	Redirect, useHistory, withRouter } from 'react-router-dom';
 import Monthly from 'js/containers/calendarView/Monthly';
 import Weekly from 'js/containers/calendarView/Weekly';
 import FreeWeekly from 'js/containers/calendarView/FreeWeekly';
@@ -22,28 +21,34 @@ import Auth from 'js/containers/components/Auth';
 import Navigation from 'js/containers/components/Navigation';
 import 'sass/app.css';
 
-const AppRouter = ({ isLoggedIn, location }) => {
+const AppRouter = ({ isLoggedIn, isAdmin, userObj }) => {
 	const [userData, setUserData] = useUserData();
 	const [freeUserData, setFreeUserData] = useFreeUserData();
 	const [studentsData, setStudentsData] = useStudentsData();
 	const [timeTableData, setTimeTableData] = useTimeTableData();
     const [freeTimeTableData, setFreeTimeTableData] = useFreeTimeTableData();
- 
+	console.log(isAdmin);
  
     useEffect(() => {
+
+		console.log(isAdmin);
         if(isLoggedIn){
+	
             loadUserData();
             loadFreeUserData();
             loadStudentsData();
             loadTimeTableData();
             loadFreeTimeTableData();
-        }
-    
-       
-    },[isLoggedIn]);
+		}
+		if(isLoggedIn && !isAdmin){
+			alert('관리자 권한이 없어 시간표를 변경할 수 없습니다.')
+
+		}  
+	},[isLoggedIn,isAdmin, userObj]);
+	
     useEffect(
 		() => {
-            if(isLoggedIn){
+			if(isLoggedIn && isAdmin){
                 saveUserData();
             }
 		
@@ -53,7 +58,7 @@ const AppRouter = ({ isLoggedIn, location }) => {
 
 	useEffect(
 		() => {
-            if(isLoggedIn){
+			if(isLoggedIn && isAdmin){
                 saveFreeUserData();
             }
 		},
@@ -62,7 +67,7 @@ const AppRouter = ({ isLoggedIn, location }) => {
 
 	useEffect(
 		() => {
-            if(isLoggedIn){
+			if(isLoggedIn && isAdmin){
                 saveStudentsData();
             }
 
@@ -72,7 +77,7 @@ const AppRouter = ({ isLoggedIn, location }) => {
 
 	useEffect(
 		() => {
-            if(isLoggedIn){
+			if(isLoggedIn && isAdmin){
                 saveTimeTableData();
 
             }
@@ -82,7 +87,7 @@ const AppRouter = ({ isLoggedIn, location }) => {
 
 	useEffect(
 		() => {
-            if(isLoggedIn){
+			if(isLoggedIn && isAdmin){
                 saveFreeTimeTableData();
             }
 		},

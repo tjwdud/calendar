@@ -1,24 +1,4 @@
-$white: #ffffff;
-$black: #111;
-$red: #ef7a8b;
-$blue: #769bff;
-$green: #a5d6a7;
-$gray: #a6a6a6;
-$brightblue: #1d584b;
-$backgroundcolor: #f0f0f2;
-
-$cellcolor1: #d9f2eb;
-$cellcolor2: #c6e6ec;
-$cellcolor3: #c9eddd;
-$cellcolor4: #e4f6e4;
-
-$backgroundbluecolor: #d1dcf0;
-$freecellcolor: #e7e8f4;
-$deepblue: #182649;
-
-$grayblue: #f1f2f7;
-$backgroundblue: #a7c8e2;
-$cellfontcolor: #120f2e;
+@import "./variables";
 
 #weekly-view {
   #timetable-call-btn {
@@ -63,6 +43,18 @@ $cellfontcolor: #120f2e;
           height: 20px;
           border-bottom: solid 2px $gray;
         }
+        &:nth-child(3) {
+          height: 100px;
+        }
+        &:nth-child(6){
+          height:300px;
+        } 
+        &:nth-child(7) {
+          height: 300px;
+        }
+        &:nth-child(10) {
+          height: 100px;
+        }
       }
     }
 
@@ -86,7 +78,20 @@ $cellfontcolor: #120f2e;
             background-color: $backgroundbluecolor;
           }
         }
+        &:nth-child(3) {
+          height: 100px;
+        }
+        &:nth-child(6){
+          height:300px;
+        } 
+        &:nth-child(7){
+          height:300px;
+        } 
+        &:nth-child(10){
+          height:100px;
+        }
       }
+
       .free-weekly-cell {
         .weekly-schedule {
           background-color: $freecellcolor;
@@ -96,6 +101,18 @@ $cellfontcolor: #120f2e;
             margin-left: 5px;
             background-color: $freecellcolor;
           }
+        }
+        &:nth-child(3) {
+          height: 100px;
+        }
+        &:nth-child(6){
+          height:300px;
+        } 
+        &:nth-child(7){
+          height:300px;
+        } 
+        &:nth-child(10){
+          height:100px;
         }
       }
       .weekly-cell {

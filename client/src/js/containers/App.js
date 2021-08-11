@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'sass/app.css';
+import { useParams, useHistory, withRouter } from "react-router-dom";
 
 import { useUserData } from 'js/stores/userData';
 import { useFreeUserData } from 'js/stores/freeUserData';
@@ -21,15 +22,19 @@ const App = () => {
 	const [timeTableData, setTimeTableData] = useTimeTableData();
 	const [freeTimeTableData, setFreeTimeTableData] = useFreeTimeTableData();*/
 	const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
-
-
+	const [userObj, setUserObj] = useState(null);
+	const [isAdmin, setIsAdmin] = useState(false);
 	useEffect(() => {
+	
 		try {
 			authService.onAuthStateChanged((user) => {
 				if (user) {
+					setUserObj(user.uid);
 					setIsLoggedIn(true);
+	
 				} else {
 					setIsLoggedIn(false);
+					setIsAdmin(false);
 				}
 				setInit(true);
 			});
@@ -37,13 +42,20 @@ const App = () => {
 			alert(error.message);
 		}
 
-
-		/*loadUserData();
-		loadFreeUserData();
-		loadStudentsData();
-		loadTimeTableData();
-		loadFreeTimeTableData();*/
 	}, []);
+
+	useEffect(()=>{
+		if(userObj){
+			if(userObj === '111muOnAhmPBAGy80kjvZtWUuos2'){
+				console.log(userObj);
+				setIsAdmin(true);
+				console.log('관리자');
+			}
+			else {
+				setIsAdmin(false);
+			}
+		}
+	},[userObj])
 
 
 
@@ -51,7 +63,7 @@ const App = () => {
 
 	return (
 		<>
-			{init ? <AppRouter isLoggedIn={isLoggedIn} /> : "Initializing..."}
+			{init ? <AppRouter isLoggedIn={isLoggedIn} isAdmin={isAdmin} userObj={userObj}/> : "Initializing..."}
 		</>
 
 	);
