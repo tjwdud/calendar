@@ -3,12 +3,16 @@ import 'sass/app.css';
 import 'sass/daily.css';
 
 import { useAddFormState } from 'js/stores/addFormState';
+import { useAdminState } from '../../stores/adminState';
+import { useErrorState } from 'js/stores/errorState';
 
 const DailyMainCell = (props) => {
     const { date, schedule } = props;
     const [addFormState, setAddFormState] = useAddFormState();
     const { active } = addFormState;
     const [curClassNum, setCurClassNum] = useState('');
+	const [adminState,setAdminState] = useAdminState();
+	const [errorState, setErrorState] = useErrorState();
 
     useEffect(
         () => {
@@ -25,7 +29,15 @@ const DailyMainCell = (props) => {
     );
 
     const onClickDate = () => {//스케줄 추가할때 
-        if (!active) {
+		if(!adminState){
+			setErrorState({
+				...errorState,
+				active: true,
+				mode: 'fail',
+				message: [['수업을 수정하려면 관리자 계정으로 로그인 하세요.']]
+			});
+		}
+		if (!active && adminState) {
             let startHour = 10
             const nowHour = new Date().getHours();
             if (nowHour >= 10 && nowHour <= 21) {
@@ -55,8 +67,15 @@ const DailyMainCell = (props) => {
     const onClickSchedule = (e, schedule) => {//수정하려고 스케줄 눌렀을때
         e.stopPropagation();
         const { title, curDate, startHour, startMinute, endHour, endMinute, students } = schedule;
-
-        if (!active) {
+		if(!adminState){
+			setErrorState({
+				...errorState,
+				active: true,
+				mode: 'fail',
+				message: [['수업을 수정하려면 관리자 계정으로 로그인 하세요.']]
+			});
+		}
+		if (!active && adminState) {
 
             setAddFormState({
                 ...addFormState,

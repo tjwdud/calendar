@@ -9,6 +9,7 @@ import { useAddFormState } from 'js/stores/addFormState';
 import { useUserData } from 'js/stores/userData';
 import { useFreeUserData } from 'js/stores/freeUserData';
 import { useDragAndDrop } from 'js/stores/dragAndDrop';
+import { useAdminState } from '../../stores/adminState';
 
 const WeeklyCell = (props) => {
 	const { class_mode, index, day, date, startHour, schedule } = props;
@@ -18,10 +19,19 @@ const WeeklyCell = (props) => {
 	const [userData, setUserData] = useUserData();
 	const [freeUserData, setFreeUserData ] = useFreeUserData();
 	const [dragAndDrop, setDragAndDrop] = useDragAndDrop();
-
+	const [adminState,setAdminState] = useAdminState();
 
 	const onClickDate = () => {
-		if (!active) {
+	
+		if(!adminState){
+			setErrorState({
+				...errorState,
+				active: true,
+				mode: 'fail',
+				message: [['수업을 수정하려면 관리자 계정으로 로그인 하세요.']]
+			});
+		}
+		if (!active && adminState) {
 			const startMinute = 0;
 			const endMinute = 0;
 			setAddFormState({
@@ -43,7 +53,15 @@ const WeeklyCell = (props) => {
 	const onClickSchedule = (e, schedule) => {
 		e.stopPropagation();
 		const { title, curDate, startHour, startMinute, endHour, endMinute, students } = schedule;
-		if (!active) {
+		if(!adminState){
+			setErrorState({
+				...errorState,
+				active: true,
+				mode: 'fail',
+				message: [['수업을 수정하려면 관리자 계정으로 로그인 하세요.']]
+			});
+		}
+		if (!active && adminState) {
 
 			setAddFormState({
 				...addFormState,
@@ -65,34 +83,44 @@ const WeeklyCell = (props) => {
 	const onDropSchedule = (e) => {
 		if (dragAndDrop.to.endHour > 20) return;
 		let newSchedule = [];
-		if (class_mode === 'free-class') {
-			newSchedule = editDate(dragAndDrop.to, dragAndDrop.from, freeUserData.freeSchedule);
-		} else {
-			newSchedule = editDate(dragAndDrop.to, dragAndDrop.from, userData.schedule);
-		}
-
-		if (newSchedule !== false) {
-			if (class_mode === 'free-class'){
-				setFreeUserData({ ...freeUserData, freeSchedule: newSchedule });
+		if(adminState){
+			if (class_mode === 'free-class') {
+				newSchedule = editDate(dragAndDrop.to, dragAndDrop.from, freeUserData.freeSchedule);
 			} else {
-				setUserData({ ...userData, schedule: newSchedule });
+				newSchedule = editDate(dragAndDrop.to, dragAndDrop.from, userData.schedule);
 			}
-
-			setAddFormState({ ...addFormState, active: false });
-			setErrorState({
-				...errorState,
-				active: true,
-				mode: 'edit',
-				message: [['수업 수정 되었습니다.']]
-			});
-		} else {//editDate가 false를 return 하면
+	
+			if (newSchedule !== false) {
+				if (class_mode === 'free-class'){
+					setFreeUserData({ ...freeUserData, freeSchedule: newSchedule });
+				} else {
+					setUserData({ ...userData, schedule: newSchedule });
+				}
+	
+				setAddFormState({ ...addFormState, active: false });
+				setErrorState({
+					...errorState,
+					active: true,
+					mode: 'edit',
+					message: [['수업 수정 되었습니다.']]
+				});
+			} else {//editDate가 false를 return 하면
+				setErrorState({
+					...errorState,
+					active: true,
+					mode: 'fail',
+					message: [['수업을 수정할 수 없습니다.']]
+				});
+			}
+		} else {
 			setErrorState({
 				...errorState,
 				active: true,
 				mode: 'fail',
-				message: [['수업을 수정할 수 없습니다.']]
+				message: [['관리자 권한이 없어 수업을 수정할 수 없습니다.']]
 			});
 		}
+
 	};
 
 	const onDragCell = (e, schedule) => {

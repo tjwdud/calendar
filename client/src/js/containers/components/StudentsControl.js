@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useStudentsData } from 'js/stores/studentsData';
+import { useAdminState } from '../../stores/adminState';
 import StudentCell from './StudentCell';
 import 'antd/dist/antd.css';
 import 'sass/student.css'; 
@@ -16,6 +17,7 @@ const StudentsControl = () => {
         studentName: '',
         studentAge: ''
     });
+    const [adminState,setAdminState] = useAdminState();
     const { studentName, studentAge } = newAddStudentState;
     const nameInput = useRef();//추가후에 커서를 학생에 두기 위해서 
 
@@ -90,13 +92,15 @@ const StudentsControl = () => {
                     <tr>
                         <th>이름</th>
                         <th>나이</th>
+                        { adminState ?
+                        <>
                         <th>
                             <Input id="input-insert-name" style={{width:'90px'}}placeholder="이름" value={studentName || ''} onChange={onChangeStudent} ref={nameInput} prefix={<UserOutlined />}/>
                             <Input id="input-insert-age" placeholder="나이" type='number' value={studentAge || ''} onChange={onChangeStudent} onKeyPress={onKeyDownEnter} />
                         </th>
                         <th>
                             <Button onClick={onClickAdd} >추가</Button>
-                        </th>
+                        </th></> : <><th></th><th></th></>}
                     </tr>
                 </thead>
                 <tbody>

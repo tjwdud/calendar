@@ -9,6 +9,7 @@ import { useAddFormState } from 'js/stores/addFormState';
 import { useTimeTableData } from 'js/stores/timeTableData';
 import { useDragAndDrop } from 'js/stores/dragAndDrop';
 import { useFreeTimeTableData } from '../../stores/freeTimeTableData';
+import { useAdminState } from 'js/stores/adminState';
 
 const TimeTableCell = (props) => {
 
@@ -19,10 +20,18 @@ const TimeTableCell = (props) => {
 	const [ timeTableData, setTimeTableData] = useTimeTableData();
 	const [ freeTimeTableData, setFreeTimeTableData] = useFreeTimeTableData();
 	const [dragAndDrop, setDragAndDrop] = useDragAndDrop();
-	
+	const [adminState,setAdminState] = useAdminState();
 
 	const onClickDate = () => {
-		if (!active) {
+		if(!adminState){
+			setErrorState({
+				...errorState,
+				active: true,
+				mode: 'fail',
+				message: [['수업을 수정하려면 관리자 계정으로 로그인 하세요.']]
+			});
+		}
+		if (!active && adminState) {
 			const startMinute = 0;
 			const endMinute = 0;
 			setAddFormState({
@@ -44,7 +53,15 @@ const TimeTableCell = (props) => {
 	const onClickSchedule = (e, schedule) => {
 		e.stopPropagation();
 		const { title, curDate, startHour, startMinute, endHour, endMinute, students } = schedule;
-		if (!active) {
+		if(!adminState){
+			setErrorState({
+				...errorState,
+				active: true,
+				mode: 'fail',
+				message: [['수업을 수정하려면 관리자 계정으로 로그인 하세요.']]
+			});
+		}
+		if (!active && adminState) {
 
 			setAddFormState({
 				...addFormState,
@@ -73,7 +90,7 @@ const TimeTableCell = (props) => {
 		}
 		
 
-		if (newSchedule !== false) {
+		if (newSchedule !== false && adminState) {
 			if (mode === 'timetable-class') {
 				setTimeTableData({ ...timeTableData, timeTableSchedule: newSchedule });
 			} else {

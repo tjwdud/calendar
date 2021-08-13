@@ -29,7 +29,9 @@ const ErrorPopup = () => {
 				<div id="error-popup" className={mode}>
 					{message.map((a, i) => (
 						<div key={i} className="error-message">
-							{a}
+							<p>
+								{a}
+							</p>
 						</div>
 					))}
 				</div>

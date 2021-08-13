@@ -323,7 +323,12 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    opacity: 0.8;
+
+
+    p {
+      font-size: 15px
+    }
+
   }
 
   .add {

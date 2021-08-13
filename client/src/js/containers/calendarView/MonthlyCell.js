@@ -7,6 +7,7 @@ import { useAddFormState } from 'js/stores/addFormState';
 import { useErrorState } from 'js/stores/errorState';
 import { useUserData } from 'js/stores/userData';
 import { useDragAndDrop } from 'js/stores/dragAndDrop';
+import { useAdminState } from 'js/stores/adminState';
 
 const MonthlyCell = (props) => {
 	const { date, schedule } = props;
@@ -15,6 +16,7 @@ const MonthlyCell = (props) => {
 	const [errorState, setErrorState] = useErrorState();
 	const [userData, setUserData] = useUserData();
 	const [dragAndDrop, setDragAndDrop] = useDragAndDrop();
+	const [adminState,setAdminState] = useAdminState();
 	const [curDateStr, setCurDateStr] = useState('');
 	const class_type = 'main_class'
 
@@ -31,7 +33,15 @@ const MonthlyCell = (props) => {
 	);
 
 	const onClickDate = () => {//스케줄 추가할때 
-		if (!active) {
+		if(!adminState){
+			setErrorState({
+				...errorState,
+				active: true,
+				mode: 'fail',
+				message: [['수업을 수정하려면 관리자 계정으로 로그인 하세요.']]
+			});
+		}
+		if (!active && adminState) {
 			let startHour = 10
 			const nowHour = new Date().getHours();
 			if (nowHour >= 10 && nowHour <= 21) {
@@ -59,8 +69,15 @@ const MonthlyCell = (props) => {
 	const onClickSchedule = (e, schedule) => {//수정하려고 스케줄 눌렀을때
 		e.stopPropagation();
 		const { title, curDate, startHour, startMinute, endHour, endMinute, students } = schedule;
-
-		if (!active) {
+		if(!adminState){
+			setErrorState({
+				...errorState,
+				active: true,
+				mode: 'fail',
+				message: [['수업을 수정하려면 관리자 계정으로 로그인 하세요.']]
+			});
+		}
+		if (!active && adminState) {
 
 			setAddFormState({
 				...addFormState,
@@ -82,7 +99,7 @@ const MonthlyCell = (props) => {
 	const onDropSchedule = (e) => {
 		const newSchedule = editDate(dragAndDrop.to, dragAndDrop.from, userData.schedule);
 
-		if (newSchedule !== false) {
+		if (newSchedule !== false && adminState) {
 			setUserData({ ...userData, schedule: newSchedule });
 			setAddFormState({ ...addFormState, active: false, class_type: class_type });
 			setErrorState({

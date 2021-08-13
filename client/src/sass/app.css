@@ -432,7 +432,10 @@ body #root #app {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  opacity: 0.8;
+}
+
+#error-panel #error-popup p {
+  font-size: 15px;
 }
 
 #error-panel .add {
@@ -444,7 +447,7 @@ body #root #app {
 }
 
 #error-panel .fail {
-  background: #BC5449;
+  background: #e4a99f;
 }
 
 #error-panel .delete {

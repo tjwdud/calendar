@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useStudentsData } from 'js/stores/studentsData';
 import { useAddStudentState } from 'js/stores/addStudentState';
+import { useAdminState } from '../../stores/adminState';
+import { useErrorState } from 'js/stores/errorState';
 import 'sass/app.css';
 import 'sass/student.css'; 
 import 'antd/dist/antd.css';
@@ -22,6 +24,8 @@ const StudentCell = (props) => {
         studentName: studentName,
         studentAge: studentAge
     });
+    const [adminState,setAdminState] = useAdminState();
+	const [errorState, setErrorState] = useErrorState();
 
     useEffect(
         () => {
@@ -35,28 +39,42 @@ const StudentCell = (props) => {
     )
 
     const onClickDelete = () => {
-        //const { id } = e.target;
-        //const newStudent = deleteStudent(index, students);
-        
-       // setStudentsData({ ...studentsData, students: newStudent });
-  
-       setStudentsData({ ...studentsData, students:students.filter((user => user.id !== id))});
+        if(!adminState){
+			setErrorState({
+				...errorState,
+				active: true,
+				mode: 'fail',
+				message: [['삭제하려면 관리자 계정으로 로그인 하세요.']]
+            });
+        }
+        if(adminState){
+            setStudentsData({ ...studentsData, students:students.filter((user => user.id !== id))});
+        }
     };
  
 
     
     const onClickEdit = (e) => {
-        const { id } = e.target;
-        setEditing(true);
-        setAddStudentState({
-            ...addStudentState,
-            studentName: studentName,
-            studentAge: studentAge
-        });
-
+        if(!adminState){
+			setErrorState({
+				...errorState,
+				active: true,
+				mode: 'fail',
+				message: [['삭제하려면 관리자 계정으로 로그인 하세요.']]
+            });
+        }
+        if(adminState){
+            const { id } = e.target;
+            setEditing(true);
+            setAddStudentState({
+                ...addStudentState,
+                studentName: studentName,
+                studentAge: studentAge
+            });
+        }
     };
     const onClickEditDone = () => {
-        setEditing(false);
+            setEditing(false);
 
             setStudentsData( a => ({
            
@@ -65,8 +83,6 @@ const StudentCell = (props) => {
                     { ...students, studentName: newAddStudentState.studentName, 
                         studentAge: newAddStudentState.studentAge} : students)
             }))
-        
-
         
     };
 

@@ -11,6 +11,7 @@ import { insertDate } from 'js/containers/components/UserDataController';
 
 import { useUserData } from 'js/stores/userData';
 import { useTimeTableData } from 'js/stores/timeTableData';
+import { useAdminState } from 'js/stores/adminState';
 
 import { Button } from 'antd';
 
@@ -18,6 +19,7 @@ const Weekly = () => {
 	const [calendarState, setCalendarState] = useCalendarState();
 	const { date } = calendarState;
 	const [timeTableData, setTimeTableData] = useTimeTableData();
+	const [adminState,setAdminState] = useAdminState();
 	const timetableValue = timeTableData.timeTableSchedule;
 	const [dates, setDates] = useState([]);
 	const [timeTable, setTimeTable] = useState([
@@ -84,7 +86,7 @@ const Weekly = () => {
 	}
 	return (
 		<div id="weekly-view">
-			<Button id="timetable-call-btn" onClick={onClickTimeTableBtn}>시간표 불러오기</Button>
+			{adminState ? <Button id="timetable-call-btn" onClick={onClickTimeTableBtn}>시간표 불러오기</Button> : null}
 			<div id="weekly-view">
 				<div className="hour-col">
 					{timeTable.map((a, i) => (
