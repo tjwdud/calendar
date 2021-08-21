@@ -76,7 +76,7 @@ In Cloud Firestore, the unit of storage is the document.
 
 ## Dependencies
 dependencies|version
-—|—
+--—|—--
 antd | ^6.0.0
 fortawesome| ^1.2.35
 fortawesome/free-solid-svg-icons|^5.15.3
@@ -93,7 +93,7 @@ react-scripts|2.1.8
 uuid|^8.3.2
 
 dev-dependenceies|version
-—|—
+—--|--—
 webpack-cli|^4.7.2
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/33392925/130058089-d723c236-7b08-40c8-93f0-4e332b73a5fe.gif)
+
