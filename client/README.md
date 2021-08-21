@@ -1,68 +1,99 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## React Monthly/Weekly Calendar
+ 월/주 별로 일정을 관리할 수 있는 웹 어플리케이션
 
-## Available Scripts
+## Table of contents
+* [Technologies](#technologies)
+* [How to use](#how-to-use)
+* [Setup](#setup)
+* [Cloud Firestore Data model](#cloud-firestore-data-model)
+* [Dependencies](#dependencies)
 
-In the project directory, you can run:
+## Technologies
+```
+react, react-hooks, sass, firestore
+```
+## How to use
+#### :heavy_check_mark:매주 동알허개 진행되는 고정 수업 시간표 
+#### :heavy_check_mark:수업 등q록, 삭제, 수정이 가능함
+#### :heavy_minus_sign:본 수업시간표 
+#### :heavy_minus_sign:자유롭게 스스로 공부하는 자유수업시간표
+<img src="https://user-images.githubusercontent.com/33392925/130318646-52da034b-db9a-41ae-80e8-6b03e16767bb.gif" width="850">
 
-### `npm start`
+#### :heavy_check_mark:매주 동일하게 진행되는 시간표가 있지만 학생 출석여부, 수업휴강, 수업시간 변경 등의 이유로 달라질 수 있음
+#### :heavy_check_mark:시간표 불러오기 버튼을 통해 고정시간표를 가져온다.(주별로 수업 관리)
+<img src="https://user-images.githubusercontent.com/33392925/130318798-2ba3cb60-9b9f-4ece-abe4-9f09ecc9d1dc.gif" width="850">
+#### :heavy_check_mark:날짜를 클릭하면 오늘 날짜로 이동
+<img src="https://user-images.githubusercontent.com/33392925/130318810-48a047e4-5b2c-4d78-a7ad-c81aacb80eed.gif" width="850">
+#### :heavy_check_mark:셀을 드래그하여 수업 날짜 및 시간 변경
+<img src="https://user-images.githubusercontent.com/33392925/130318825-fd6ef0f1-b8c8-4257-a9e5-91a387caf49e.gif" width="850">
+#### :heavy_check_mark:관리자 계정이 아닐경우 읽기만 가능
+<img src="https://user-images.githubusercontent.com/33392925/130062701-4ed7b944-889b-41d3-b2db-d3f3950a656e.gif
+" width="850">
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Setup
+#### :heavy_check_mark:
+#### frontend
+```
+cd client
+npm install
+npm start
+```
+#### Firestore 
+* https://firebase.google.com/docs/web/setup
+* Add a web app from Firebase first.
+* Add Firebase SDKs to your app.
+Create firebase.js in src folder and `npm install firebase`
+* Create an `.env` file in the root folder
+* write `.env` in the `.gitignore`
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```
+//.env
+React_APP_API_KEY=~~
+React_APP_AUTH_DOMAIN=~~
+React_APP_DATABASE_URL=~~
+React_APP_PROJECT_ID=~~
+React_APP_STORAGE_BUCKET=~~
+React_APP_MESSAGIN_ID=~~
+React_APP_APP_ID=~
+```
+* To use the Authentication function in the firebase, you must open the url below and set it up the same way.
+https://firebase.google.com/docs/reference/js/firebase.auth.Auth?authuser=0#persistence_1
 
-### `npm test`
+## Cloud Firestore Data model
+In Cloud Firestore, the unit of storage is the document.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- schedule :
+    - title:
+    - curDate:
+    - startHour:
+    - startMinute:
+    - endHour:
+    - endMinute:
+    - students:
+        - id:
+        - studentName:
+        - studentAge: 
 
-### `npm run build`
+## Dependencies
+dependencies|version
+—|—
+antd | ^6.0.0
+fortawesome| ^1.2.35
+fortawesome/free-solid-svg-icons|^5.15.3
+fortawesome/react-fontawesome|^0.1.14
+material-ui/core|^4.11.4
+material-ui/lab|^4.0.0-alpha.58
+cookie|^0.4.1
+firebase-tools|^9.13.1
+react|16.8.4
+react-datepicker|^2.2.0
+react-dom|16.8.4
+react-router-dom|^5.2.0
+react-scripts|2.1.8
+uuid|^8.3.2
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+dev-dependenceies|version
+—|—
+webpack-cli|^4.7.2
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/33392925/130058089-d723c236-7b08-40c8-93f0-4e332b73a5fe.gif)
