@@ -92,8 +92,8 @@ react-router-dom|^5.2.0
 react-scripts|2.1.8
 uuid|^8.3.2
 
-|dev-dependenceies|version|
-|—--|--—|
-|webpack-cli|^4.7.2|
+dev-dependenceies|version
+---|--—
+webpack-cli|^4.7.2
 
 
