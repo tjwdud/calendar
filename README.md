@@ -27,8 +27,7 @@ react, react-hooks, sass, firestore
 #### :heavy_check_mark:셀을 드래그하여 수업 날짜 및 시간 변경
 <img src="https://user-images.githubusercontent.com/33392925/130318825-fd6ef0f1-b8c8-4257-a9e5-91a387caf49e.gif" width="850">
 #### :heavy_check_mark:관리자 계정이 아닐경우 읽기만 가능
-<img src="https://user-images.githubusercontent.com/33392925/130062701-4ed7b944-889b-41d3-b2db-d3f3950a656e.gif
-" width="850">
+<img src="https://user-images.githubusercontent.com/33392925/130062701-4ed7b944-889b-41d3-b2db-d3f3950a656e.gif" width="850">
 
 ## Setup
 #### :heavy_check_mark:
