@@ -21,12 +21,19 @@ react, react-hooks, sass, firestore
 
 #### :heavy_check_mark:매주 동일하게 진행되는 시간표가 있지만 학생 출석여부, 수업휴강, 수업시간 변경 등의 이유로 달라질 수 있음
 #### :heavy_check_mark:시간표 불러오기 버튼을 통해 고정시간표를 가져온다.(주별로 수업 관리)
+
 <img src="https://user-images.githubusercontent.com/33392925/130318798-2ba3cb60-9b9f-4ece-abe4-9f09ecc9d1dc.gif" width="850">
+
 #### :heavy_check_mark:날짜를 클릭하면 오늘 날짜로 이동
+
 <img src="https://user-images.githubusercontent.com/33392925/130318810-48a047e4-5b2c-4d78-a7ad-c81aacb80eed.gif" width="850">
+
 #### :heavy_check_mark:셀을 드래그하여 수업 날짜 및 시간 변경
+
 <img src="https://user-images.githubusercontent.com/33392925/130318825-fd6ef0f1-b8c8-4257-a9e5-91a387caf49e.gif" width="850">
+
 #### :heavy_check_mark:관리자 계정이 아닐경우 읽기만 가능
+
 <img src="https://user-images.githubusercontent.com/33392925/130062701-4ed7b944-889b-41d3-b2db-d3f3950a656e.gif" width="850">
 
 ## Setup
