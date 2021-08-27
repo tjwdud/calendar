@@ -108,8 +108,16 @@
 
 #timetable-view .weekly-col .free-timetable-cell .weekly-schedule .week-title {
   font-weight: bold;
-  margin-left: 5px;
+  width: 35px;
   background-color: #e7e8f4;
+}
+
+#timetable-view .weekly-col .free-timetable-cell .weekly-schedule .hour-title {
+  width: 78.33px;
+}
+
+#timetable-view .weekly-col .free-timetable-cell .weekly-schedule .hour-title .week-title {
+  width: 83px;
 }
 
 #timetable-view .weekly-col .main-timetable-cell .weekly-schedule {
@@ -119,7 +127,16 @@
 
 #timetable-view .weekly-col .main-timetable-cell .weekly-schedule .week-title {
   font-weight: bold;
+  width: 35px;
   background-color: #D1DCF0;
+}
+
+#timetable-view .weekly-col .main-timetable-cell .weekly-schedule .hour-title {
+  width: 78.33px;
+}
+
+#timetable-view .weekly-col .main-timetable-cell .weekly-schedule .hour-title .week-title {
+  width: 83px;
 }
 
 #timetable-view .weekly-col .weekly-cell {
@@ -139,14 +156,14 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 216px;
+  width: 220px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   color: #120F2E;
-  font-size: 10px;
-  padding: 5px;
-  margin: 5px;
+  font-size: 14px;
+  padding: 2px;
+  margin: 2px;
   border-radius: 5px;
   z-index: 3;
   cursor: pointer;
@@ -157,29 +174,31 @@
 }
 
 #timetable-view .weekly-col .weekly-cell .weekly-schedule p {
-  width: 57px;
   margin: 0;
 }
 
 #timetable-view .weekly-col .weekly-cell .weekly-schedule .start-end-hour {
-  margin-right: 3px;
-  margin-left: 3px;
   font-weight: bold;
   letter-spacing: 1.5px;
+  margin-right: 2px;
+  height: 20px;
 }
 
 #timetable-view .weekly-col .weekly-cell .weekly-schedule .start-end-hour p {
   display: inline;
-  font-size: 10px;
+  font-size: 14px;
+}
+
+#timetable-view .weekly-col .weekly-cell .weekly-schedule .student-name {
+  width: 130px;
 }
 
 #timetable-view .weekly-col .weekly-cell .weekly-schedule .student-name p {
   display: inline-block;
   -ms-flex-line-pack: distribute;
       align-content: space-around;
-  margin-left: 1.6px;
-  margin-right: 1.6px;
-  width: 46px;
+  width: 65px;
+  font-size: 14px;
 }
 
 #timetable-view .weekly-col .weekly-cell:nth-child(1) {

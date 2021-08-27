@@ -64,8 +64,14 @@
                 border: solid 1px $freecellcolor;
                 .week-title{
                     font-weight: bold;
-                    margin-left: 5px;
+                    width: 35px;
                     background-color: $freecellcolor;
+                }
+                .hour-title{
+                    width: 78.33px;
+                    .week-title{
+                        width:83px;
+                    }
                 }
             }
         }
@@ -75,7 +81,14 @@
                 border: solid 1px $backgroundbluecolor;
                 .week-title{
                     font-weight: bold;
+                    width: 35px;
                     background-color: $backgroundbluecolor;
+                }
+                .hour-title{
+                    width: 78.33px;
+                    .week-title{
+                        width:83px;
+                    }
                 }
             }
         }
@@ -93,13 +106,13 @@
             .weekly-schedule {
                 display: flex;
                 //flex-direction: column;
-                width:216px;
+                width:220px;
                 height: fit-content;
                 //min-height:90px;
                 color: $cellfontcolor;
-                font-size: 10px;
-                padding: 5px;
-                margin: 5px;
+                font-size: 14px;
+                padding: 2px;
+                margin: 2px;
                 border-radius: 5px;
                 z-index: 3;
                 cursor: pointer;
@@ -109,30 +122,30 @@
                 }
 
                 p {
-                    width: 57px;
+ 
                     margin: 0;
                 }
 
                 .start-end-hour{
-                    margin-right: 3px;
-                    margin-left: 3px;
                     font-weight: bold;
                     letter-spacing: 1.5px;
+                    margin-right: 2px;
+                    height:20px;
                     p{
                     display: inline;
-                    font-size: 10px;
+                    font-size: 14px;
 
                     }
                 }
 
                     .student-name{
-                        
+                        width:130px;
                     p{
                         display:inline-block;
                         align-content: space-around;
-                        margin-left: 1.6px;
-                        margin-right: 1.6px;
-                        width: 46px;
+
+                        width: 65px;
+                        font-size: 14px;
                     }
                 }
                 

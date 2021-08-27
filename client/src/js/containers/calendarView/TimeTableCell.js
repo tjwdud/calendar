@@ -17,13 +17,13 @@ const TimeTableCell = (props) => {
 	const [addFormState, setAddFormState] = useAddFormState();
 	const { active } = addFormState;
 	const [errorState, setErrorState] = useErrorState();
-	const [ timeTableData, setTimeTableData] = useTimeTableData();
-	const [ freeTimeTableData, setFreeTimeTableData] = useFreeTimeTableData();
+	const [timeTableData, setTimeTableData] = useTimeTableData();
+	const [freeTimeTableData, setFreeTimeTableData] = useFreeTimeTableData();
 	const [dragAndDrop, setDragAndDrop] = useDragAndDrop();
-	const [adminState,setAdminState] = useAdminState();
+	const [adminState, setAdminState] = useAdminState();
 
 	const onClickDate = () => {
-		if(!adminState){
+		if (!adminState) {
 			setErrorState({
 				...errorState,
 				active: true,
@@ -53,7 +53,7 @@ const TimeTableCell = (props) => {
 	const onClickSchedule = (e, schedule) => {
 		e.stopPropagation();
 		const { title, curDate, startHour, startMinute, endHour, endMinute, students } = schedule;
-		if(!adminState){
+		if (!adminState) {
 			setErrorState({
 				...errorState,
 				active: true,
@@ -88,7 +88,7 @@ const TimeTableCell = (props) => {
 		} else {
 			newSchedule = editDate(dragAndDrop.to, dragAndDrop.from, freeTimeTableData.freeTimeTableSchedule);
 		}
-		
+
 
 		if (newSchedule !== false && adminState) {
 			if (mode === 'timetable-class') {
@@ -143,7 +143,7 @@ const TimeTableCell = (props) => {
 	}
 
 	return (
-		<div className={mode === 'timetable-class' ? "main-timetable-cell weekly-cell": "free-timetable-cell weekly-cell"} onClick={onClickDate} onDragEnter={onDragEnterCell} onDragEnd={onDropSchedule}>
+		<div className={mode === 'timetable-class' ? "main-timetable-cell weekly-cell" : "free-timetable-cell weekly-cell"} onClick={onClickDate} onDragEnter={onDragEnterCell} onDragEnd={onDropSchedule}>
 			{schedule && schedule.map((a, i) => (
 				<div
 					key={i}
@@ -152,17 +152,28 @@ const TimeTableCell = (props) => {
 					draggable
 					onDragStart={(e) => onDragCell(e, a)}
 				>
-
-
-					<div className="start-end-hour">
-						{a.startMinute < 10 ? <p>{a.startHour + ':' + '0' + a.startMinute}</p> :
-							<p>{a.startHour + ':' + a.startMinute}</p>}
-						{/*{a.endMinute <10 ? <p>{a.endHour + ':' + '0'+a.endMinute}</p>:
+					{a.title.length < 3 ?
+						<>
+							<div className="start-end-hour">
+								{a.startMinute < 10 ? <p>{a.startHour + ':' + '0' + a.startMinute}</p> :
+									<p>{a.startHour + ':' + a.startMinute}</p>}
+								{/*{a.endMinute <10 ? <p>{a.endHour + ':' + '0'+a.endMinute}</p>:
 								<p>{a.endHour + ':' + a.endMinute}</p>}*/}
-					</div>
-					
-					<div className="week-title">
-						<p>{a.title}</p></div>
+							</div>
+
+							<div className="week-title">
+								<p>{a.title}</p></div></>
+						: <div className="hour-title">
+							<div className="start-end-hour">
+								{a.startMinute < 10 ? <p>{a.startHour + ':' + '0' + a.startMinute}</p> :
+									<p>{a.startHour + ':' + a.startMinute}</p>}
+								{/*{a.endMinute <10 ? <p>{a.endHour + ':' + '0'+a.endMinute}</p>:
+								<p>{a.endHour + ':' + a.endMinute}</p>}*/}
+							</div>
+
+							<div className="week-title">
+								<p>{a.title}</p></div>
+						</div>}
 
 					<div className="student-name">
 						{a.students.map((b, j) => (
