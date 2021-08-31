@@ -53,6 +53,7 @@ const Weekly = () => {
 	useEffect(
 		() => {
 			const { firstDate, lastDate } = getFirstAndLastDate();
+
 			setCurSchedule(getSchedule(firstDate, lastDate, schedule));
 		},
 		[userData]

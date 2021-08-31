@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import 'sass/app.css';
 import Monthly from './Monthly';
 import Weekly from './Weekly';
-import Daily from './Daily';
+import Daily from './Dailyview';
 
 // store
 import { useCalendarState } from 'js/stores/calendarState';

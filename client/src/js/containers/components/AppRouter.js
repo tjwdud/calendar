@@ -10,7 +10,7 @@ import { BrowserRouter, Switch, Route,	Redirect, useHistory, withRouter } from '
 import Monthly from 'js/containers/calendarView/Monthly';
 import Weekly from 'js/containers/calendarView/Weekly';
 import FreeWeekly from 'js/containers/calendarView/FreeWeekly';
-import Daily from 'js/containers/calendarView/Daily';
+import Daily from 'js/containers/calendarView/Dailyview';
 import ControlView from 'js/containers/controlView/ControlView';
 import AddForm from 'js/containers/components/AddForm';
 import ErrorPopup from 'js/containers/components/ErrorPopup';

@@ -29,7 +29,8 @@ const ControlView = ( {history, location} ) => {
 				newCurDate = '자유수업 ' + date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월 ' + lastDate + '주';
 			} else if (mode === 'daily') {
 				let week = ['일', '월', '화', '수', '목', '금', '토',]
-				newCurDate = date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월 ' + (date.getDate()) + '일' + (week[date.getDay()]) + '요일';
+				newCurDate = date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월 ' + (date.getDate()) + '일' + (week[date.getDay()]) + '요일 / '
+				+ date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월 ' + (date.getDate() + 1) + '일' + (week[date.getDay() + 1]) + '요일';
 			} else if (mode === 'student') {
 				newCurDate = '학생추가 페이지'
 			} else if (mode === 'timetable') {
@@ -61,7 +62,20 @@ const ControlView = ( {history, location} ) => {
 		} else if (mode === 'monthly') {
 			newDate = new Date(date.getFullYear(), date.getMonth() + value, date.getDate());
 		} else if (mode === 'daily') {
-			newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + value);
+			if(value < 0){
+				if(date.getDay() === 1){//요일이 월요일이면
+					newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() -3 );//전 화살표 눌렀을떄 월요일말고 금요일로 날짜 저장하라
+				}else{
+					newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + value * 2 );
+				}
+			}else {
+				if(date.getDay() === 5){//금요일 이라면
+					newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 4 );//다음 화살표 눌렀을 때 월요일로 
+				}else{
+					newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + value * 2 );
+
+				}
+			}
 		}
 		setCalendarState({ ...calendarState, date: newDate });
 	};

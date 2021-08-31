@@ -21,7 +21,6 @@ export const getSchedule = (startDate, endDate, schedule) => {
 
 export const getScheduleDaily = (curDailyDate, schedule) => {
 	if (schedule.length === 0) return []; //스케줄 배열의 길이가 0이면 빈 배열 
-	 
 	const start = schedule[0].curDate.getTime();//첫번째 스케줄의 날짜 
 	const end = schedule[schedule.length -1].curDate.getTime();//마지막 스케줄의 날짜
 

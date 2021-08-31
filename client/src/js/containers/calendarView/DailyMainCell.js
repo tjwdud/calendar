@@ -13,7 +13,7 @@ const DailyMainCell = (props) => {
     const [curClassNum, setCurClassNum] = useState('');
 	const [adminState,setAdminState] = useAdminState();
 	const [errorState, setErrorState] = useErrorState();
-
+    const class_type = 'main_class';
     useEffect(
         () => {
             if (date !== '') {
@@ -45,7 +45,7 @@ const DailyMainCell = (props) => {
             }
             const startMinute = 0;
             const endMinute = 0;
-            const class_type = 'main_class';
+ 
 
             setAddFormState({
                 ...addFormState,
@@ -79,6 +79,7 @@ const DailyMainCell = (props) => {
 
             setAddFormState({
                 ...addFormState,
+                class_type: class_type,
                 active: true,
                 mode: 'edit',
                 title: title,

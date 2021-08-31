@@ -1,66 +1,70 @@
 @import "./variables";
 
 #daily-view {
-    width: 1200px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    box-sizing: border-box;
-    margin-bottom: 50px; 
-    #free-class{
-        .daily-schedule{
-            background-color:$freecellcolor;
-        }
+  width: 684px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-bottom: 50px;
+  #date-str {
+      margin-bottom: 5px;
+      font-size: 15px;
+  }
+  #main-class {
+    .daily-schedule {
+      background-color: $backgroundbluecolor;
     }
-    #main-class{
-        .daily-schedule{
-            background-color:$backgroundbluecolor;
-        }
+  }
+  #free-class {
+      margin-top: 27px;
+    .daily-schedule {
+      background-color: $freecellcolor;
     }
-    #main-class,#free-class{
-        width:100%;
-        #daily-main-class,#daily-free-class{
-            font-size:13px;
-        }
-        .daily-schedule{
-            font-size:14px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin:5px 0px 5px 5px;
-            display: flex;
-            padding:7px;
+  }
 
-            .daily-hour{
-                margin-top: 1em;
-                margin-bottom: 1em;
-                width:39px;
-                margin-left:20px;
-                font-weight:bold;
-                letter-spacing: 1.5px;
-
-                }
-            .daily-title{
-                margin-top: 1em;
-                margin-bottom: 1em;
-                width:120px;
-                font-weight:bold;
-                margin-left:30px;
-            }
-            .daily-student{
-                margin-left:10px;
-                display: block;
-                p {
-                    margin-top: 1em;
-                    margin-bottom: 1em;
-                }
-            }
-            &:hover {
-                opacity: 0.5;
-            }
-        }
-        
+  #main-class,
+  #free-class {
+    width: 342px;
+    #daily-main-class,
+    #daily-free-class {
+      font-size: 13px;
     }
-  
+    .daily-schedule {
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 5px 0px 5px 5px;
+      display: flex;
+      padding: 7px;
 
-        
+      .daily-hour {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 39px;
+        margin-left: 10px;
+        margin-right: 3px;
+        font-weight: bold;
+        letter-spacing: 1.5px;
+      }
+      .daily-title {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 80px;
+        font-weight: bold;
+        margin-left: 10px;
+      }
+      .daily-student {
+        margin-left: 10px;
+        display: block;
+        p {
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+      }
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
 }
