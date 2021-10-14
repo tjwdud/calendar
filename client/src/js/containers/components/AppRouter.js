@@ -17,7 +17,6 @@ import ErrorPopup from 'js/containers/components/ErrorPopup';
 import StudentsControl from 'js/containers/components/StudentsControl';
 import TimeTable from 'js/containers/calendarView/TimeTable';
 import FreeTimeTable from 'js/containers/calendarView/FreeTimeTable';
-import Profile from 'js/containers/components/Profile';
 import Auth from 'js/containers/components/Auth';
 import Navigation from 'js/containers/components/Navigation';
 import 'sass/app.css';
@@ -230,7 +229,6 @@ const AppRouter = ({ isLoggedIn, userObj }) => {
                                 <Route exact path="/student" component={StudentsControl} />
                                 <Route exact path="/timetable" component={TimeTable} />
                                 <Route exact path="/freetimetable" component={FreeTimeTable} />
-                                <Route exact path="/profile" component={Profile} />
                             </div>
                         </>
                     </Switch>

@@ -57,23 +57,40 @@ body {
     #app {
       width: 1440px;
       display: flex;
+      justify-content: space-between;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
+      
     }
   }
 }
-#logoutbtn {
-  margin-top: 10px;
-  font-size: 16px;
-  margin-right: 1340px;
-  cursor: pointer;
-  &:hover{
-    opacity: 0.5;
+nav{
+  display: flex;
+  margin-top:10px;
+  #logoutbtn {
+    flex-grow: 1;
+    margin-left:-670px;
+    font-size: 16px;
+    cursor: pointer;
+    &:hover{
+      opacity: 0.5;
+    }
+  }
+
+  #printbtn{
+
+    font-weight: bold;
+    font-size: 20px;
+    margin-right:-210px;
+    cursor: pointer;
+    &:hover{
+      opacity: 0.5;
+    }
   }
 }
+
 #control-view {
-  margin-top: 25px;
+  margin-top: 5px;
   margin-bottom: 50px;
   margin-left: 500px;
   width: 900px;

@@ -47,7 +47,6 @@ const Daily = (props) => {
     return (
 
         <div id="daily-view">
-
             <div>
                 <p id="date-str">{newCurDate}</p>
                 <div id="main-class">
@@ -63,10 +62,6 @@ const Daily = (props) => {
                         freeSchedule={curFreeSchedule}
                     />
                 </div>
-
-
-
-
         </div>
     )
 };

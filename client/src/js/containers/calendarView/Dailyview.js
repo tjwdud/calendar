@@ -29,32 +29,33 @@ const Dailyview = () => {
             setCurDate(curDailyDate);
             setNextDate(curDailyNextDate);
         },
-        [ date ]
+        [date]
     )
     const getDailyDate = () => {
         const year = date.getFullYear();
         const month = date.getMonth();
         const day = date.getDate();
-        if( date.getDay() === 0 ){//오늘이 일요일이면 월요일로 설정
-            let newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()+1);//월요일로 
+        if (date.getDay() === 0) {//오늘이 일요일이면 월요일로 설정
+            let newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);//월요일로 
             setCalendarState({ ...calendarState, date: newDate });
         }
-        else if(date.getDay() % 2 === 0){//짝수면 전날로 
-			let newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()-1);
+        else if (date.getDay() % 2 === 0) {//짝수면 전날로 
+            let newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1);
             setCalendarState({ ...calendarState, date: newDate });
 
         }
         const curDailyDate = new Date(year, month, day);
-        const curDailyNextDate = new Date(year, month, day+1);
+        const curDailyNextDate = new Date(year, month, day + 1);
         setCurDate(curDailyDate);
         setNextDate(curDailyNextDate);
         return { curDailyDate: curDailyDate, curDailyNextDate: curDailyNextDate };
     }
 
     return (
-        <> <Daily curDate={curDate} />
+        <div id="daily-view-parent">
+            <Daily curDate={curDate} />
             <Daily curDate={nextDate} />
-        </>
+        </div>
     )
 };
 

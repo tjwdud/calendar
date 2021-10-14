@@ -1,4 +1,10 @@
-#daily-view {
+#daily-view-parent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#daily-view-parent #daily-view {
   width: 684px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -15,37 +21,39 @@
   margin-bottom: 50px;
 }
 
-#daily-view #date-str {
+#daily-view-parent #daily-view #date-str {
   margin-bottom: 5px;
   font-size: 15px;
+  margin-left: 5px;
 }
 
-#daily-view #main-class .daily-schedule {
+#daily-view-parent #daily-view #main-class .daily-schedule {
   background-color: #D1DCF0;
 }
 
-#daily-view #free-class {
+#daily-view-parent #daily-view #free-class {
   margin-top: 27px;
 }
 
-#daily-view #free-class .daily-schedule {
+#daily-view-parent #daily-view #free-class .daily-schedule {
   background-color: #e7e8f4;
 }
 
-#daily-view #main-class,
-#daily-view #free-class {
+#daily-view-parent #daily-view #main-class,
+#daily-view-parent #daily-view #free-class {
   width: 342px;
 }
 
-#daily-view #main-class #daily-main-class,
-#daily-view #main-class #daily-free-class,
-#daily-view #free-class #daily-main-class,
-#daily-view #free-class #daily-free-class {
+#daily-view-parent #daily-view #main-class #daily-main-class,
+#daily-view-parent #daily-view #main-class #daily-free-class,
+#daily-view-parent #daily-view #free-class #daily-main-class,
+#daily-view-parent #daily-view #free-class #daily-free-class {
   font-size: 13px;
+  margin-left: 5px;
 }
 
-#daily-view #main-class .daily-schedule,
-#daily-view #free-class .daily-schedule {
+#daily-view-parent #daily-view #main-class .daily-schedule,
+#daily-view-parent #daily-view #free-class .daily-schedule {
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
@@ -53,13 +61,12 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 7px;
 }
 
-#daily-view #main-class .daily-schedule .daily-hour,
-#daily-view #free-class .daily-schedule .daily-hour {
-  margin-top: 10px;
-  margin-bottom: 10px;
+#daily-view-parent #daily-view #main-class .daily-schedule .daily-hour,
+#daily-view-parent #daily-view #free-class .daily-schedule .daily-hour {
+  margin-top: 0px;
+  margin-bottom: 0px;
   width: 39px;
   margin-left: 10px;
   margin-right: 3px;
@@ -67,28 +74,32 @@
   letter-spacing: 1.5px;
 }
 
-#daily-view #main-class .daily-schedule .daily-title,
-#daily-view #free-class .daily-schedule .daily-title {
-  margin-top: 10px;
-  margin-bottom: 10px;
+#daily-view-parent #daily-view #main-class .daily-schedule .daily-hour p,
+#daily-view-parent #daily-view #free-class .daily-schedule .daily-hour p {
+  margin-bottom: 0px;
+}
+
+#daily-view-parent #daily-view #main-class .daily-schedule .daily-title,
+#daily-view-parent #daily-view #free-class .daily-schedule .daily-title {
   width: 80px;
   font-weight: bold;
   margin-left: 10px;
+  margin-bottom: 0px;
 }
 
-#daily-view #main-class .daily-schedule .daily-student,
-#daily-view #free-class .daily-schedule .daily-student {
+#daily-view-parent #daily-view #main-class .daily-schedule .daily-student,
+#daily-view-parent #daily-view #free-class .daily-schedule .daily-student {
   margin-left: 10px;
   display: block;
 }
 
-#daily-view #main-class .daily-schedule .daily-student p,
-#daily-view #free-class .daily-schedule .daily-student p {
-  margin-top: 10px;
-  margin-bottom: 10px;
+#daily-view-parent #daily-view #main-class .daily-schedule .daily-student p,
+#daily-view-parent #daily-view #free-class .daily-schedule .daily-student p {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
-#daily-view #main-class .daily-schedule:hover,
-#daily-view #free-class .daily-schedule:hover {
+#daily-view-parent #daily-view #main-class .daily-schedule:hover,
+#daily-view-parent #daily-view #free-class .daily-schedule:hover {
   opacity: 0.5;
 }

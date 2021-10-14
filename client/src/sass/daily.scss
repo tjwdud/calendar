@@ -1,70 +1,78 @@
 @import "./variables";
 
-#daily-view {
-  width: 684px;
+
+#daily-view-parent {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  box-sizing: border-box;
-  margin-bottom: 50px;
-  #date-str {
-      margin-bottom: 5px;
-      font-size: 15px;
-  }
-  #main-class {
-    .daily-schedule {
-      background-color: $backgroundbluecolor;
+  #daily-view {
+    width: 684px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+    #date-str {
+        margin-bottom: 5px;
+        font-size: 15px;
+        margin-left: 5px;
     }
-  }
-  #free-class {
-      margin-top: 27px;
-    .daily-schedule {
-      background-color: $freecellcolor;
-    }
-  }
-
-  #main-class,
-  #free-class {
-    width: 342px;
-    #daily-main-class,
-    #daily-free-class {
-      font-size: 13px;
-    }
-    .daily-schedule {
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-      margin: 5px 0px 5px 5px;
-      display: flex;
-      padding: 7px;
-
-      .daily-hour {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        width: 39px;
-        margin-left: 10px;
-        margin-right: 3px;
-        font-weight: bold;
-        letter-spacing: 1.5px;
+    #main-class {
+      .daily-schedule {
+        background-color: $backgroundbluecolor;
       }
-      .daily-title {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        width: 80px;
-        font-weight: bold;
-        margin-left: 10px;
+    }
+    #free-class {
+        margin-top: 27px;
+      .daily-schedule {
+        background-color: $freecellcolor;
       }
-      .daily-student {
-        margin-left: 10px;
-        display: block;
-        p {
-          margin-top: 10px;
-          margin-bottom: 10px;
+    }
+  
+    #main-class,
+    #free-class {
+      width: 342px;
+      #daily-main-class,
+      #daily-free-class {
+        font-size: 13px;
+        margin-left:5px;
+      }
+      .daily-schedule {
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin: 5px 0px 5px 5px;
+        display: flex;
+   
+        .daily-hour {
+          margin-top: 0px;
+          margin-bottom: 0px;
+          width: 39px;
+          margin-left: 10px;
+          margin-right: 3px;
+          font-weight: bold;
+          letter-spacing: 1.5px;
+          p{
+            margin-bottom: 0px;
+          }
         }
-      }
-      &:hover {
-        opacity: 0.5;
+        .daily-title {
+          width: 80px;
+          font-weight: bold;
+          margin-left: 10px;
+          margin-bottom: 0px;
+        }
+        .daily-student {
+          margin-left: 10px;
+          display: block;        
+          p {
+            margin-top: 0px;
+            margin-bottom: 0px;
+          }
+        }
+        &:hover {
+          opacity: 0.5;
+        }
       }
     }
   }
 }
+
